@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameter>
+<!--System info /Version-->
+  <Seri address="0" scaling="1" unit="" type="0"></Seri>
+  <Versiion address="1" scaling="1" unit="" type="0"></Versiion>
+  <CodeCRC address="97" scaling="1" unit="" type="0"></CodeCRC>
+  <DataCRC address="99" scaling="1" unit="" type="0"></DataCRC>
+
+<!--AC output/Grid voltage-->
+  <Va address="30" scaling="10" unit="V" type="1"></Va>
+  <Vb address="31" scaling="10" unit="V" type="1"></Vb>
+  <Vc address="32" scaling="10" unit="V" type="1"></Vc>
+<!--AC output/Grid current-->
+  <Ia address="35" scaling="10" unit="A" type="1"></Ia>
+  <Ib address="36" scaling="10" unit="A" type="1"></Ib>
+  <Ic address="37" scaling="10" unit="A" type="1"></Ic>
+<!--AC output/Inverter current-->
+  <Int_Ia address="40" scaling="10" unit="A" type="1"></Int_Ia>
+  <Int_Ib address="41" scaling="10" unit="A" type="1"></Int_Ib>
+  <Int_Ic address="42" scaling="10" unit="A" type="1"></Int_Ic>
+<!--AC output/power-->
+  <kva address="61" scaling="100" unit="kva" type="1"></kva>
+  <kw address="62" scaling="100" unit="kva" type="1"></kw>
+  <kvar address="63" scaling="100" unit="kva" type="1"></kvar>
+  <pf address="64" scaling="100" unit="kva" type="1"></pf>
+  <freq address="48" scaling="10" unit="A" type="1"></freq>
+<!--DC Input-->
+  <Vpv address="51" scaling="10" unit="V" type="1"></Vpv>
+  <Ipv address="53" scaling="10" unit="A" type="1"></Ipv>
+  <kwpv address="60" scaling="100" unit="kw" type="1"></kwpv>
+<!--q-->
+  <kwh_today address="65" scaling="1" unit="kwh" type="1"></kwh_today>
+  <Gwh_nv address="69" scaling="1" unit="gwh" type="1"></Gwh_nv>
+<!--Temperature-->
+  <HS1 address="110" scaling="100" unit="C" type="1"></HS1>
+<!--Fault-->
+  <flt_read address="190" scaling="1" unit="" type="0"></flt_read>
+  <flt_YER address="191" scaling="1" unit="" type="0"></flt_YER>
+  <flt_MON address="192" scaling="1" unit="" type="0"></flt_MON>
+  <flt_DAY address="193" scaling="1" unit="" type="0"></flt_DAY>
+  <flt_HUR address="194" scaling="1" unit="" type="0"></flt_HUR>
+  <flt_MIN address="195" scaling="1" unit="" type="0"></flt_MIN>
+  <flt_SEC address="196" scaling="1" unit="" type="0"></flt_SEC>
+  <flt_num address="489" scaling="1" unit="" type="1"></flt_num>
+<!--System info /time-->
+  <set_clock address="202" scaling="1" unit="" type="0"></set_clock>
+  <ss address="203" scaling="1" unit="" type="0"></ss>
+  <mm address="204" scaling="1" unit="" type="0"></mm>
+  <hh address="205" scaling="1" unit="" type="0"></hh>
+  <dd address="206" scaling="1" unit="" type="0"></dd>
+  <MM address="207" scaling="1" unit="" type="0"></MM>
+  <yyl address="208" scaling="1" unit="" type="0"></yyl>
+  <yyh address="209" scaling="1" unit="" type="0"></yyh>
+<!--System info /Version-->
+  <RatedPower address="220" scaling="100" unit="kva" type="0"></RatedPower>
+  <RatedVoltage address="221" scaling="1" unit="V" type="0"></RatedVoltage>
+<!--q-->
+  <sys_cmd address="211" scaling="1" unit="" type="2"></sys_cmd>
+  <kw_set address="231" scaling="1" unit="" type="2"></kw_set>
+</parameter>

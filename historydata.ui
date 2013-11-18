@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HistoryData</class>
+ <widget class="QWidget" name="HistoryData">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="Chart" name="chart" native="true">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>711</width>
+     <height>200</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>63</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>AR PL UKai CN</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>日期：</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbox_para">
+   <property name="geometry">
+    <rect>
+     <x>297</x>
+     <y>20</y>
+     <width>103</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>AR PL UKai CN</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>228</x>
+     <y>20</y>
+     <width>63</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>AR PL UKai CN</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>参数：</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cbox_data">
+   <property name="geometry">
+    <rect>
+     <x>119</x>
+     <y>20</y>
+     <width>103</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>AR PL UKai CN</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Chart</class>
+   <extends>QWidget</extends>
+   <header location="global">chart.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

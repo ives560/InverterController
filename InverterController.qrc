@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/parameter.xml</file>
+        <file>images/canshushezi.png</file>
+        <file>images/fanhui.png</file>
+        <file>images/gongnengbiao.png</file>
+        <file>images/kaiguanji.png</file>
+        <file>images/lishixinxi.png</file>
+        <file>images/yunxingxinxi.png</file>
+        <file>images/zhuyemian.png</file>
+        <file>images/shangyiye.png</file>
+        <file>images/xiayiye.png</file>
+        <file>images/greenled.png</file>
+        <file>images/redled.png</file>
+        <file>images/mainbeijing.png</file>
+        <file>images/data.png</file>
+        <file>images/event.png</file>
+        <file>images/fault.png</file>
+        <file>images/private.png</file>
+        <file>images/run.png</file>
+        <file>images/comm.png</file>
+        <file>images/mainpic.png</file>
+        <file>Resources/fault.xml</file>
+    </qresource>
+</RCC>

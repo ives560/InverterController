@@ -1,0 +1,15 @@
+QToolButton#toolButton_3 {
+	border-top:none;
+	border-right:groove;
+	border-bottom:none;
+	border-left:groove;
+     border-width: 1px;
+     border-color: blue;
+ }
+ 
+ QToolButton#toolButton_3:pressed {
+	border-style: flat;
+	background: rgb(79, 185, 255);
+ }
+ 
+ background-color: transparent;

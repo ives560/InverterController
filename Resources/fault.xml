@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fault>
+	<code_1>
+		<name>Program_CRC_flt</name>
+		<details>DSP code problem</details>
+	</code_1>
+	<code_2>
+		<name>Data_CRC_flt</name>
+		<details>system data error</details>
+	</code_2>
+	<code_3>
+		<name>Precharge_flt</name>
+		<details></details>
+	</code_3>
+	<code_4>
+		<name>INVerter_flt</name>
+		<details>see inverter_flt group</details>
+	</code_4>
+	<code_5>
+		<name>Grid_flt</name>
+		<details>see Grid_flt group</details>
+	</code_5>
+	<code_6>
+		<name>Digital_IO_flt</name>
+		<details>see digi_IO_flt group</details>
+	</code_6>
+	<code_7>
+		<name>HW_FLT1_flt</name>
+		<details>see inverter_flt group</details>
+	</code_7>
+	<code_8>
+		<name>HW_FLT2_flt</name>
+		<details>IGBT fault</details>
+	</code_8>
+	<code_9>
+		<name>Matchac_flt</name>
+		<details>Inveter start problem</details>
+	</code_9>
+	<code_10>
+		<name>VDC_flt</name>
+		<details>se dc_flt group</details>
+	</code_10>
+	<code_11>
+		<name></name>
+		<details></details>
+	</code_11>
+	<code_12>
+		<name>NV_data1_CRC</name>
+		<details>NVram1 write/resd error</details>
+	</code_12>
+	<code_13>
+		<name>NV_data2_CRC</name>
+		<details>NVram2 write/resd error</details>
+	</code_13>
+	<code_14>
+		<name>NV_data3_CRC</name>
+		<details>NVram3 write/resd error</details>
+	</code_14>
+	<code_15>
+		<name></name>
+		<details></details>
+	</code_15>
+	<code_16>
+		<name></name>
+		<details></details>
+	</code_16>
+	<code_17>
+		<name>FLT_E_Stop</name>
+		<details>E-stop button pushed in</details>
+	</code_17>
+	<code_18>
+		<name>FLT_Door_OPEN</name>
+		<details>Door opened</details>
+	</code_18>
+	<code_19>
+		<name>FLT_PreChg_CONT</name>
+		<details>Not used in this unit</details>
+	</code_19>
+	<code_20>
+		<name>FLT_AC1_CONT</name>
+		<details>AC contactor not closing/opening</details>
+	</code_20>
+	<code_21>
+		<name>FLT_DC_CONT</name>
+		<details>DC contactor not closing/opening</details>
+	</code_21>
+	<code_22>
+		<name>FLT_DC_Fuse</name>
+		<details>DC_Fuse blown</details>
+	</code_22>
+	<code_23>
+		<name>FLT_HeatSink1_OT</name>
+		<details>HeatSink1 over temperature</details>
+	</code_23>
+	<code_24>
+		<name>FLT_Reactor1_OT</name>
+		<details>Reactor over temperature</details>
+	</code_24>
+	<code_25>
+		<name>FLT_Transformer_OT</name>
+		<details>Transformer over temperature</details>
+	</code_25>
+	<code_26>
+		<name>FLT_AC_Fuse</name>
+		<details>AC_Fuse blown</details>
+	</code_26>
+	<code_27>
+		<name>FLT_DC_Surge</name>
+		<details>DC_Surge arrestor blown</details>
+	</code_27>
+	<code_28>
+		<name>FLT_AC_Surge</name>
+		<details>AC_Surge arrestor blown</details>
+	</code_28>
+	<code_29>
+		<name>FLT_GATE_uv</name>
+		<details>IGBT gating board under voltage</details>
+	</code_29>
+	<code_30>
+		<name>FLT_test_gate</name>
+		<details>gate test fault</details>
+	</code_30>
+	<code_31>
+		<name>FLT_test_opl</name>
+		<details>open loop test fault</details>
+	</code_31>
+	<code_32>
+		<name></name>
+		<details></details>
+	</code_32>
+	<code_33>
+		<name></name>
+		<details></details>
+	</code_33>
+	<code_34>
+		<name></name>
+		<details></details>
+	</code_34>
+	<code_35>
+		<name></name>
+		<details></details>
+	</code_35>
+	<code_36>
+		<name></name>
+		<details></details>
+	</code_36>
+	<code_37>
+		<name></name>
+		<details></details>
+	</code_37>
+	<code_38>
+		<name></name>
+		<details></details>
+	</code_38>
+</fault>
