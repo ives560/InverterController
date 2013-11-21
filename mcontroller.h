@@ -51,7 +51,7 @@ public:
     void setRunLevel(int index,bool state);
 
 public:
-    void userWriteData(int addr, int val);
+    void userWriteData(ParaInfo *para, int val);
     void userWriteData(ParaList list);
 
 private:

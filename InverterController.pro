@@ -13,7 +13,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = InverterController
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
     invertercontroller.cpp \
     keyboard.cpp \

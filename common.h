@@ -35,10 +35,10 @@
 #define READ_FUNCTION_CODE  0x03
 #define WRITE_FUNCTION_CODE 0x10
 
-/*--------------------*/
-#define AM335x_BOARD
 
-
+#if(QT_VERSION == 0x040702)
+    #define AM335x_BOARD
+#endif
 typedef QList< ParaInfo*> ParaList;
 
 /*-------要保存到数据库中的一行数据---------*/

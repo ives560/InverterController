@@ -49,7 +49,7 @@ void SetParaDialog::pbtn_OK_clicked()
             msg.exec();
             return;
         }
-        controller->userWriteData(para->address,val_i);
+        controller->userWriteData(para,val_i);
     }
 
 }

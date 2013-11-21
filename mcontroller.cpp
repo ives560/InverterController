@@ -92,14 +92,15 @@ void MController::setRunLevel(int index,bool state)
 //读取错误数据
 void MController::readFaultData()
 {
-    int ridex= flt_SEC;
-    int widex = flt_read;
-    bool writed = false;
-    uint val =9;
+
     int fault = paraArray[flt_num]->values;
 
     if(fault_num!= fault)
     {
+        int ridex= flt_SEC;
+        int widex = flt_read;
+        bool writed = false;
+        uint val =9;
         uint num = fault_num;
         writed = serial->modubsWrite((uint)flt_num,1,&num);
         writed = serial->modubsWrite(201,1,&val);
@@ -289,11 +290,9 @@ bool MController::paraMapInit()
 }
 
 //将要发送的存入发送队列
-void MController::userWriteData(int addr,int val)
+void MController::userWriteData(ParaInfo* para ,int val)
 {   
-    ParaInfo* para = new ParaInfo();
-    para->address = addr;
-    para->values =  val;
+    para->val_w =  val;
     uslist_w.append(para);
     runLevel[0] = true;
 }

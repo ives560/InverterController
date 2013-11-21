@@ -41,7 +41,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget#widget{background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(58, 163, 255, 255), stop:0.495 rgba(58, 163, 255, 255), stop:0.505 rgba(17, 60, 255, 255), stop:1 rgba(17, 60, 255, 255));}</string>
+    <string notr="true">QWidget#widget{background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #00f7fa, stop: 1 #00dbde);}</string>
    </property>
    <widget class="QToolButton" name="tBtn_main">
     <property name="geometry">

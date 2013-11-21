@@ -10,7 +10,6 @@ InverterController::InverterController(QWidget *parent, Qt::WFlags flags)
     //controller=NULL;
     controller=new MController();
     //connect(controller, SIGNAL(enReadData()),this, SIGNAL(enReadData()));
-
     //this->showFullScreen();
     setWindowFlags(Qt::FramelessWindowHint);
     move(0,0);

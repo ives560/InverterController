@@ -39,7 +39,7 @@ void RunParaSetFace::setupUi()
 
     //当前页面槽
     qRegisterMetaType<ParaList>("ParaList");
-    connect(tableWidget,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(tableWidget_doubleClicked(QModelIndex)));
+    connect(tableWidget,SIGNAL(clicked(QModelIndex)),this,SLOT(tableWidget_clicked(QModelIndex)));
 //    connect(controller,SIGNAL(writeDataDone(ParaList,bool)),tableWidget,SLOT(writeDoneSlot(ParaList,bool)));
 
 }
@@ -57,7 +57,7 @@ void RunParaSetFace::bindData()
 }
 
 //
-void RunParaSetFace::tableWidget_doubleClicked(QModelIndex index)
+void RunParaSetFace::tableWidget_clicked(QModelIndex index)
 {
     int clum=index.column();
     if((clum==0)||(clum==2))

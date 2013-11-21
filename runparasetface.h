@@ -19,7 +19,7 @@ private:
 
 
 private slots:
-    void tableWidget_doubleClicked(QModelIndex);
+    void tableWidget_clicked(QModelIndex);
     void writeDoneSlot(ParaList,bool);
 
 };

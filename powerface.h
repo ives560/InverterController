@@ -21,6 +21,7 @@ private:
 	QToolButton *reset;
 	QToolButton *start;
 	QToolButton *stop;
+    QWidget* m_parent;
 
 private slots:
 	void shutdown_Clickde();

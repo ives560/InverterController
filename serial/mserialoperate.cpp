@@ -7,8 +7,10 @@ MSerialOperate::MSerialOperate()
 
 #ifdef AM335x_BOARD
     port=new SerialPort("/dev/ttyO1");//板子DSP串口ttyO1
+    qDebug()<<"SerialPort:ttyO1";
 #else
     port=new SerialPort("/dev/ttyS2");//电脑串口COM3是ttyS2
+    qDebug()<<"SerialPort:ttyS2";
 #endif
 
     outTimer=new QTimer(this);

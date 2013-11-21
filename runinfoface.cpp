@@ -28,8 +28,8 @@ void RunInfoFace::setupUi()
 
 	/*-------------按钮初始化------------------*/
     setupButton(pbtn_realTime,"实时数据",200,350,NULL,SLOT(realTime_clicked()));
-    setupButton(pbtn_powerNet,"功率曲线",300,350,NULL,SLOT(powerNet_clicked()));
-    setupButton(pbtn_powerColumn,"电量柱状图",400,350,NULL,SLOT(powerColumn_clicked()));
+    setupButton(pbtn_powerNet,"功率曲线",310,350,NULL,SLOT(powerNet_clicked()));
+    setupButton(pbtn_powerColumn,"电量柱状图",420,350,NULL,SLOT(powerColumn_clicked()));
 }
 
 void RunInfoFace::realTimeTableInit()
@@ -67,7 +67,12 @@ void RunInfoFace::setupButton(QPushButton *button,QString text,int x,int y,
 {
     button=new QPushButton(this);
     button->setObjectName(text);
-    button->setStyleSheet("background:transparent");
+    button->setStyleSheet(" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #96f7fa, stop: 1 #dadbde);\
+                          border-style: outset;\
+                          border-width: 1px;\
+                          border-radius: 3px;\
+                          border-color: beige;\
+                          font: bold 14px;");
     button->setText(text);
     button->setGeometry(x,y,100,30);
     connect(button,SIGNAL(clicked()),this,member);
@@ -132,6 +137,7 @@ void RunInfoFace::realTime_clicked()
         clearShowUi();
         showRealTimePage();
         page = RealTime;
+        readDataDone();
     }
 
 }
@@ -143,6 +149,7 @@ void RunInfoFace::powerNet_clicked()
         clearShowUi();
         showPowerNetPage();
         page = PowerNet;
+        readDataDone();
     }
 }
 void RunInfoFace::powerColumn_clicked()
@@ -152,6 +159,7 @@ void RunInfoFace::powerColumn_clicked()
     {
         clearShowUi();
         page = PowerCln;
+        readDataDone();
     }
 }
 
