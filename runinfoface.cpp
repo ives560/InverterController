@@ -16,8 +16,10 @@ RunInfoFace::~RunInfoFace()
 
 void RunInfoFace::setFastReadType(bool en)
 {
-    int names[] = {Va,Vb,Vc,Ia,Ib,Ic,Int_Ia,Int_Ib,Int_Ic,kva,kw,kvar};
-    setReadType(names,12,FAST_READ,en);
+    int count =18;
+    int names[] = {Va,Vb,Vc,Ia,Ib,Ic,Int_Ia,Int_Ib,Int_Ic,kva,kw,kvar,pf,freq,efficy,Vpv,Ipv,kwpv};
+
+    setReadType(names,count,FAST_READ,en);
 }
 
 void RunInfoFace::setupUi()
@@ -34,27 +36,44 @@ void RunInfoFace::setupUi()
 
 void RunInfoFace::realTimeTableInit()
 {
-    int rows=6,columns=4;
-    QString clum0Names[]={"直流电压","直流电流","电网频率","日运行分钟","减少CO2排放","功率因数"};
-    QString clum2Names[]={"输出功率","日发电量","月发电量","总发电量","总运行时数","工作状态"};
+    int rows=6,columns=6;
+
+    QString clum0Names[]={"电网电压A","电网电压B","电网电压C"};
+    QString clum1Names[]={"电网电流A","电网电流B","电网电流C"};
+    QString clum2Names[]={"逆变器电流A","逆变器电流B","逆变器电流C"};
+    QString clum3Names[]={"视在功率","有功功率","无功功率"};
+    QString clum4Names[]={"功率因数","电网频率","计算效率"};
+    QString clum5Names[]={"太阳板输出电压","太阳板输出电流","太阳板输出功率"};
 
     tableWidget=new ParaTableWidget(ui.showArea);
 
     tableWidget->setObjectName("table_realTime");
-    tableWidget->setGeometry(150,0,500,250);
+    tableWidget->setGeometry(0,0,700,250);
 
     /*--------------设置表格数据--------------------------------*/
     tableWidget->setRowCount(rows);
     tableWidget->setColumnCount(columns);
     QTableWidgetItem* item;
-    for(int i=0;i<rows;i++)
+    for(int i=0;i<3;i++)
     {
         item = new QTableWidgetItem(clum0Names[i]);
         item->setForeground(QBrush(QColor(Qt::blue)));
-        tableWidget->setItem(i,0,item);
+        tableWidget->setItem(0,i*2,item);
+        item = new QTableWidgetItem(clum1Names[i]);
+        item->setForeground(QBrush(QColor(Qt::blue)));
+        tableWidget->setItem(1,i*2,item);
         item = new QTableWidgetItem(clum2Names[i]);
         item->setForeground(QBrush(QColor(Qt::blue)));
-        tableWidget->setItem(i,2,item);
+        tableWidget->setItem(2,i*2,item);
+        item = new QTableWidgetItem(clum3Names[i]);
+        item->setForeground(QBrush(QColor(Qt::blue)));
+        tableWidget->setItem(3,i*2,item);
+        item = new QTableWidgetItem(clum4Names[i]);
+        item->setForeground(QBrush(QColor(Qt::blue)));
+        tableWidget->setItem(4,i*2,item);
+        item = new QTableWidgetItem(clum5Names[i]);
+        item->setForeground(QBrush(QColor(Qt::blue)));
+        tableWidget->setItem(5,i*2,item);
     }
     /*---------------------------------------------------------*/ 
     tableWidget->setFocusPolicy(Qt::NoFocus);//不获得焦点，单击后没有虚线边框
@@ -82,13 +101,21 @@ void RunInfoFace::setupButton(QPushButton *button,QString text,int x,int y,
 void RunInfoFace::bindRealTimeTableData()
 {
     ParaInfo** paraArray=controller->paraArray;
-    int clum_a[]={Va,Vb,Vc,Ia,Ib,Ic};
-    int clum_b[]={Int_Ia,Int_Ib,Int_Ic,kva,kw,kvar};
+    int clum_a[]={Va,Vb,Vc};
+    int clum_b[]={Ia,Ib,Ic};
+    int clum_c[]={Int_Ia,Int_Ib,Int_Ic};
+    int clum_d[]={kva,kw,kvar};
+    int clum_e[]={pf,freq,efficy};
+    int clum_f[]={Vpv,Ipv,kwpv};
 
-    for(int i=0;i<tableWidget->rowCount();i++)
+    for(int i=1;i<4;i++)
     {
-        tableWidget->bindData(i,1,paraArray[clum_a[i]]);
-        tableWidget->bindData(i,3,paraArray[clum_b[i]]);
+        tableWidget->bindData(0,i*2-1,paraArray[clum_a[i-1]]);
+        tableWidget->bindData(1,i*2-1,paraArray[clum_b[i-1]]);
+        tableWidget->bindData(2,i*2-1,paraArray[clum_c[i-1]]);
+        tableWidget->bindData(3,i*2-1,paraArray[clum_d[i-1]]);
+        tableWidget->bindData(4,i*2-1,paraArray[clum_e[i-1]]);
+        tableWidget->bindData(5,i*2-1,paraArray[clum_f[i-1]]);
     }
     tableWidget->setAllValToTable();
 }

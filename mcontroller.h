@@ -41,6 +41,8 @@ private:
     void saveFaultRowToDataBase();
     void timerEvent(QTimerEvent * e);
 
+    bool getFaultData(uchar num);
+
     //void setWriteData();
 public:
     void runUserWriteData();
@@ -51,7 +53,7 @@ public:
     void setRunLevel(int index,bool state);
 
 public:
-    void userWriteData(ParaInfo *para, int val);
+    void userWriteData(ParaInfo *para, short int val);
     void userWriteData(ParaList list);
 
 private:

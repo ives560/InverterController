@@ -17,7 +17,7 @@ void ParaTableWidget::setupUi()
     this->verticalHeader()->hide();//隐藏行标题列标题
 
     //this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏滚动条
+    //this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏滚动条
 
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);//单元格只读
 }

@@ -14,8 +14,7 @@ RunParaSetFace::RunParaSetFace(QWidget *parent, MController *mc)
 void RunParaSetFace::setupUi()
 {
     setTitle("运行参数",":/images/yunxingxinxi.png");
-    QString clumNames[]={"直流电压","直流电流","电网频率","日运行分钟","减少CO2排放","功率因数",
-                         "输出功率","日发电量","月发电量","总发电量","总运行时数","工作状态"};
+    QString clumNames[]={"输出功率上限","输出无功设置","功率因数设置","无功控制模式选择","控制方式"};
 
     tableWidget=new ParaTableWidget(ui.showArea);
 
@@ -23,7 +22,7 @@ void RunParaSetFace::setupUi()
     tableWidget->setGeometry(200,20,200*2,260);
 
     /*--------------设置表格数据--------------------------------*/
-    tableWidget->setRowCount(12);
+    tableWidget->setRowCount(5);
     tableWidget->setColumnCount(2);
     QStringList labels;
     labels<<"名称"<<"设置值";
@@ -47,7 +46,7 @@ void RunParaSetFace::setupUi()
 void RunParaSetFace::bindData()
 {
     ParaInfo** paraArray=controller->paraArray;
-    int clum[]={Va,Vb,Vc,Ia,Ib,Ic,Int_Ia,Int_Ib,Int_Ic,kva,kw,kvar};
+    int clum[]={kw_set,kvar_set,pf_set,pf_mode,contro_mode};
 
     for(int i=0;i<tableWidget->rowCount();i++)
     {

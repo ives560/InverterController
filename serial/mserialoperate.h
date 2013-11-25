@@ -13,10 +13,10 @@ public:
     MSerialOperate();
     ~MSerialOperate();
     bool modubsRead(unsigned int addr, int len,uchar *rxBuffer, int *rxCount);
-    bool modubsWrite(unsigned int addr, int len,unsigned int *val);
+    bool modubsWrite(unsigned int addr, int len,short *val);
     bool readData(uchar *rxBuffer, int *rxCount);
     void SendReadOrder(unsigned int addr, int len);
-    void SendWriteOrder(unsigned int addr, unsigned int *val, int len);
+    void SendWriteOrder(unsigned int addr, short int *val, int len);
     bool getComState();
 
 private:

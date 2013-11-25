@@ -21,5 +21,6 @@
         <file>images/comm.png</file>
         <file>images/mainpic.png</file>
         <file>Resources/fault.xml</file>
+        <file>images/zhuyaoyema.png</file>
     </qresource>
 </RCC>

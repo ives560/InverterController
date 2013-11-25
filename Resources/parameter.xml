@@ -19,18 +19,21 @@
   <Int_Ib address="41" scaling="10" unit="A" type="1"></Int_Ib>
   <Int_Ic address="42" scaling="10" unit="A" type="1"></Int_Ic>
 <!--AC output/power-->
-  <kva address="61" scaling="100" unit="kva" type="1"></kva>
-  <kw address="62" scaling="100" unit="kva" type="1"></kw>
-  <kvar address="63" scaling="100" unit="kva" type="1"></kvar>
-  <pf address="64" scaling="100" unit="kva" type="1"></pf>
-  <freq address="48" scaling="10" unit="A" type="1"></freq>
+  <kva address="61" scaling="100" unit="KVA" type="1"></kva>
+  <kw address="62" scaling="100" unit="KW" type="1"></kw>
+  <kvar address="63" scaling="100" unit="KVAR" type="1"></kvar>
+  <pf address="64" scaling="100" unit="" type="1"></pf>
+  <freq address="48" scaling="100" unit="Hz" type="1"></freq>
+  <efficy address="58" scaling="100" unit="%" type="1"></efficy>
 <!--DC Input-->
   <Vpv address="51" scaling="10" unit="V" type="1"></Vpv>
   <Ipv address="53" scaling="10" unit="A" type="1"></Ipv>
-  <kwpv address="60" scaling="100" unit="kw" type="1"></kwpv>
+  <kwpv address="60" scaling="100" unit="KW" type="1"></kwpv>
 <!--q-->
-  <kwh_today address="65" scaling="1" unit="kwh" type="1"></kwh_today>
-  <Gwh_nv address="69" scaling="1" unit="gwh" type="1"></Gwh_nv>
+  <kwh_today address="65" scaling="1" unit="kWh" type="1"></kwh_today>
+  <kwh_nv address="67" scaling="1" unit="kWh" type="1"></kwh_nv>
+  <Mwh_nv address="68" scaling="1" unit="MWh" type="1"></Mwh_nv>
+  <Gwh_nv address="69" scaling="1" unit="GWh" type="1"></Gwh_nv>
 <!--Temperature-->
   <HS1 address="110" scaling="100" unit="C" type="1"></HS1>
 <!--Fault-->
@@ -52,9 +55,15 @@
   <yyl address="208" scaling="1" unit="" type="0"></yyl>
   <yyh address="209" scaling="1" unit="" type="0"></yyh>
 <!--System info /Version-->
-  <RatedPower address="220" scaling="100" unit="kva" type="0"></RatedPower>
+  <RatedPower address="220" scaling="100" unit="KVA" type="0"></RatedPower>
   <RatedVoltage address="221" scaling="1" unit="V" type="0"></RatedVoltage>
 <!--q-->
   <sys_cmd address="211" scaling="1" unit="" type="2"></sys_cmd>
-  <kw_set address="231" scaling="1" unit="" type="2"></kw_set>
+  <kw_set address="231" scaling="1" unit="%" type="2"></kw_set>
+  <kvar_set address="232" scaling="1" unit="%" type="2"></kvar_set>
+  <pf_set address="236" scaling="1" unit="%" type="2"></pf_set>
+  <pf_mode address="235" scaling="1" unit="" type="2"></pf_mode>
+  <contro_mode address="230" scaling="1" unit="" type="2"></contro_mode>
+
+
 </parameter>

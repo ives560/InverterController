@@ -16,7 +16,7 @@ MController::MController(QObject *parent)
     runLevel[2]=true;
 
     database = NULL;
-    database = new DataBase();//数据库
+//    database = new DataBase();//数据库
     serial=new MSerialOperate();//新建串口
 
     memset(paraArray,0,sizeof(ParaInfo*)*PARA_ARRAY_MAX);
@@ -47,6 +47,7 @@ void MController::run()
 {
     while(setFirstRun==true)//第一次读取所有的参数值
     {
+
         if(readAllParaData()==true)
         {
 
@@ -89,21 +90,36 @@ void MController::setRunLevel(int index,bool state)
 {
     runLevel[index] = state;
 }
+//
+/*void MController::readAllFaultData()
+{
+    uchar curt_fault = (uchar)paraArray[flt_num]->values;
+    fault_num = curt_fault;
+    do
+    {
+        if(getFaultData(fault_num)==false)
+            return;
+
+
+        fault_num--;
+    }while(fault_num!=curt_fault)
+
+}*/
 //读取错误数据
 void MController::readFaultData()
 {
+    short fault = paraArray[flt_num]->values;
 
-    int fault = paraArray[flt_num]->values;
-
-    if(fault_num!= fault)
+     if(fault_num == fault)
     {
         int ridex= flt_SEC;
         int widex = flt_read;
         bool writed = false;
-        uint val =9;
-        uint num = fault_num;
-        writed = serial->modubsWrite((uint)flt_num,1,&num);
-        writed = serial->modubsWrite(201,1,&val);
+        short val =9;
+        short num = (short)fault_num;
+        writed = serial->modubsWrite((uint)flt_num,1,&num);//  先写入要读取的错误号
+        writed = serial->modubsWrite(201,1,&val);//再写命令
+
         if(writed == true)
         {
             runReadData(&ridex,&widex,ALL_READ);
@@ -116,6 +132,32 @@ void MController::readFaultData()
         }
     }
 
+}
+
+//
+bool MController::getFaultData(uchar num)
+{
+    int ridex= flt_SEC;
+    int widex = flt_read;
+    bool success = false;
+    short val =9;
+    short m = (short)num;
+    success = serial->modubsWrite((uint)flt_num,1,&m);//  先写入要读取的错误号
+    success = serial->modubsWrite(201,1,&val);//再写命令
+
+    if(success == true)
+    {
+        success = runReadData(&ridex,&widex,ALL_READ);
+        if(success==true)
+            return true;
+        if(serial->comState == true)
+            ;
+        qDebug()<<"readFaultData"<<paraArray[flt_read]->values<<"\n";
+        qDebug()<<paraArray[flt_YER]->values<<"/"<<paraArray[flt_MON]->values<<"/"<<paraArray[flt_DAY]->values<<"\n";
+        qDebug()<<paraArray[flt_HUR]->values<<":"<<paraArray[flt_MIN]->values<<":"<<paraArray[flt_SEC]->values<<"\n";
+
+    }
+    return false;
 }
 
 //在线程中循环检测是否有变量要写
@@ -290,7 +332,7 @@ bool MController::paraMapInit()
 }
 
 //将要发送的存入发送队列
-void MController::userWriteData(ParaInfo* para ,int val)
+void MController::userWriteData(ParaInfo* para ,short int val)
 {   
     para->val_w =  val;
     uslist_w.append(para);
@@ -370,7 +412,7 @@ DataInfo MController::countReadData(int *indxR, int *indxW,int type)
 void MController::setReadData(int *rIndex,int *wIndx,bool isread,uchar *buffer)
 {
     ParaInfo* para;
-    unsigned int values=0;
+    short int values=0;
     int index=3;//接收数据数组的下标，初始化值为第一个变量的位子
     int count=(*rIndex);
     count =*wIndx-count;

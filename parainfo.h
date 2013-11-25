@@ -11,7 +11,7 @@
 #define DIRTY           0x80
 
 /*---------变量数组最大值-----------*/
-#define PARA_ARRAY_MAX  210
+#define PARA_ARRAY_MAX  512
 
 /*---------paraName---------------*/
 enum paraName
@@ -25,11 +25,11 @@ enum paraName
     //<!--AC output/Inverter current-->
       Int_Ia =40,Int_Ib =41,Int_Ic =42,
     //<!--AC output/power-->
-      kva =61,kw =62,kvar =63,pf =64,freq =48,
+      kva =61,kw =62,kvar =63,pf =64,freq =48,efficy=58,
     //<!--DC Input-->
       Vpv =51,Ipv =53,kwpv =60,
     //<!--q-->
-      kwh_today =65,Gwh_nv =69,
+      kwh_today =65,kwh_nv=67,Mwh_nv=68,Gwh_nv =69,
     //<!--Temperature-->
       HS1 =110,
     //<!--Fault-->
@@ -41,7 +41,7 @@ enum paraName
       RatedPower = 220,RatedVoltage = 221,
     //<!--q-->
       sys_cmd =211,
-      kw_set =231,
+      kw_set =231,kvar_set=232,pf_set=236,pf_mode=235,contro_mode=230,
       flt_que_num =489,
 };
 
@@ -53,8 +53,8 @@ public:
 public:
     unsigned int type;
     unsigned int address;
-    unsigned int values;
-    unsigned int val_w;
+    short int values;
+    short int val_w;
     int scaling;        //计算时除以这个值
     QString unit;
 

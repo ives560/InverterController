@@ -42,7 +42,7 @@ void SetParaDialog::pbtn_OK_clicked()
     if(msg.exec()==QMessageBox::Ok)
     {
         double val_f = ui->lineEdit->text().toDouble();
-        int val_i =(int)(val_f*para->scaling);
+        short int val_i =(short int)(val_f*para->scaling);
         if(val_i>32767)
         {
             msg.setText("设定值超出允许范围!");

@@ -26,7 +26,7 @@ MainFace::~MainFace()
 //设置参数快速读取
 void MainFace::setReadType(int type,bool en)
 {
-    int names[] = {Ia,Ib,Ic,Va,Vb,Vc,Ipv,Vpv,kva,kwh_today,Gwh_nv,HS1};
+    int names[] = {Ia,Ib,Ic,Va,Vb,Vc,Ipv,Vpv,kw,kwh_today,kwh_nv, Mwh_nv,Gwh_nv, HS1};
     ParaInfo* para;
     for(int i=0;i<12;i++)
     {
@@ -95,7 +95,7 @@ void MainFace::labelUpData()
 void MainFace::tableUpData()
 {
     QTableWidgetItem* item=NULL;
-    int names[4]={kva,kwh_today,Gwh_nv,HS1};
+    int names[4]={kw,kwh_today,Mwh_nv,HS1};
     ParaInfo* para;
     QString display;
     for(int i=0;i<4;i++)
@@ -103,9 +103,24 @@ void MainFace::tableUpData()
         item = ui.tableWidget->item(i,1);
         int name=names[i];
         para=controller->paraArray[name];
-        display=QString("%1%2").arg(para->values).arg(para->unit);
+
+        float val_f=para->values;
+        val_f= val_f/para->scaling;
+        display=QString("%1%2").arg(val_f).arg(para->unit);
         item->setData(Qt::DisplayRole,display);
     }
+
+        ParaInfo* para_k = controller->paraArray[kwh_nv];
+        ParaInfo* para_m = controller->paraArray[Mwh_nv];
+        ParaInfo* para_g = controller->paraArray[Gwh_nv];
+
+        float val_mf = para_k->values/1000;
+        val_mf += para_m->values;
+        val_mf += para_g->values*1000;
+        item = ui.tableWidget->item(2,1);
+        display = QString("%1%2").arg(val_mf).arg(para_m->unit);
+        item->setData(Qt::DisplayRole,display);
+
     //更新故障显示
     para=controller->paraArray[HS1];
     item=ui.tableWidget->item(4,1);

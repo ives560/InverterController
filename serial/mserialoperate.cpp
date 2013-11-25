@@ -30,12 +30,12 @@ bool MSerialOperate::modubsRead(unsigned int addr, int len,uchar *rxBuffer,int *
     return isread;
 }
 
-bool MSerialOperate::modubsWrite(unsigned int addr, int len,unsigned int *val)
+bool MSerialOperate::modubsWrite(unsigned int addr, int len,short *val)
 {
     bool writed = false;
     uchar rxBuffer[10];
     int rxCount=0;
-
+    qDebug()<<"modubsWrite"<<*val;
     SendWriteOrder(addr,val,len);
     writed = readData(rxBuffer,&rxCount);//读取串口数据
     return writed;
@@ -133,7 +133,7 @@ void MSerialOperate::SendReadOrder(unsigned int addr,int len)
     port->writePort(buf,bufLen);
 }
 //写一个寄存器命令
-void MSerialOperate::SendWriteOrder(unsigned int addr,unsigned int *val,int len)
+void MSerialOperate::SendWriteOrder(unsigned int addr,short int *val,int len)
 {
     sendLen=len;
     int bufLen=9+len*2;
