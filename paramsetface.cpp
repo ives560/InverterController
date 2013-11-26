@@ -12,7 +12,7 @@ paramSetFace::paramSetFace(QWidget *parent, MController *mc)
 
 void paramSetFace::setupUi()
 {
-    setTitle("参数设置",":/images/canshushezi.png");
+    setTitle("参数设置",":/images/canshuset.png");
 }
 //密码验证界面
 void paramSetFace::setupPassWordUi()
@@ -32,12 +32,12 @@ void paramSetFace::setupPassWordUi()
     QToolButton *tbtn_ok=new QToolButton(ui.showArea);
     tbtn_ok->setObjectName("tbtn_ok");
     connect(tbtn_ok,SIGNAL(clicked()),this,SLOT(tbtn_ok_clicked()));
-    setupChooseButton(tbtn_ok,"确定",QPoint(200,200),":/images/shangyiye.png");
+    setupChooseButton(tbtn_ok,"确定",QPoint(200,200),":/images/okbutton.png");
     /*---------返回按钮----------------------*/
     QToolButton *tbtn_back=new QToolButton(ui.showArea);
     connect(tbtn_back,SIGNAL(clicked()),this,SLOT(tbtn_ok_clicked()));
     tbtn_back->setObjectName("tbtn_back");
-    setupChooseButton(tbtn_back,"返回",QPoint(400,200),":/images/xiayiye.png");
+    setupChooseButton(tbtn_back,"返回",QPoint(400,200),":/images/return.png");
 }
 
 //参数设置界面
@@ -47,23 +47,23 @@ void paramSetFace::setupParamSetUi()
     QToolButton *tbtn_system=new QToolButton(ui.showArea);
     tbtn_system->setObjectName("tbtn_system");
     connect(tbtn_system,SIGNAL(clicked()),this,SLOT(tbtn_system_clicked()));
-    setupMenuButton(tbtn_system,"系统参数",QPoint(300,100),":/images/run.png");
+    setupMenuButton(tbtn_system,"系统参数",QPoint(300,100),":/images/canshusetbig.png");
 
     /*------------------*/
     QToolButton *tbtn_run=new QToolButton(ui.showArea);
     tbtn_run->setObjectName("tbtn_run");
     connect(tbtn_run,SIGNAL(clicked()),this,SLOT(tbtn_run_clicked()));
-    setupMenuButton(tbtn_run,"运行参数",QPoint(400,100),":/images/run.png");
+    setupMenuButton(tbtn_run,"运行参数",QPoint(400,100),":/images/canshusetbig.png");
     /*------------------*/
     QToolButton *tbtn_protect=new QToolButton(ui.showArea);
     tbtn_protect->setObjectName("tbtn_protect");
     connect(tbtn_protect,SIGNAL(clicked()),this,SLOT(tbtn_protect_clicked()));
-    setupMenuButton(tbtn_protect,"保护参数",QPoint(300,200),":/images/private.png");
+    setupMenuButton(tbtn_protect,"保护参数",QPoint(300,200),":/images/canshusetbig.png");
     /*------------------*/
     QToolButton *tbtn_comm=new QToolButton(ui.showArea);
     tbtn_comm->setObjectName("tbtn_comm");
     connect(tbtn_comm,SIGNAL(clicked()),this,SLOT(tbtn_comm_clicked()));
-    setupMenuButton(tbtn_comm,"通讯参数",QPoint(400,200),":/images/comm.png");
+    setupMenuButton(tbtn_comm,"通讯参数",QPoint(400,200),":/images/canshusetbig.png");
 }
 //
 bool paramSetFace::checkPassWord()

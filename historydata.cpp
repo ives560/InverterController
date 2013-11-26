@@ -9,7 +9,7 @@ HistoryData::HistoryData(QWidget *parent,MController* mc)
 void HistoryData::setupUi()
 {
     //用下拉列表选择，日期，功率，电压，电流等
-    setTitle("历史数据",":/images/yunxingxinxi.png");
+    setTitle("历史记录",":/images/lishijilu.png");
     ui_htydt.setupUi(ui.showArea);
     chartInit();
 

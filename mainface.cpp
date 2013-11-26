@@ -172,8 +172,6 @@ void MainFace::tableInit()
         ui.tableWidget->setItem(i,1,new QTableWidgetItem());
     }
     /*--------------设置表格属性--------------------------------*/
-
-    ui.tableWidget->setGeometry(20,30,columns*100,rows*30);
     ui.tableWidget->verticalHeader()->setResizeMode(QHeaderView::Stretch);
     ui.tableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);//伸展行高列宽
 

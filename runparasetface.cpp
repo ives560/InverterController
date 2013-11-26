@@ -13,7 +13,7 @@ RunParaSetFace::RunParaSetFace(QWidget *parent, MController *mc)
 
 void RunParaSetFace::setupUi()
 {
-    setTitle("运行参数",":/images/yunxingxinxi.png");
+    setTitle("运行设定",":/images/yunxingshezhi.png");
     QString clumNames[]={"输出功率上限","输出无功设置","功率因数设置","无功控制模式选择","控制方式"};
 
     tableWidget=new ParaTableWidget(ui.showArea);

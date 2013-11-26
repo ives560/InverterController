@@ -1,26 +1,45 @@
 <RCC>
     <qresource prefix="/">
         <file>Resources/parameter.xml</file>
-        <file>images/canshushezi.png</file>
-        <file>images/fanhui.png</file>
-        <file>images/gongnengbiao.png</file>
-        <file>images/kaiguanji.png</file>
-        <file>images/lishixinxi.png</file>
-        <file>images/yunxingxinxi.png</file>
-        <file>images/zhuyemian.png</file>
-        <file>images/shangyiye.png</file>
-        <file>images/xiayiye.png</file>
-        <file>images/greenled.png</file>
-        <file>images/redled.png</file>
-        <file>images/mainbeijing.png</file>
-        <file>images/data.png</file>
-        <file>images/event.png</file>
-        <file>images/fault.png</file>
-        <file>images/private.png</file>
-        <file>images/run.png</file>
-        <file>images/comm.png</file>
-        <file>images/mainpic.png</file>
         <file>Resources/fault.xml</file>
-        <file>images/zhuyaoyema.png</file>
+        <file>images/bulianggreen.png</file>
+        <file>images/buliangred.png</file>
+        <file>images/canshuset.png</file>
+        <file>images/canshusetbig.png</file>
+        <file>images/chianlang.png</file>
+        <file>images/chuchangshezi.png</file>
+        <file>images/dianwangbiaozhi.png</file>
+        <file>images/englishlang.png</file>
+        <file>images/error.png</file>
+        <file>images/gongneng.png</file>
+        <file>images/guangfubanbiaozhi.png</file>
+        <file>images/guzhangzhuizhong.png</file>
+        <file>images/hostory.png</file>
+        <file>images/hostorybig.png</file>
+        <file>images/kaiguanji.png</file>
+        <file>images/lastpage.png</file>
+        <file>images/lianggreen.png</file>
+        <file>images/liangred.png</file>
+        <file>images/lishijilu.png</file>
+        <file>images/nextpage.png</file>
+        <file>images/nibianqibiaozhi.png</file>
+        <file>images/okbutton.png</file>
+        <file>images/openbig.png</file>
+        <file>images/querenwenhao.png</file>
+        <file>images/return.png</file>
+        <file>images/shiyongxinxi.png</file>
+        <file>images/shiyongxinxibig.png</file>
+        <file>images/shutdownbig.png</file>
+        <file>images/time.png</file>
+        <file>images/yuanchengshezhi.png</file>
+        <file>images/yunxingshezhi.png</file>
+        <file>images/yuyantishi.png</file>
+        <file>images/zhongfadian.png</file>
+        <file>images/zhuye.png</file>
+        <file>images/zhuyegongnenganniu.png</file>
+        <file>images/zhuyeguanjianniu.png</file>
+        <file>images/zhuyemiananniu.png</file>
+        <file>images/backbutton.png</file>
+        <file>images/title.png</file>
     </qresource>
 </RCC>

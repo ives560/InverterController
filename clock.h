@@ -2,7 +2,8 @@
 #define CLOCK_H
 
 #include <QWidget>
-//#include <QTimerEvent>
+#include <QDate>
+#include <QTime>
 #include "ui_clock.h"
 class Clock : public QWidget
 {

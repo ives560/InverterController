@@ -45,9 +45,6 @@ private:
     void paintEvent(QPaintEvent *);
 
 private slots:
-	void toolBar_Buttons_Clickde(int);
-
-private slots:
 	void on_tBtn_power_clicked();
 	void on_tBtn_main_clicked();
 	void on_tBtn_function_clicked();

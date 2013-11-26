@@ -12,7 +12,7 @@ ClockSetFace::ClockSetFace(QWidget *parent, MController *mc)
 
 void ClockSetFace::setupUi()
 {
-    setTitle("时钟",":/images/yunxingxinxi.png");
+    setTitle("日期&时间",":/images/time.png");
     ui_clock.setupUi(ui.showArea);
     setCurrentTime();
     setLineEditValidator();

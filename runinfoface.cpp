@@ -24,7 +24,7 @@ void RunInfoFace::setFastReadType(bool en)
 
 void RunInfoFace::setupUi()
 {
-    setTitle("运行信息",":/images/yunxingxinxi.png");
+    setTitle("运行信息",":/images/shiyongxinxi.png");
     /*-------------------------------------*/
     showRealTimePage();
 

@@ -21,7 +21,7 @@ void FaultDialog::setupUi()
     lab_fault->setObjectName("lab_fault");
     lab_fault->setGeometry(0,0,32,32);
     lab_fault->setScaledContents(true);
-    lab_fault->setPixmap(QPixmap(QString::fromUtf8(":/images/fault.png")));
+    lab_fault->setPixmap(QPixmap(QString::fromUtf8(":/images/guzhangzhuizhong.png")));
     /*--------------*/
     pbtn_ok = new QPushButton(this);
     pbtn_ok->setObjectName("pbtn_ok");

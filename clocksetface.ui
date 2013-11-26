@@ -19,9 +19,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-  </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
@@ -326,10 +323,6 @@
    <property name="text">
     <string>确定</string>
    </property>
-   <property name="icon">
-    <iconset resource="InverterController.qrc">
-     <normaloff>:/images/shangyiye.png</normaloff>:/images/shangyiye.png</iconset>
-   </property>
    <property name="iconSize">
     <size>
      <width>32</width>
@@ -355,10 +348,6 @@
    <property name="text">
     <string>取消</string>
    </property>
-   <property name="icon">
-    <iconset resource="InverterController.qrc">
-     <normaloff>:/images/xiayiye.png</normaloff>:/images/xiayiye.png</iconset>
-   </property>
    <property name="iconSize">
     <size>
      <width>32</width>
@@ -373,8 +362,6 @@
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="InverterController.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

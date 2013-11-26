@@ -10,10 +10,10 @@ PowerFace::PowerFace(QWidget *parent, MController *mc)
     qRegisterMetaType<ParaList>("ParaList");
     connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
     setTitle("开机/关机",":/images/kaiguanji.png");
-    setupButton(start,"启动",200,100,":/images/greenled.png",SLOT(start_Clickde()));
-    setupButton(shutdown,"关机",300,100,":/images/redled.png",SLOT(shutdown_Clickde()));
-    setupButton(reset,"重启",400,100,":/images/greenled.png",SLOT(reset_Clickde()));
-    setupButton(stop,"停止",500,100,":/images/redled.png",SLOT(stop_Clickde()));
+    setupButton(start,"启动",200,100,":/images/openbig.png",SLOT(start_Clickde()));
+    setupButton(shutdown,"关机",300,100,":/images/shutdownbig.png",SLOT(shutdown_Clickde()));
+    setupButton(reset,"重启",400,100,":/images/openbig.png",SLOT(reset_Clickde()));
+    setupButton(stop,"停止",500,100,":/images/shutdownbig.png",SLOT(stop_Clickde()));
     isready=true;
 }
 

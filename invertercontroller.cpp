@@ -27,43 +27,19 @@ void InverterController::load_mainface()
 {
     layout = ui.verticalLayout;
 
-    MainFace* mainface=new MainFace((QWidget*)this,controller);
+    MainFace* mainface=new MainFace(this,controller);
     mainface->setObjectName("mainface");
-    mainface->setStyleSheet("#mainface{border-image: url(:/images/mainpic.png);}");
     layout->addWidget(mainface);
-}
-
-void InverterController::toolBar_Buttons_Clickde(int button)
-{
-	qDebug()<<"toolBar_Buttons_Clickde"<<button;
-
-	//FunctionTable* table;
-	//switch(button)
-	//{
-	//	case ToolBar::POWER:
-	//		break;
-	//	case ToolBar::MAIN:
-	//		layout->itemAt(0)->widget()->close();
-	//		mainface->show();
-	//		break;
-	//	case ToolBar::FUNCTION:
-	//		mainface->close();
-	//		table=new FunctionTable(this);
-	//		layout->addWidget(table);
-	//		break;
-	//	case ToolBar::BACK:
-	//		break;
-	//}
 }
 
 void InverterController::setupBackButton()
 {
-    tBtn_back=new QToolButton(ui.widget);
-    tBtn_back->setStyleSheet("border-image: url(:/images/fanhui.png)");
-    tBtn_back->setGeometry(QRect(700, 0, 100, 80));
-    tBtn_back->setFocusPolicy(Qt::StrongFocus);
-    connect(tBtn_back,SIGNAL(clicked()),this,SLOT(pBtn_back_clicked()));
-    tBtn_back->hide();
+//    tBtn_back=new QToolButton(this);
+//    //tBtn_back->setStyleSheet("border-image: url(:/images/fanhui.png)");
+//    tBtn_back->setGeometry(QRect(700, 0, 100, 80));
+//    tBtn_back->setFocusPolicy(Qt::StrongFocus);
+    connect(ui.tBtn_back,SIGNAL(clicked()),this,SLOT(pBtn_back_clicked()));
+//    tBtn_back->hide();
 }
 
 //切换时钟和返回按钮的显示
@@ -71,14 +47,11 @@ void InverterController::changeUi(bool change)
 {
     if(change==true)
     {
-        ui.widget_time->hide();
-        tBtn_back->show();
-
+        ui.tBtn_back->setText("返回上层");
     }
     else if(change==false)
     {
-        ui.widget_time->show();
-        tBtn_back->hide();
+        ui.tBtn_back->setText("语言选择");
     }
 }
 //开关机按钮单击槽
@@ -112,7 +85,6 @@ void InverterController::on_tBtn_main_clicked()
         removeAllInterface();
         MainFace* mainface=new MainFace(this,controller);
         mainface->setObjectName("mainface");
-        mainface->setStyleSheet("#mainface{border-image: url(:/images/mainpic.png);}");
         layout->addWidget(mainface);
         qDebug()<<"new MainFace";
     }
@@ -137,22 +109,24 @@ void InverterController::on_tBtn_function_clicked()
 void InverterController::pBtn_back_clicked()
 {
 	qDebug()<<"on_pBtn_back_clicked";
-	SubMenu* w= (SubMenu*)layout->itemAt(0)->widget();
-	layout->removeWidget(w);
-	w->deleteLater();
-	if(w->lastOne!=NULL)
-	{
-		layout->addWidget(w->lastOne);
-		w->lastOne->show();	
-	}
-	else
-	{
-		changeUi(false);
-        MainFace* mainface=new MainFace(this,controller);
-		mainface->setObjectName("mainface");
-        mainface->setStyleSheet("#mainface{border-image: url(:/images/mainpic.png);}");
-		layout->addWidget(mainface);
-	}
+    if(layout->itemAt(0)->widget()->objectName()!="mainface")
+    {
+        SubMenu* w= (SubMenu*)layout->itemAt(0)->widget();
+        layout->removeWidget(w);
+        w->deleteLater();
+        if(w->lastOne!=NULL)
+        {
+            layout->addWidget(w->lastOne);
+            w->lastOne->show();
+        }
+        else
+        {
+            changeUi(false);
+            MainFace* mainface=new MainFace(this,controller);
+            mainface->setObjectName("mainface");
+            layout->addWidget(mainface);
+        }
+    }
 }
 
 //隐藏顶层界面

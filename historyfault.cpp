@@ -9,7 +9,7 @@ HistoryFault::HistoryFault(QWidget *parent,MController* mc)
 
 void HistoryFault::setupUi()
 {
-    setTitle("历史故障",":/images/fault.png");
+    setTitle("故障追踪",":/images/guzhangzhuizhong.png");
     sqlTableModelInit();
     tableViewInit();
 
