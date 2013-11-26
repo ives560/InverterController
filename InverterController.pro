@@ -41,7 +41,9 @@ SOURCES += main.cpp\
     historyfault.cpp \
     clocksetface.cpp \
     systemparaface.cpp \
-    userfile.cpp
+    userfile.cpp \
+    faultgroup.cpp \
+    rltimdttable.cpp
 
 HEADERS  += \
     invertercontroller.h \
@@ -72,7 +74,9 @@ HEADERS  += \
     historyfault.h \
     clocksetface.h \
     systemparaface.h \
-    userfile.h
+    userfile.h \
+    faultgroup.h \
+    rltimdttable.h
 
 FORMS    += \
     invertercontroller.ui \
@@ -84,7 +88,8 @@ FORMS    += \
     chart.ui \
     setparadialog.ui \
     clocksetface.ui \
-    historydata.ui
+    historydata.ui \
+    rltimdttable.ui
 
 RESOURCES += \
     InverterController.qrc

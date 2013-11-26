@@ -4,6 +4,7 @@
 #include "submenu.h"
 #include "chart.h"
 #include "paratablewidget.h"
+#include "rltimdttable.h"
 class RunInfoFace : public SubMenu
 {
 	Q_OBJECT
@@ -17,9 +18,6 @@ private:
     void setupButton(QPushButton *button,QString text,int x,int y,
                      QString iconPath,const char* member);
     void showRealTimePage();
-    void realTimeTableInit();
-    void bindRealTimeTableData();
-
     void showPowerNetPage();
     void powerNetInit();
     void chartUpData();
@@ -33,6 +31,7 @@ private:
 	QPushButton* pbtn_powerColumn;
     ParaTableWidget* tableWidget;
     Chart* chartWidget;
+    RlTimDtTable* realtimePage;
 
 public slots:
     void realTime_clicked();

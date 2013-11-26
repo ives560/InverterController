@@ -23,7 +23,7 @@
    <string>InverterController</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QWidget#InverterControllerClass{background-image: url(:/images/zhuyaoyema.png);}</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -41,7 +41,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget#widget{background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #00f7fa, stop: 1 #00dbde);}</string>
+    <string notr="true"/>
    </property>
    <widget class="QToolButton" name="tBtn_main">
     <property name="geometry">
@@ -196,7 +196,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#widget_layout{background-color: rgb(0, 85, 255);}</string>
+    <string notr="true"/>
    </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">

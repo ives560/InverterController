@@ -41,6 +41,9 @@ public:
 	void removeAllInterface();
 	void removeWidget(SubMenu* sub);
 
+private:
+    void paintEvent(QPaintEvent *);
+
 private slots:
 	void toolBar_Buttons_Clickde(int);
 

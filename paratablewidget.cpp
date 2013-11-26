@@ -9,7 +9,9 @@ ParaTableWidget::ParaTableWidget(QWidget *parent)
 void ParaTableWidget::setupUi()
 {
     this->setStyleSheet("QHeaderView::section{background-color:white;color:blue}");
+
     this->verticalHeader()->setResizeMode(QHeaderView::Stretch);
+    this->verticalHeader()->setDisabled(true);
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);//固定行高列宽
     this->horizontalHeader()->setDisabled(true);
 

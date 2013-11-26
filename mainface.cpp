@@ -8,7 +8,6 @@ MainFace::MainFace(QWidget *parent, MController *mc)
 	ui.setupUi(this);
     controller=mc;
     setReadType(FAST_READ,true);
-    controller->setRunLevel(1,true);
     labelDataBinding();
     chartInit();
     tableInit();
@@ -20,7 +19,6 @@ MainFace::MainFace(QWidget *parent, MController *mc)
 
 MainFace::~MainFace()
 {
-    controller->setRunLevel(1,false);
     setReadType(FAST_READ,false);
 }
 //设置参数快速读取
@@ -203,6 +201,7 @@ void MainFace::tableWidget_clicked(QModelIndex index)
         {
             qDebug()<<"column:"<<index.column();
             FaultDialog* dialog=new FaultDialog(this);
+            //传入错误编号
             dialog->show();
         }
     }

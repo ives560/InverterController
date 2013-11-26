@@ -6,6 +6,7 @@
 #include "common.h"
 #include "DataBase.h"
 #include "serial/mserialoperate.h"
+#include "faultgroup.h"
 
 struct DataInfo {
     DataInfo(int a,int l)
@@ -42,6 +43,7 @@ private:
     void timerEvent(QTimerEvent * e);
 
     bool getFaultData(uchar num);
+    void readAllFaultData();
 
     //void setWriteData();
 public:
@@ -70,6 +72,7 @@ private:
 
 private:
     uchar fault_num;     //本地错误号
+    FaultGroup faultgrp;
 
 public:
     QMutex mutex;

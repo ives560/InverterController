@@ -75,6 +75,7 @@ void FaultDialog::setTableVal()
         }
     }
 }
+
 QList<QString> FaultDialog::getFaultNames()
 {
     QList<QString> names;

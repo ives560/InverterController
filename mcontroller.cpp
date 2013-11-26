@@ -58,6 +58,7 @@ void MController::run()
                 database = new DataBase();//数据库
             //写入数据库
             saveRowToDataBase();
+            readAllFaultData();
             setFirstRun = false;
         }
     }
@@ -75,63 +76,20 @@ void MController::run()
             if(runLevel[1]==true)
             {
                 runGetFastData();
+                readFaultData();//读取错误信息
+
             }
             if(runLevel[2]==true)
             {
                 runGetAlwaysData();
             }
         }
-
-        readFaultData();//读取错误信息
     }
 }
 
 void MController::setRunLevel(int index,bool state)
 {
     runLevel[index] = state;
-}
-//
-/*void MController::readAllFaultData()
-{
-    uchar curt_fault = (uchar)paraArray[flt_num]->values;
-    fault_num = curt_fault;
-    do
-    {
-        if(getFaultData(fault_num)==false)
-            return;
-
-
-        fault_num--;
-    }while(fault_num!=curt_fault)
-
-}*/
-//读取错误数据
-void MController::readFaultData()
-{
-    short fault = paraArray[flt_num]->values;
-
-     if(fault_num == fault)
-    {
-        int ridex= flt_SEC;
-        int widex = flt_read;
-        bool writed = false;
-        short val =9;
-        short num = (short)fault_num;
-        writed = serial->modubsWrite((uint)flt_num,1,&num);//  先写入要读取的错误号
-        writed = serial->modubsWrite(201,1,&val);//再写命令
-
-        if(writed == true)
-        {
-            runReadData(&ridex,&widex,ALL_READ);
-            //写入数据库
-            qDebug()<<"readFaultData"<<paraArray[flt_read]->values<<"\n";
-            qDebug()<<paraArray[flt_YER]->values<<"/"<<paraArray[flt_MON]->values<<"/"<<paraArray[flt_DAY]->values<<"\n";
-            qDebug()<<paraArray[flt_HUR]->values<<":"<<paraArray[flt_MIN]->values<<":"<<paraArray[flt_SEC]->values<<"\n";
-            if(serial->comState == true)
-                fault_num++;
-        }
-    }
-
 }
 
 //
@@ -148,16 +106,55 @@ bool MController::getFaultData(uchar num)
     if(success == true)
     {
         success = runReadData(&ridex,&widex,ALL_READ);
-        if(success==true)
+        if((success==true)&&(paraArray[flt_read]->values>0))
+        {
+
+            faultgrp.addItem(paraArray[flt_read]->values,
+                             paraArray[flt_YER]->values,paraArray[flt_MON]->values,paraArray[flt_DAY]->values,
+                             paraArray[flt_HUR]->values,paraArray[flt_MIN]->values,paraArray[flt_SEC]->values);
+
             return true;
-        if(serial->comState == true)
-            ;
-        qDebug()<<"readFaultData"<<paraArray[flt_read]->values<<"\n";
-        qDebug()<<paraArray[flt_YER]->values<<"/"<<paraArray[flt_MON]->values<<"/"<<paraArray[flt_DAY]->values<<"\n";
-        qDebug()<<paraArray[flt_HUR]->values<<":"<<paraArray[flt_MIN]->values<<":"<<paraArray[flt_SEC]->values<<"\n";
+        }
+        //if(serial->comState == true)
+        //    ;
 
     }
     return false;
+}
+
+//
+void MController::readAllFaultData()
+{
+    uchar curt_fault = (uchar)paraArray[flt_num]->values;
+    fault_num = curt_fault;
+    do
+    {
+        if(getFaultData(fault_num)==false)
+            return;
+
+        fault_num--;
+    }while(fault_num!=curt_fault);
+
+}
+//读取错误数据
+void MController::readFaultData()
+{
+    uchar curt_fault = paraArray[flt_num]->values;
+
+     while(fault_num != curt_fault)
+    {
+         fault_num++;
+        if(getFaultData(fault_num)==false)
+        {
+            fault_num--;
+            return;
+        }
+        else
+        {
+            //发送报警信号
+        }
+    }
+
 }
 
 //在线程中循环检测是否有变量要写
@@ -219,7 +216,6 @@ void MController::runGetFastData()
         runLevel[1]=false;
         fastRIndx=0;
         fastWIndx=0;
-
     }
 }
 //
@@ -306,7 +302,7 @@ void MController::timerInit()
 
     connect(&fastTimer,SIGNAL(timeout()),this,SLOT(fastReaderTimeOut()));
     alwaysTimer.start(10000);
-    fastTimer.start(2000);
+    fastTimer.start(1000);
 }
 
 //从xml文件中读取数据，初始化paraMap

@@ -203,3 +203,12 @@ void InverterController::removeWidget(SubMenu* sub)
 		removeWidget(sub->lastOne);
     sub->deleteLater();
 }
+
+//画StyleSheet
+void InverterController::paintEvent(QPaintEvent *)
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
