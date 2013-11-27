@@ -97,7 +97,7 @@ void RunInfoFace::realTime_clicked()
     qDebug()<<"realTime_clicked";
     if(page != RealTime)
     {
-        clearShowUi();
+        setAreaUi();
         showRealTimePage();
         page = RealTime;
         readDataDone();
@@ -109,7 +109,7 @@ void RunInfoFace::powerNet_clicked()
     qDebug()<<"powerNet_clicked";
     if(page != PowerNet)
     {
-        clearShowUi();
+        setAreaUi();
         showPowerNetPage();
         page = PowerNet;
         readDataDone();
@@ -120,7 +120,7 @@ void RunInfoFace::powerColumn_clicked()
     qDebug()<<"powerColumn_clicked";
     if(page != PowerCln)
     {
-        clearShowUi();
+        setAreaUi();
         page = PowerCln;
         readDataDone();
     }

@@ -6,14 +6,15 @@ PowerFace::PowerFace(QWidget *parent, MController *mc)
 {
     if(controller==NULL)
         return;
+    ui_power.setupUi(ui.showArea);
     m_parent = parent;
     qRegisterMetaType<ParaList>("ParaList");
     connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
     setTitle("开机/关机",":/images/kaiguanji.png");
-    setupButton(start,"启动",100,100,":/images/openbig.png",SLOT(start_Clickde()));
-    setupButton(shutdown,"关机",250,100,":/images/shutdownbig.png",SLOT(shutdown_Clickde()));
-    setupButton(reset,"重启",400,100,":/images/openbig.png",SLOT(reset_Clickde()));
-    setupButton(stop,"停止",550,100,":/images/shutdownbig.png",SLOT(stop_Clickde()));
+    connect(ui_power.start,SIGNAL(clicked()),this,SLOT(start_Clickde()));
+    connect(ui_power.shutdown,SIGNAL(clicked()),this,SLOT(shutdown_Clickde()));
+    connect(ui_power.reset,SIGNAL(clicked()),this,SLOT(reset_Clickde()));
+    connect(ui_power.stop,SIGNAL(clicked()),this,SLOT(stop_Clickde()));
     isready=true;
 }
 
@@ -22,30 +23,17 @@ PowerFace::~PowerFace()
 
 }
 
-//新建按钮
-void PowerFace::setupButton(QToolButton *button,QString text,int x,int y,QString iconPath,const char* member)
-{
-    button=new QToolButton(this);
-    button->setObjectName(text);
-    button->setStyleSheet("background:transparent;color:white;font-Weight:bold;");
-    button->setText(text);
-    button->setGeometry(x,y,100,100);
-	button->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    QIcon icon;
-    //icon.addFile(QString::fromUtf8(path), QSize(), QIcon::Normal, QIcon::Off);
-    icon.addFile(iconPath, QSize(), QIcon::Normal, QIcon::Off);
-    button->setIcon(icon);
-    button->setIconSize(QSize(60, 60));
-    connect(button,SIGNAL(clicked()),this,member);
-}
 
 void PowerFace::shutdown_Clickde()
 {
 	qDebug()<<"shutdown_Clickde";
      int ret=showMessageBox("确定关机？");
-     if(ret==QMessageBox::Ok)       
+     if(ret==QMessageBox::Ok)
+     {
         controller->userWriteData(controller->paraArray[sys_cmd],1);//调试地址和实际地址不同
-     m_parent->deleteLater();
+        m_parent->deleteLater();
+     }
+
 }
 
 void PowerFace::stop_Clickde()

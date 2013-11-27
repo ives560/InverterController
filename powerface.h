@@ -3,7 +3,7 @@
 
 #include "submenu.h"
 #include "mcontroller.h"
-
+#include "ui_powerface.h"
 class PowerFace : public SubMenu
 {
 	Q_OBJECT
@@ -13,14 +13,10 @@ public:
 	~PowerFace();
 
 private:
-	void setupButton(QToolButton *button,QString text,int x,int y,QString iconPath,const char* member);
     int showMessageBox(QString text);
 
 private:
-	QToolButton *shutdown;
-	QToolButton *reset;
-	QToolButton *start;
-	QToolButton *stop;
+    Ui::PowerFace ui_power;
     QWidget* m_parent;
 
 private slots:

@@ -89,7 +89,13 @@ FORMS    += \
     clocksetface.ui \
     historydata.ui \
     rltimdttable.ui \
-    msgbox.ui
+    msgbox.ui \
+    powerface.ui \
+    functiontable.ui \
+    historyinfo.ui \
+    password.ui \
+    paraset.ui \
+    systempara.ui
 
 RESOURCES += \
     InverterController.qrc

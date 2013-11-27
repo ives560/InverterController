@@ -19,26 +19,11 @@ FunctionTable::~FunctionTable()
 void FunctionTable::setupUi()
 {
     setTitle("功能",":/images/gongneng.png");
-    /*--------------------------------*/
-    operationInfo=new QToolButton(ui.showArea);
-    operationInfo->setObjectName("operationInfo");
-    connect(operationInfo,SIGNAL(clicked()),this,SLOT(operationInfo_Clicked()));
-    setupMenuButton(operationInfo,"使用信息",QPoint(200,20),":/images/shiyongxinxibig.png");
-    /*--------------------------------*/
-    historyInfo=new QToolButton(ui.showArea);
-    historyInfo->setObjectName("historyInfo");
-    connect(historyInfo,SIGNAL(clicked()),this,SLOT(historyInfo_Clicked()));
-    setupMenuButton(historyInfo,"历史记录",QPoint(500,20),":/images/hostorybig.png");
-    /*--------------------------------*/
-    onOff=new QToolButton(ui.showArea);
-    onOff->setObjectName("onOff");
-    connect(onOff,SIGNAL(clicked()),this,SLOT(onOff_Clicked()));
-    setupMenuButton(onOff,"开机/关机",QPoint(200,200),":/images/openbig.png");
-    /*--------------------------------*/
-    paramSet=new QToolButton(ui.showArea);
-    paramSet->setObjectName("paramSet");
-    connect(paramSet,SIGNAL(clicked()),this,SLOT(paramSet_Clicked()));
-    setupMenuButton(paramSet,"参数设置",QPoint(500,200),":/images/canshusetbig.png");
+    ui_function.setupUi(ui.showArea);
+    connect(ui_function.operationInfo,SIGNAL(clicked()),this,SLOT(operationInfo_Clicked()));
+    connect(ui_function.historyInfo,SIGNAL(clicked()),this,SLOT(historyInfo_Clicked()));
+    connect(ui_function.onOff,SIGNAL(clicked()),this,SLOT(onOff_Clicked()));
+    connect(ui_function.paramSet,SIGNAL(clicked()),this,SLOT(paramSet_Clicked()));
 }
 
 //运行信息

@@ -34,7 +34,7 @@
      <height>370</height>
     </rect>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>-1</x>
@@ -206,6 +206,14 @@
      <width>145</width>
      <height>50</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>AR PL UKai CN</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">background-image: url(:/images/backbutton.png);border-radius: 3px;</string>

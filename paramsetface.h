@@ -2,21 +2,23 @@
 #define PARAMSETFACE_H
 #include "submenu.h"
 #include <QMessageBox>
-
+#include "ui_password.h"
+#include "ui_paraset.h"
 class paramSetFace : public SubMenu
 {
     Q_OBJECT
+
+private:
+    Ui::PassWord ui_pwd;
+    Ui::ParaSet ui_paraset;
+
 public:
     paramSetFace(QWidget *parent, MController *mc);
 
 private:
-    QLineEdit *ledit_pwd;
-private:
     void setupUi();
     void setupPassWordUi();
-    void setupParamSetUi();
-
-private:
+    void setupParaSetUi();
     bool checkPassWord();
 
 private slots:

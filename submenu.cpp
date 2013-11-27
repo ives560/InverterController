@@ -39,13 +39,20 @@ void SubMenu::setTitle(QString text,QString pathIco)
     ui.label_icon->setPixmap(QPixmap(pathIco));
 }
 
-void SubMenu::clearShowUi()
+void SubMenu::setAreaUi(bool en)
 {
     QObjectList list= ui.showArea->children();
-
+    QWidget* wgt;
     for(int i=0;i<list.count();i++)
-        list[i]->deleteLater();
+    {
+        wgt = (QWidget*)list.at(i);
+        if(en==false)
+            wgt->deleteLater();
+        else if(en==true)
+            wgt->show();
+    }
 }
+
 void SubMenu::setupMenuButton(QToolButton *button, QString text,
                               QPoint point,QString iconPath)
 {

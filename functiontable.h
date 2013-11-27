@@ -2,7 +2,7 @@
 #define FUNCTIONTABLE_H
 
 #include "submenu.h"
-
+#include "ui_functiontable.h"
 class FunctionTable : public SubMenu
 {
 	Q_OBJECT
@@ -16,6 +16,7 @@ private:
     void setupUi();
 
 private:
+    Ui::FunctionTable ui_function;
 	QToolButton *operationInfo;
 	QToolButton *historyInfo;
 	QToolButton *onOff;

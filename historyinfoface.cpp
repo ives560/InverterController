@@ -11,28 +11,19 @@ HistoryInfoFace::HistoryInfoFace(QWidget *parent, MController *mc)
 void HistoryInfoFace::setupUi()
 {
     setTitle("历史记录",":/images/hostorybig.png");
-
     /*------------------*/
-//    QToolButton *tbtn_event=new QToolButton(ui.showArea);
-//    tbtn_event->setObjectName("tbtn_event");
-//    connect(tbtn_event,SIGNAL(clicked()),this,SLOT(tbtn_event_Clicked()));
-//    setupMenuButton(tbtn_event,"历史事件",QPoint(300,80),":/images/event.png");
-    /*------------------*/
-    QToolButton *tbtn_fault=new QToolButton(ui.showArea);
-    tbtn_fault->setObjectName("tbtn_fault");
-    connect(tbtn_fault,SIGNAL(clicked()),this,SLOT(tbtn_fault_Clicked()));
-    setupMenuButton(tbtn_fault,"故障追踪",QPoint(400,80),":/images/guzhangzhuizhong.png");
-    /*------------------*/
-    QToolButton *tbtn_data=new QToolButton(ui.showArea);
-    tbtn_data->setObjectName("tbtn_data");
-    connect(tbtn_data,SIGNAL(clicked()),this,SLOT(tbtn_data_Clicked()));
-    setupMenuButton(tbtn_data,"历史记录",QPoint(300,180),":/images/hostorybig.png");
+    ui_history.setupUi(ui.showArea);
+    connect(ui_history.event,SIGNAL(clicked()),this,SLOT(tbtn_event_Clicked()));
+    connect(ui_history.fault,SIGNAL(clicked()),this,SLOT(tbtn_fault_Clicked()));
+    connect(ui_history.record,SIGNAL(clicked()),this,SLOT(tbtn_record_Clicked()));
 }
+
 //
 void HistoryInfoFace::tbtn_event_Clicked()
 {
     qDebug()<<"tbtn_event_Clickde";
 }
+
 //
 void HistoryInfoFace::tbtn_fault_Clicked()
 {
@@ -41,8 +32,9 @@ void HistoryInfoFace::tbtn_fault_Clicked()
     faultWidget->lastOne = this;
     inverter->addTopInterface(faultWidget);
 }
+
 //
-void HistoryInfoFace::tbtn_data_Clicked()
+void HistoryInfoFace::tbtn_record_Clicked()
 {
     qDebug()<<"tbtn_data_Clickde";
     HistoryData* dataWidget=new HistoryData((QWidget*)inverter,controller);
