@@ -1,6 +1,6 @@
 #include "powerface.h"
 #include <QMessageBox>
-
+#include "msgbox.h"
 PowerFace::PowerFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
@@ -10,10 +10,10 @@ PowerFace::PowerFace(QWidget *parent, MController *mc)
     qRegisterMetaType<ParaList>("ParaList");
     connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
     setTitle("开机/关机",":/images/kaiguanji.png");
-    setupButton(start,"启动",200,100,":/images/openbig.png",SLOT(start_Clickde()));
-    setupButton(shutdown,"关机",300,100,":/images/shutdownbig.png",SLOT(shutdown_Clickde()));
+    setupButton(start,"启动",100,100,":/images/openbig.png",SLOT(start_Clickde()));
+    setupButton(shutdown,"关机",250,100,":/images/shutdownbig.png",SLOT(shutdown_Clickde()));
     setupButton(reset,"重启",400,100,":/images/openbig.png",SLOT(reset_Clickde()));
-    setupButton(stop,"停止",500,100,":/images/shutdownbig.png",SLOT(stop_Clickde()));
+    setupButton(stop,"停止",550,100,":/images/shutdownbig.png",SLOT(stop_Clickde()));
     isready=true;
 }
 
@@ -27,9 +27,9 @@ void PowerFace::setupButton(QToolButton *button,QString text,int x,int y,QString
 {
     button=new QToolButton(this);
     button->setObjectName(text);
-    button->setStyleSheet("background:transparent");
+    button->setStyleSheet("background:transparent;color:white;font-Weight:bold;");
     button->setText(text);
-	button->setGeometry(x,y,80,80);
+    button->setGeometry(x,y,100,100);
 	button->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     QIcon icon;
     //icon.addFile(QString::fromUtf8(path), QSize(), QIcon::Normal, QIcon::Off);
@@ -77,27 +77,21 @@ void PowerFace::writeDoneSlot(ParaList list,bool succeed)
     if(succeed==false)
     {
         qDebug()<<"writeError";
-        QMessageBox* msgBox=new QMessageBox(this);
+
         QString str;
         for(int i=0;i<list.count();i++)
         {
             str +=QString("写地址%1值%2失败！\n").arg(list[i]->address).arg(list[i]->val_w);
         }
-        msgBox->setText(str);
-        msgBox->setIcon(QMessageBox::Critical);
-        msgBox->setStandardButtons( QMessageBox::Ok);
+        MsgBox* msgBox=new MsgBox(this,MsgBox::Critical,str);
         msgBox->show();
     }
 }
 //显示警告窗口
 int PowerFace::showMessageBox(QString text)
 {
-    QMessageBox msgBox;
-     msgBox.setText(text);
-     //msgBox.setInformativeText("Do you want to save your changes?");
-     msgBox.setIcon(QMessageBox::Warning);
-     msgBox.setStandardButtons( QMessageBox::Ok | QMessageBox::Cancel);
-     msgBox.setDefaultButton(QMessageBox::Cancel);
-     return msgBox.exec();
+    MsgBox msgBox(this,MsgBox::Question,text);
+
+    return msgBox.exec();
 }
 

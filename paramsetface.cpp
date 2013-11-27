@@ -2,6 +2,7 @@
 #include "operafile.h"
 #include "runparasetface.h"
 #include "systemparaface.h"
+#include "msgbox.h"
 paramSetFace::paramSetFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
@@ -17,16 +18,22 @@ void paramSetFace::setupUi()
 //密码验证界面
 void paramSetFace::setupPassWordUi()
 {
-    QLabel *label_text=new QLabel("请输入密码：",ui.showArea);
+    QLabel *label_text=new QLabel(ui.showArea);
     label_text->setObjectName("label_text");
-    label_text->setGeometry(200,105,100,20);
+    label_text->setGeometry(200,105,100,30);
+    label_text->setStyleSheet("color:white;");
+    label_text->setText("请输入管理员密码:");
     label_text->adjustSize();//自动调整宽度
-
+    /*-------------------------------------*/
     ledit_pwd= new QLineEdit(ui.showArea);
     ledit_pwd->setObjectName("ledit_pwd");
     ledit_pwd->setGeometry(350,100,100,40);
     ledit_pwd->setEchoMode(QLineEdit::Password);
     ledit_pwd->setAlignment(Qt::AlignHCenter);
+    ledit_pwd->setFrame(false);
+    ledit_pwd->setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(0, 150, 228, 255), stop:1 rgba(190, 255, 247, 255));\
+                             border:2px outset rgb(0, 150, 228);\
+                             border-radius:5px;");
 
     /*--------确定按钮--------------------*/
     QToolButton *tbtn_ok=new QToolButton(ui.showArea);
@@ -89,9 +96,7 @@ void paramSetFace::tbtn_ok_clicked()
     }
     else
     {
-        QMessageBox msg;
-        msg.setText("密码错误！");
-        msg.setIcon(QMessageBox::Critical);
+        MsgBox msg(this,MsgBox::Critical,"密码错误，请重新输入");
         msg.exec();
 
     }

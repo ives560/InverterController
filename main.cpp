@@ -15,6 +15,11 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForTr(codec);
     QTextCodec::setCodecForLocale(codec);
+    /*------------------------------*/
+    QFont font  = a.font();
+    font.setPointSize(13);
+    //font.setBold(true);
+    a.setFont(font);
     /*------------------*/
 	InverterController w;
     w.show();

@@ -152,6 +152,7 @@ void MController::readFaultData()
         else
         {
             //发送报警信号
+            emit haveReadNewFault(fault_num);
         }
     }
 

@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     minputcontext.cpp \
     runinfoface.cpp \
     submenu.cpp \
-    toolbar.cpp \
     functiontable.cpp \
     DataBase.cpp \
     clock.cpp \
@@ -43,7 +42,8 @@ SOURCES += main.cpp\
     systemparaface.cpp \
     userfile.cpp \
     faultgroup.cpp \
-    rltimdttable.cpp
+    rltimdttable.cpp \
+    msgbox.cpp
 
 HEADERS  += \
     invertercontroller.h \
@@ -54,7 +54,6 @@ HEADERS  += \
     powerface.h \
     runinfoface.h \
     submenu.h \
-    toolbar.h \
     functiontable.h \
     DataBase.h \
     clock.h \
@@ -76,20 +75,21 @@ HEADERS  += \
     systemparaface.h \
     userfile.h \
     faultgroup.h \
-    rltimdttable.h
+    rltimdttable.h \
+    msgbox.h
 
 FORMS    += \
     invertercontroller.ui \
     keyboard.ui \
     mainface.ui \
     submenu.ui \
-    toolbar.ui \
     clock.ui \
     chart.ui \
     setparadialog.ui \
     clocksetface.ui \
     historydata.ui \
-    rltimdttable.ui
+    rltimdttable.ui \
+    msgbox.ui
 
 RESOURCES += \
     InverterController.qrc

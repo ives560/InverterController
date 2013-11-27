@@ -41,5 +41,6 @@
         <file>images/zhuyemiananniu.png</file>
         <file>images/backbutton.png</file>
         <file>images/title.png</file>
+        <file>images/faultbeijing.png</file>
     </qresource>
 </RCC>

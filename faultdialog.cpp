@@ -12,23 +12,42 @@ FaultDialog::FaultDialog(QWidget *parent)
 void FaultDialog::setupUi()
 {
     resize(650,350);
-    setStyleSheet("background:rgb(85, 85, 255)");
+    //setStyleSheet("QDialog{background:transparent;image: url(:/images/faultbeijing.png);}");
+    setStyleSheet("QDialog{background:rgb(86,197,255);}");
     /*--------------------------------------------*/
     tableInit();
     setTableVal();
-    /*-------------------*/
-    lab_fault = new QLabel(this);
-    lab_fault->setObjectName("lab_fault");
-    lab_fault->setGeometry(0,0,32,32);
-    lab_fault->setScaledContents(true);
-    lab_fault->setPixmap(QPixmap(QString::fromUtf8(":/images/guzhangzhuizhong.png")));
+    /*--------------------*/
+    lb_title = new QLabel(this);
+    lb_title->setObjectName("lb_title");
+    lb_title->setGeometry(300,10,100,50);
+    lb_title->setText("故障信息");
+    lb_title->setStyleSheet("color:red;font:bold;font-size:15px;");
     /*--------------*/
-    pbtn_ok = new QPushButton(this);
-    pbtn_ok->setObjectName("pbtn_ok");
-    pbtn_ok->setGeometry(300,300,100,25);
-    pbtn_ok->setText("确定");
-    pbtn_ok->setStyleSheet("");
-    connect(pbtn_ok,SIGNAL(clicked()),this,SLOT(close()));
+
+    tbtn_cancel = new QToolButton(this);
+    tbtn_cancel->setObjectName(QString::fromUtf8("tbtn_cancel"));
+    tbtn_cancel->setGeometry(QRect(200, 300, 100, 50));
+    tbtn_cancel->setText("关闭");
+    tbtn_cancel->setStyleSheet(QString::fromUtf8("background:transparent;"));
+    QIcon icon;
+    icon.addFile(QString::fromUtf8(":/images/error.png"), QSize(), QIcon::Normal, QIcon::Off);
+    tbtn_cancel->setIcon(icon);
+    tbtn_cancel->setIconSize(QSize(50, 50));
+    tbtn_cancel->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    connect(tbtn_cancel,SIGNAL(clicked()),this,SLOT(close()));
+    /*--------------*/
+    tbtn_ok = new QToolButton(this);
+    tbtn_ok->setObjectName("tbtn_ok");
+    tbtn_ok->setGeometry(400,300,100,50);
+    tbtn_ok->setText("确定");
+    tbtn_ok->setStyleSheet("background:transparent;");
+    QIcon icon1;
+    icon1.addFile(QString::fromUtf8(":/images/okbutton.png"), QSize(), QIcon::Normal, QIcon::Off);
+    tbtn_ok->setIcon(icon1);
+    tbtn_ok->setIconSize(QSize(50, 50));
+    tbtn_ok->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    connect(tbtn_ok,SIGNAL(clicked()),this,SLOT(close()));
 
 }
 
@@ -99,4 +118,13 @@ QList<QString> FaultDialog::getFaultNames()
         }
     }
     return names;
+}
+
+//画StyleSheet
+void FaultDialog::paintEvent(QPaintEvent *)
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }

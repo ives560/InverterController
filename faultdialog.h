@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "common.h"
+#include <QPainter>
 
 class FaultDialog : public QDialog
 {
@@ -17,8 +18,11 @@ private:
     void setTableVal();
 private:
     QTableWidget* tableWidget;
-    QPushButton* pbtn_ok;
-    QLabel* lab_fault;
+    QToolButton* tbtn_ok;
+    QToolButton* tbtn_cancel;
+    QLabel* lb_title;
+private:
+    void paintEvent(QPaintEvent *);
     
 signals:
     

@@ -35,6 +35,7 @@ void SubMenu::setReadType(int* names,int len,int type,bool en)
 void SubMenu::setTitle(QString text,QString pathIco)
 {
     ui.label_title->setText(text);
+
     ui.label_icon->setPixmap(QPixmap(pathIco));
 }
 
@@ -48,8 +49,8 @@ void SubMenu::clearShowUi()
 void SubMenu::setupMenuButton(QToolButton *button, QString text,
                               QPoint point,QString iconPath)
 {
-    setupButton(button,text,QRect(point.x(),point.y(),80,80),iconPath,
-                QSize(50, 50),Qt::ToolButtonTextUnderIcon);
+    setupButton(button,text,QRect(point.x(),point.y(),100,100),iconPath,
+                QSize(60, 60),Qt::ToolButtonTextUnderIcon);
 }
 
 void SubMenu::setupChooseButton(QToolButton *button, QString text,
@@ -63,7 +64,7 @@ void SubMenu::setupChooseButton(QToolButton *button, QString text,
 void SubMenu::setupButton(QToolButton *button, QString text, QRect rect, QString iconPath,
                               QSize iconSize ,Qt::ToolButtonStyle style)
 {
-    button->setStyleSheet("background:transparent");
+    button->setStyleSheet("background:transparent;color:white;font-Weight:bold;");
     button->setText(text);
     button->setGeometry(rect);
     button->setFocusPolicy(Qt::StrongFocus);

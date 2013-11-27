@@ -89,6 +89,7 @@ signals:
     void readDataDone();
     void readFastDataDone();
     void writeDataDone(ParaList,bool);
+    void haveReadNewFault(int);
 
 public slots:
     void alwaysReaderTimeOut();

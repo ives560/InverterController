@@ -34,16 +34,20 @@
      <height>370</height>
     </rect>
    </property>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>-1</x>
+      <y>-1</y>
       <width>801</width>
-      <height>401</height>
+      <height>371</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+    </layout>
    </widget>
   </widget>
   <widget class="Clock" name="widget_time" native="true">
@@ -229,10 +233,16 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/bulianggreen.png);</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="InverterController.qrc">:/images/bulianggreen.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -244,11 +254,14 @@
      <height>30</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">image: url(:/images/buliangred.png);</string>
-   </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="InverterController.qrc">:/images/buliangred.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
