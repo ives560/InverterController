@@ -11,15 +11,15 @@ class ParaTableWidget : public QTableWidget
 public:
     ParaTableWidget(QWidget *parent=0);
     void setupUi();
-    void setValToItem(QTableWidgetItem* item,ParaInfo* para);
+    void setValToItem(QTableWidgetItem* item,ParaItem* para);
     void setAllValToTable();
-    void setValToTable(ParaInfo* para);
-    void bindData(int row,int clum,ParaInfo* para);
-    ParaInfo* getPara(QTableWidgetItem* item);
-    ParaInfo* getPara(int addr);
-    QTableWidgetItem* getItem(ParaInfo* para);
+    void setValToTable(ParaItem* para);
+    void bindData(int row,int clum,ParaItem* para);
+    ParaItem* getPara(QTableWidgetItem* item);
+    ParaItem* getPara(int addr);
+    QTableWidgetItem* getItem(ParaItem* para);
 private:
-    QList< QPair<QTableWidgetItem*,ParaInfo*> > itemlist;
+    QList< QPair<QTableWidgetItem*,ParaItem*> > itemlist;
 
 //private slots:
 //    void readDoneSlot();

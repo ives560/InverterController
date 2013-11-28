@@ -17,7 +17,7 @@ SetParaDialog::~SetParaDialog()
     delete ui;
 }
 
-void SetParaDialog::getPara(QString name, ParaInfo *p)
+void SetParaDialog::getPara(QString name, ParaItem *p)
 {
     if(p==NULL)
         return;
@@ -43,13 +43,13 @@ void SetParaDialog::pbtn_OK_clicked()
     {
         double val_f = ui->lineEdit->text().toDouble();
         short int val_i =(short int)(val_f*para->scaling);
-        if(val_i>32767)
-        {
-            msg.setText("设定值超出允许范围!");
-            msg.exec();
-            return;
-        }
-        controller->userWriteData(para,val_i);
+//        if(val_i>32766)
+//        {
+//            msg.setText("设定值超出允许范围!");
+//            msg.exec();
+//            return;
+//        }
+        controller->userWriteData(para->address,val_i);
     }
 
 }

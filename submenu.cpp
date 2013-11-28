@@ -16,22 +16,7 @@ SubMenu::~SubMenu()
 {
 
 }
-//设在快速读取
-void SubMenu::setReadType(int* names,int len,int type,bool en)
-{
-    ParaInfo* para;
-    for(int i=0;i<len;i++)
-    {
-        para = controller->paraArray[names[i]];
-        if(para!=NULL)
-        {
-            if(en == true)
-                ParaInfo::seType(para,type);
-            else
-                ParaInfo::clearType(para,type);
-        }
-    }
-}
+
 void SubMenu::setTitle(QString text,QString pathIco)
 {
     ui.label_title->setText(text);

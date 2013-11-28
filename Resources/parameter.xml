@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <parameter>
 <!--System info /Version-->
-  <Seri address="0" scaling="1" unit="" type="0"></Seri>
-  <Versiion address="1" scaling="1" unit="" type="0"></Versiion>
-  <CodeCRC address="97" scaling="1" unit="" type="0"></CodeCRC>
-  <DataCRC address="99" scaling="1" unit="" type="0"></DataCRC>
+  <Seri name="序列号" address="0" scaling="1" unit="" type="0"></Seri>
+  <Versiion name="版本号" address="1" scaling="1" unit="" type="0"></Versiion>
+  <CodeCRC name="程序CRC" address="97" scaling="1" unit="" type="0"></CodeCRC>
+  <DataCRC name="数据CRC" address="99" scaling="1" unit="" type="0"></DataCRC>
 
 <!--AC output/Grid voltage-->
-  <Va address="30" scaling="10" unit="V" type="1"></Va>
-  <Vb address="31" scaling="10" unit="V" type="1"></Vb>
-  <Vc address="32" scaling="10" unit="V" type="1"></Vc>
+  <Va name="电网电压" address="30" scaling="10" unit="V" type="1"></Va>
+  <Vb name="电网电压" address="31" scaling="10" unit="V" type="1"></Vb>
+  <Vc name="电网电压" address="32" scaling="10" unit="V" type="1"></Vc>
 <!--AC output/Grid current-->
-  <Ia address="35" scaling="10" unit="A" type="1"></Ia>
-  <Ib address="36" scaling="10" unit="A" type="1"></Ib>
-  <Ic address="37" scaling="10" unit="A" type="1"></Ic>
+  <Ia name="电网电流" address="35" scaling="10" unit="A" type="1"></Ia>
+  <Ib name="电网电流" address="36" scaling="10" unit="A" type="1"></Ib>
+  <Ic name="电网电流" address="37" scaling="10" unit="A" type="1"></Ic>
 <!--AC output/Inverter current-->
-  <Int_Ia address="40" scaling="10" unit="A" type="1"></Int_Ia>
-  <Int_Ib address="41" scaling="10" unit="A" type="1"></Int_Ib>
-  <Int_Ic address="42" scaling="10" unit="A" type="1"></Int_Ic>
+  <Int_Ia name="逆变器电流" address="40" scaling="10" unit="A" type="1"></Int_Ia>
+  <Int_Ib name="逆变器电流" address="41" scaling="10" unit="A" type="1"></Int_Ib>
+  <Int_Ic name="逆变器电流" address="42" scaling="10" unit="A" type="1"></Int_Ic>
 <!--AC output/power-->
-  <kva address="61" scaling="100" unit="KVA" type="1"></kva>
-  <kw address="62" scaling="100" unit="KW" type="1"></kw>
-  <kvar address="63" scaling="100" unit="KVAR" type="1"></kvar>
-  <pf address="64" scaling="100" unit="" type="1"></pf>
-  <freq address="48" scaling="100" unit="Hz" type="1"></freq>
-  <efficy address="58" scaling="100" unit="%" type="1"></efficy>
+  <kva name="视在功率" address="61" scaling="100" unit="KVA" type="1"></kva>
+  <kw name="有功功率" address="62" scaling="100" unit="KW" type="1"></kw>
+  <kvar name="无功功率" address="63" scaling="100" unit="KVAR" type="1"></kvar>
+  <pf name="功率因数" address="64" scaling="100" unit="" type="1"></pf>
+  <freq name="电网频率" address="48" scaling="100" unit="Hz" type="1"></freq>
+  <efficy name="计算效率" address="58" scaling="100" unit="%" type="1"></efficy>
 <!--DC Input-->
-  <Vpv address="51" scaling="10" unit="V" type="1"></Vpv>
-  <Ipv address="53" scaling="10" unit="A" type="1"></Ipv>
-  <kwpv address="60" scaling="100" unit="KW" type="1"></kwpv>
+  <Vpv name="太阳板输出电压" address="51" scaling="10" unit="V" type="1"></Vpv>
+  <Ipv name="太阳板输出电流" address="53" scaling="10" unit="A" type="1"></Ipv>
+  <kwpv name="太阳板输出功率" address="60" scaling="100" unit="KW" type="1"></kwpv>
 <!--q-->
-  <kwh_today address="65" scaling="1" unit="kWh" type="1"></kwh_today>
-  <kwh_nv address="67" scaling="1" unit="kWh" type="1"></kwh_nv>
-  <Mwh_nv address="68" scaling="1" unit="MWh" type="1"></Mwh_nv>
-  <Gwh_nv address="69" scaling="1" unit="GWh" type="1"></Gwh_nv>
+  <kwh_today name="当日发电量" address="65" scaling="1" unit="kWh" type="1"></kwh_today>
+  <kwh_nv name="总发电量" address="67" scaling="1" unit="kWh" type="1"></kwh_nv>
+  <Mwh_nv name="总发电量" address="68" scaling="1" unit="MWh" type="1"></Mwh_nv>
+  <Gwh_nv name="总发电量" address="69" scaling="1" unit="GWh" type="1"></Gwh_nv>
 <!--Temperature-->
-  <HS1 address="110" scaling="100" unit="C" type="1"></HS1>
+  <HS1 name="IGBT1温度" address="110" scaling="100" unit="C" type="1"></HS1>
 <!--Fault-->
-  <flt_read address="190" scaling="1" unit="" type="0"></flt_read>
-  <flt_YER address="191" scaling="1" unit="" type="0"></flt_YER>
-  <flt_MON address="192" scaling="1" unit="" type="0"></flt_MON>
-  <flt_DAY address="193" scaling="1" unit="" type="0"></flt_DAY>
-  <flt_HUR address="194" scaling="1" unit="" type="0"></flt_HUR>
-  <flt_MIN address="195" scaling="1" unit="" type="0"></flt_MIN>
-  <flt_SEC address="196" scaling="1" unit="" type="0"></flt_SEC>
-  <flt_num address="489" scaling="1" unit="" type="1"></flt_num>
+  <flt_read name="" address="190" scaling="1" unit="" type="0"></flt_read>
+  <flt_YER name="" address="191" scaling="1" unit="" type="0"></flt_YER>
+  <flt_MON name="" address="192" scaling="1" unit="" type="0"></flt_MON>
+  <flt_DAY name="" address="193" scaling="1" unit="" type="0"></flt_DAY>
+  <flt_HUR name="" address="194" scaling="1" unit="" type="0"></flt_HUR>
+  <flt_MIN name="" address="195" scaling="1" unit="" type="0"></flt_MIN>
+  <flt_SEC name="" address="196" scaling="1" unit="" type="0"></flt_SEC>
+  <flt_num name="" address="489" scaling="1" unit="" type="1"></flt_num>
 <!--System info /time-->
-  <set_clock address="202" scaling="1" unit="" type="0"></set_clock>
-  <ss address="203" scaling="1" unit="" type="0"></ss>
-  <mm address="204" scaling="1" unit="" type="0"></mm>
-  <hh address="205" scaling="1" unit="" type="0"></hh>
-  <dd address="206" scaling="1" unit="" type="0"></dd>
-  <MM address="207" scaling="1" unit="" type="0"></MM>
-  <yyl address="208" scaling="1" unit="" type="0"></yyl>
-  <yyh address="209" scaling="1" unit="" type="0"></yyh>
+  <set_clock name="" address="202" scaling="1" unit="" type="0"></set_clock>
+  <ss name="" address="203" scaling="1" unit="" type="0"></ss>
+  <mm name="" address="204" scaling="1" unit="" type="0"></mm>
+  <hh name="" address="205" scaling="1" unit="" type="0"></hh>
+  <dd name="" address="206" scaling="1" unit="" type="0"></dd>
+  <MM name="" address="207" scaling="1" unit="" type="0"></MM>
+  <yyl name="" address="208" scaling="1" unit="" type="0"></yyl>
+  <yyh name="" address="209" scaling="1" unit="" type="0"></yyh>
 <!--System info /Version-->
-  <RatedPower address="220" scaling="100" unit="KVA" type="0"></RatedPower>
-  <RatedVoltage address="221" scaling="1" unit="V" type="0"></RatedVoltage>
+  <RatedPower name="额定输出功率" address="220" scaling="100" unit="KVA" type="0"></RatedPower>
+  <RatedVoltage name="额定输出电压" address="221" scaling="1" unit="V" type="0"></RatedVoltage>
 <!--q-->
-  <sys_cmd address="211" scaling="1" unit="" type="2"></sys_cmd>
-  <kw_set address="231" scaling="1" unit="%" type="2"></kw_set>
-  <kvar_set address="232" scaling="1" unit="%" type="2"></kvar_set>
-  <pf_set address="236" scaling="1" unit="%" type="2"></pf_set>
-  <pf_mode address="235" scaling="1" unit="" type="2"></pf_mode>
-  <contro_mode address="230" scaling="1" unit="" type="2"></contro_mode>
+  <sys_cmd name="" address="211" scaling="1" unit="" type="2"></sys_cmd>
+  <kw_set name="输出功率上限" address="231" scaling="1" unit="%" type="2"></kw_set>
+  <kvar_set name="输出无功设置" address="232" scaling="1" unit="%" type="2"></kvar_set>
+  <pf_set name="功率因数设置" address="236" scaling="1" unit="%" type="2"></pf_set>
+  <pf_mode name="无功控制模式选择" address="235" scaling="1" unit="" type="2"></pf_mode>
+  <contro_mode name="控制方式" address="230" scaling="1" unit="" type="2"></contro_mode>
 
 
 </parameter>

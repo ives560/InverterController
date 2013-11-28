@@ -36,31 +36,31 @@ void ClockSetFace::tbtn_ok_clicked()
 void ClockSetFace::writeClockData()
 {
     QString str;
-    ParaList list;
-    ParaInfo* para;
+    ListParaItem list;
+    ParaItem* para;
 
     QLineEdit* edits[5] = {ui_clock.ldt_s,ui_clock.ldt_tm,ui_clock.ldt_h,
                            ui_clock.ldt_d,ui_clock.ldt_m};
-    int names[5] = {ss,mm,hh,dd,MM};
+    int names[5] = {PARA::ss,       PARA::mm,       PARA::hh,       PARA::dd,       PARA::MM};
 
-    para = controller->paraArray[set_clock];
+    para = controller->paralist[PARA::set_clock];
     para->val_w = 2;
     list.append(para);
 
     for(int i=0;i<5;i++)
     {
-        para = controller->paraArray[names[i]];
+        para = controller->paralist[names[i]];
         para->val_w = edits[i]->text().toInt();
         list.append(para);
     }
 
-    para = controller->paraArray[yyl];
+    para = controller->paralist[PARA::yyl];
     str = ui_clock.ldt_y->text();
     str = str.mid(2,2);
     para->val_w = str.toInt();
     list.append(para);
 
-    para = controller->paraArray[yyh];
+    para = controller->paralist[PARA::yyh];
     str = ui_clock.ldt_y->text();
     str = str.mid(0,2);
     para->val_w = str.toInt();
@@ -99,8 +99,8 @@ void ClockSetFace::setCurrentTime()
 {
     QTime time = QTime::currentTime();
     QDate date = QDate::currentDate();
-    QLineEdit* edits[6] = {ui_clock.ldt_y,ui_clock.ldt_m,ui_clock.ldt_d,
-                       ui_clock.ldt_h,ui_clock.ldt_tm,ui_clock.ldt_s};
+    QLineEdit* edits[6] = {ui_clock.ldt_y,      ui_clock.ldt_m,     ui_clock.ldt_d,
+                           ui_clock.ldt_h,      ui_clock.ldt_tm,    ui_clock.ldt_s};
     int vals[6] = {date.year(),date.month(),date.day(),
                  time.hour(),time.minute(),time.second()};
     for(int i=0;i<6;i++)

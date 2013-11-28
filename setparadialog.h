@@ -15,12 +15,12 @@ class SetParaDialog : public QDialog
 public:
     explicit SetParaDialog(QWidget *parent,MController* mc);
     ~SetParaDialog();
-    void getPara(QString name,ParaInfo* p);
+    void getPara(QString name,ParaItem* p);
 
 
 private:
     Ui::SetParaDialog *ui;
-    ParaInfo* para;
+    ParaItem* para;
     MController *controller;
 
 private slots:

@@ -30,7 +30,7 @@ void ParaTableWidget::setupUi()
 }
 
 //
-void ParaTableWidget::bindData(int row,int clum,ParaInfo* para)
+void ParaTableWidget::bindData(int row,int clum,ParaItem* para)
 {
     if(para==NULL)
         return ;
@@ -47,7 +47,7 @@ void ParaTableWidget::setAllValToTable()
         setValToItem(itemlist[i].first,itemlist[i].second);
 }
 //
-void ParaTableWidget::setValToTable(ParaInfo* para)
+void ParaTableWidget::setValToTable(ParaItem *para)
 {
     QTableWidgetItem* item=NULL;
     item=getItem(para);
@@ -56,7 +56,7 @@ void ParaTableWidget::setValToTable(ParaInfo* para)
     setValToItem(item,para);
 }
 //
-void ParaTableWidget::setValToItem(QTableWidgetItem* item,ParaInfo* para)
+void ParaTableWidget::setValToItem(QTableWidgetItem* item,ParaItem *para)
 {
     if((item==NULL)||(para==NULL))
         return;
@@ -67,7 +67,7 @@ void ParaTableWidget::setValToItem(QTableWidgetItem* item,ParaInfo* para)
     item->setData(Qt::DisplayRole,val_s);
 }
 
-ParaInfo* ParaTableWidget::getPara(QTableWidgetItem* item)
+ParaItem *ParaTableWidget::getPara(QTableWidgetItem* item)
 {
     for(int i=0;i<itemlist.count();i++)
     {
@@ -77,7 +77,7 @@ ParaInfo* ParaTableWidget::getPara(QTableWidgetItem* item)
     return NULL;
 }
 
-ParaInfo* ParaTableWidget::getPara(int addr)
+ParaItem *ParaTableWidget::getPara(int addr)
 {
     for(int i=0;i<itemlist.count();i++)
     {
@@ -87,7 +87,7 @@ ParaInfo* ParaTableWidget::getPara(int addr)
     return NULL;
 }
 
-QTableWidgetItem* ParaTableWidget::getItem(ParaInfo* para)
+QTableWidgetItem* ParaTableWidget::getItem(ParaItem *para)
 {
     for(int i=0;i<itemlist.count();i++)
     {

@@ -24,36 +24,29 @@ MainFace::~MainFace()
 //设置参数快速读取
 void MainFace::setReadType(int type,bool en)
 {
-    int names[] = {Ia,Ib,Ic,Va,Vb,Vc,Ipv,Vpv,kw,kwh_today,kwh_nv, Mwh_nv,Gwh_nv, HS1};
-    ParaInfo* para;
-    for(int i=0;i<12;i++)
-    {
-        para = controller->paraArray[names[i]];
-        if(para!=NULL)
-        {
-            if(en == true)
-                ParaInfo::seType(para,type);
-            else
-                ParaInfo::clearType(para,type);
-        }
-    }
+    int names[14] = {PARA::Ia,      PARA::Ib,       PARA::Ic,       PARA::Va,       PARA::Vb,
+                     PARA::Vc,      PARA::Ipv,      PARA::Vpv,      PARA::kw,       PARA::kwh_today,
+                     PARA::kwh_nv,  PARA::Mwh_nv,   PARA::Gwh_nv,   PARA::HS1};
+    controller->paralist.setType(names,14,type,en);
 }
 
 //将数据和控件绑定
 void MainFace::labelDataBinding()
 {
     //按地址进行排列，根据地址索引变量
-    int names[] = {Ia,Ib,Ic,Va,Vb,Vc,Ipv,Vpv};
+    int names[] = {PARA::Ia,    PARA::Ib,   PARA::Ic,
+                   PARA::Va,    PARA::Vb,   PARA::Vc,
+                   PARA::Ipv,   PARA::Vpv};
 
     QLabel* label[]={ui.lab_ia, ui.lab_ib, ui.lab_ic,//交流电流
                      ui.lab_va, ui.lab_vb, ui.lab_vc,//交流电压
                      ui.lab_ipv, ui.lab_vpv};//直流
-    ParaInfo* para;
+    ParaItem* para;
     for(int i=0;i<8;i++)
     {
-        para = controller->paraArray[names[i]];
+        para = controller->paralist[names[i]];
         if(para!=NULL)
-            labelist.append(QPair<QLabel*,ParaInfo*>(label[i],para));
+            labelist.append(QPair<QLabel*,ParaItem*>(label[i],para));
     }
 }
 //更新参数
@@ -93,14 +86,13 @@ void MainFace::labelUpData()
 void MainFace::tableUpData()
 {
     QTableWidgetItem* item=NULL;
-    int names[4]={kw,kwh_today,Mwh_nv,HS1};
-    ParaInfo* para;
+    int names[4]={PARA::kw,PARA::kwh_today,PARA::Mwh_nv,PARA::HS1};
+    ParaItem* para;
     QString display;
     for(int i=0;i<4;i++)
     {
         item = ui.tableWidget->item(i,1);
-        int name=names[i];
-        para=controller->paraArray[name];
+        para=controller->paralist[names[i]];
 
         float val_f=para->values;
         val_f= val_f/para->scaling;
@@ -108,9 +100,9 @@ void MainFace::tableUpData()
         item->setData(Qt::DisplayRole,display);
     }
 
-        ParaInfo* para_k = controller->paraArray[kwh_nv];
-        ParaInfo* para_m = controller->paraArray[Mwh_nv];
-        ParaInfo* para_g = controller->paraArray[Gwh_nv];
+        ParaItem* para_k = controller->paralist[PARA::kwh_nv];
+        ParaItem* para_m = controller->paralist[PARA::Mwh_nv];
+        ParaItem* para_g = controller->paralist[PARA::Gwh_nv];
 
         float val_mf = para_k->values/1000;
         val_mf += para_m->values;
@@ -120,7 +112,7 @@ void MainFace::tableUpData()
         item->setData(Qt::DisplayRole,display);
 
     //更新故障显示
-    para=controller->paraArray[HS1];
+    para=controller->paralist[PARA::HS1];
     item=ui.tableWidget->item(4,1);
     if(para->values==0)
     {

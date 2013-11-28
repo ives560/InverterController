@@ -18,10 +18,12 @@ RunInfoFace::~RunInfoFace()
 
 void RunInfoFace::setFastReadType(bool en)
 {
-    int count =18;
-    int names[] = {Va,Vb,Vc,Ia,Ib,Ic,Int_Ia,Int_Ib,Int_Ic,kva,kw,kvar,pf,freq,efficy,Vpv,Ipv,kwpv};
+    const int count =18;
+    int names[count] = {PARA::Va,       PARA::Vb,       PARA::Vc,       PARA::Ia,       PARA::Ib,       PARA::Ic,
+                        PARA::Int_Ia,   PARA::Int_Ib,   PARA::Int_Ic,   PARA::kva,      PARA::kw,       PARA::kvar,
+                        PARA::pf,       PARA::freq,     PARA::efficy,   PARA::Vpv,      PARA::Ipv,      PARA::kwpv};
 
-    setReadType(names,count,FAST_READ,en);
+    controller->paralist.setType(names,count,FAST_READ,en);
 }
 
 void RunInfoFace::setupUi()

@@ -45,12 +45,12 @@ void RunParaSetFace::setupUi()
 
 void RunParaSetFace::bindData()
 {
-    ParaInfo** paraArray=controller->paraArray;
-    int clum[]={kw_set,kvar_set,pf_set,pf_mode,contro_mode};
+    int clum[5]={PARA::kw_set,       PARA::kvar_set,     PARA::pf_set,
+                PARA::pf_mode,      PARA::contro_mode};
 
     for(int i=0;i<tableWidget->rowCount();i++)
     {
-        tableWidget->bindData(i,1,paraArray[clum[i]]);
+        tableWidget->bindData(i,1,controller->paralist[clum[i]]);
     }
     tableWidget->setAllValToTable();
 }
@@ -67,7 +67,7 @@ void RunParaSetFace::tableWidget_clicked(QModelIndex index)
     QString name=item_n->data(Qt::DisplayRole).toString();
 
     QTableWidgetItem* item = tableWidget->item(row,clum);
-    ParaInfo* para = tableWidget->getPara(item);
+    ParaItem* para = tableWidget->getPara(item);
 
     paraDialog->getPara(name,para);
     paraDialog->show();
@@ -79,7 +79,7 @@ void RunParaSetFace::tableWidget_clicked(QModelIndex index)
 //    msg.exec();
 }
 
-void RunParaSetFace::writeDoneSlot(ParaList list,bool succeed)
+void RunParaSetFace::writeDoneSlot(ListParaItem list,bool succeed)
 {
     if(succeed==true)
     {

@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include "mcontroller.h"
-#include "paratablewidget.h"
-#include <QTableWidget>
+#include "paramodel.h"
+
 namespace Ui {
 class RlTimDtTable;
 }
@@ -13,18 +13,26 @@ class RlTimDtTable : public QWidget
 {
     Q_OBJECT
     
+private:
+    Ui::RlTimDtTable *ui;
+    MController* controller;
+    ParaModel* model_realtime;
+    int currentPage;
+    QList<int> itemNames;
+    QList<int> nextItemNames;
+
 public:
     explicit RlTimDtTable(QWidget *parent, MController *mc);
     ~RlTimDtTable();
 
 private:
    void TableInit();
-   void bindTableData();
-private:
-    Ui::RlTimDtTable *ui;
-    MController* controller;
-    ParaTableWidget* table1;
-    ParaTableWidget* table2;
+   void itemNamesInit();
+   void setTablePageShow(int star, int rows);
+
+private slots:
+   void tbtn_left_clicked();
+   void tbtn_right_clicked();
 
 };
 

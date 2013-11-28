@@ -24,7 +24,7 @@ private slots:
 	void reset_Clickde();
 	void start_Clickde();
 	void stop_Clickde();
-    void writeDoneSlot(ParaList,bool);
+    void writeDoneSlot(ListParaItem,bool);
 };
 
 #endif // POWERFACE_H

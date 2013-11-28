@@ -26,7 +26,8 @@
 #include <QTableWidgetItem>
 #include <QStandardItemModel>
 
-#include "parainfo.h"
+//#include "parainfo.h"
+#include "paralist.h"
 /*--------screen---------------*/
 #define SCREEN_WIDE 800
 #define SCREEN_HIGH 480
@@ -39,7 +40,6 @@
 #if(QT_VERSION == 0x040702)
     #define AM335x_BOARD
 #endif
-typedef QList< ParaInfo*> ParaList;
 
 /*-------要保存到数据库中的一行数据---------*/
 typedef struct {

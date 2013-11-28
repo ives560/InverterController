@@ -19,7 +19,6 @@ MController::MController(QObject *parent)
 //    database = new DataBase();//数据库
     serial=new MSerialOperate();//新建串口
 
-    memset(paraArray,0,sizeof(ParaInfo*)*PARA_ARRAY_MAX);
     paraMapInit();//参数初始化
 
     userFileInit();
@@ -95,23 +94,23 @@ void MController::setRunLevel(int index,bool state)
 //
 bool MController::getFaultData(uchar num)
 {
-    int ridex= flt_SEC;
-    int widex = flt_read;
+    int ridex= PARA::flt_SEC;
+    int widex = PARA::flt_read;
     bool success = false;
     short val =9;
     short m = (short)num;
-    success = serial->modubsWrite((uint)flt_num,1,&m);//  先写入要读取的错误号
+    success = serial->modubsWrite((uint)PARA::flt_num,1,&m);//  先写入要读取的错误号
     success = serial->modubsWrite(201,1,&val);//再写命令
 
     if(success == true)
     {
         success = runReadData(&ridex,&widex,ALL_READ);
-        if((success==true)&&(paraArray[flt_read]->values>0))
+        if((success==true)&&(paralist[PARA::flt_read]->values>0))
         {
 
-            faultgrp.addItem(paraArray[flt_read]->values,
-                             paraArray[flt_YER]->values,paraArray[flt_MON]->values,paraArray[flt_DAY]->values,
-                             paraArray[flt_HUR]->values,paraArray[flt_MIN]->values,paraArray[flt_SEC]->values);
+            faultgrp.addItem(paralist[PARA::flt_read]->values,
+                             paralist[PARA::flt_YER]->values,paralist[PARA::flt_MON]->values,paralist[PARA::flt_DAY]->values,
+                             paralist[PARA::flt_HUR]->values,paralist[PARA::flt_MIN]->values,paralist[PARA::flt_SEC]->values);
 
             return true;
         }
@@ -125,7 +124,7 @@ bool MController::getFaultData(uchar num)
 //
 void MController::readAllFaultData()
 {
-    uchar curt_fault = (uchar)paraArray[flt_num]->values;
+    uchar curt_fault = (uchar)paralist[PARA::flt_num]->values;
     fault_num = curt_fault;
     do
     {
@@ -139,7 +138,7 @@ void MController::readAllFaultData()
 //读取错误数据
 void MController::readFaultData()
 {
-    uchar curt_fault = paraArray[flt_num]->values;
+    uchar curt_fault = paralist[PARA::flt_num]->values;
 
      while(fault_num != curt_fault)
     {
@@ -245,12 +244,12 @@ bool MController::readAllParaData()
 //逆变器时间和本地时间进行校准
 void MController::systemTimeInit()
 {
-    int y = paraArray[yyl]->values +paraArray[yyh]->values*100;
-    int mon = paraArray[MM]->values;
-    int dy = paraArray[dd]->values;
-    int h = paraArray[hh]->values;
-    int m = paraArray[mm]->values;
-    int s = paraArray[ss]->values;
+    int y = paralist[PARA::yyl]->values +paralist[PARA::yyh]->values*100;
+    int mon = paralist[PARA::MM]->values;
+    int dy = paralist[PARA::dd]->values;
+    int h = paralist[PARA::hh]->values;
+    int m = paralist[PARA::mm]->values;
+    int s = paralist[PARA::ss]->values;
     QDate d =QDate(y,mon,dy);
     QTime t =QTime(h,m,s);
     QDateTime dt = QDateTime(d,t);
@@ -316,27 +315,32 @@ bool MController::paraMapInit()
 
     for(int i=0;i<nodes.count();i++)
     {
-        ParaInfo *para= new ParaInfo();
+        ParaItem *para= new ParaItem();
         QDomElement element=nodes.at(i).toElement();
-        para->address=element.attribute("address").toInt(0,10);
-        para->type=element.attribute("type").toInt();
-        para->scaling=element.attribute("scaling").toInt();
-        para->unit=element.attribute("unit");
-        //paraMap.insert(name,para);
-        paraArray[para->address]=para;
+        if(element.isNull()==false)//忽略注释或空行
+        {
+            para->name = element.attribute("name");
+            para->address=element.attribute("address").toInt(0,10);
+            para->type=element.attribute("type").toInt();
+            para->scaling=element.attribute("scaling").toInt();
+            para->unit=element.attribute("unit");
+            //paraMap.insert(name,para);
+            paralist.insert(para->address,para);
+        }
     }
     return true;
 }
 
 //将要发送的存入发送队列
-void MController::userWriteData(ParaInfo* para ,short int val)
+void MController::userWriteData(int name ,short int val)
 {   
+    ParaItem *para = paralist[name];
     para->val_w =  val;
     uslist_w.append(para);
     runLevel[0] = true;
 }
 
-void MController::userWriteData(ParaList list)
+void MController::userWriteData(ListParaItem list)
 {
     uslist_w = list;
     runLevel[0] = true;
@@ -369,12 +373,12 @@ bool MController::runReadData(int *rIndx, int *wIndx, int type)
 //获得变量的地址发送到串口
 DataInfo MController::countReadData(int *indxR, int *indxW,int type)
 {
-    ParaInfo* para=NULL;
+    ParaItem* para=NULL;
     int addr=0,len=0,Type=0;
 
     for(;(*indxW)<PARA_ARRAY_MAX;(*indxW)++)//写下标加
     {
-        para=paraArray[*indxW];
+        para=paralist[*indxW];
         if(para==NULL)
         {
             if(len==0)
@@ -408,7 +412,7 @@ DataInfo MController::countReadData(int *indxR, int *indxW,int type)
 //把读到的值附给相应的变量
 void MController::setReadData(int *rIndex,int *wIndx,bool isread,uchar *buffer)
 {
-    ParaInfo* para;
+    ParaItem* para;
     short int values=0;
     int index=3;//接收数据数组的下标，初始化值为第一个变量的位子
     int count=(*rIndex);
@@ -423,14 +427,14 @@ void MController::setReadData(int *rIndex,int *wIndx,bool isread,uchar *buffer)
             values = values<<8;
             values = values+buffer[index];
             index++;
-            para = paraArray[(*rIndex)];
+            para = paralist[(*rIndex)];
             para->values=values;
 
-            if(ParaInfo::isType(para,ALWARS_READ|WRITE)==true)//第一次开机读取写数据的值
-                ParaInfo::clearType(para,ALWARS_READ);
+            if(paralist.isType((*rIndex),ALWARS_READ|WRITE)==true)//第一次开机读取写数据的值
+                paralist.clearType((*rIndex),ALWARS_READ);
         }
         else
-            paraArray[(*rIndex)]->values=0;
+            paralist[(*rIndex)]->values=0;
         (*rIndex)++;
     }
 }
@@ -438,26 +442,26 @@ void MController::saveRowToDataBase()
 {
     RowData row;
     row.time = QTime::currentTime();
-    row.db_Va=paraArray[Va]->values;
-    row.db_Vb=paraArray[Vb]->values;
-    row.db_Vc=paraArray[Vc]->values;
-    row.db_Ia=paraArray[Ia]->values;
-    row.db_Ib=paraArray[Ib]->values;
-    row.db_Ic=paraArray[Ic]->values;
-    row.db_kva=paraArray[kva]->values;
-    row.db_kw=paraArray[kw]->values;
-    row.db_kvar=paraArray[kvar]->values;
-    row.db_pf=paraArray[pf]->values;
-    row.db_freq=paraArray[freq]->values;
+    row.db_Va=paralist[PARA::Va]->values;
+    row.db_Vb=paralist[PARA::Vb]->values;
+    row.db_Vc=paralist[PARA::Vc]->values;
+    row.db_Ia=paralist[PARA::Ia]->values;
+    row.db_Ib=paralist[PARA::Ib]->values;
+    row.db_Ic=paralist[PARA::Ic]->values;
+    row.db_kva=paralist[PARA::kva]->values;
+    row.db_kw=paralist[PARA::kw]->values;
+    row.db_kvar=paralist[PARA::kvar]->values;
+    row.db_pf=paralist[PARA::pf]->values;
+    row.db_freq=paralist[PARA::freq]->values;
     database->insertTodayRow(row);
 }
 void MController::saveFaultRowToDataBase()
 {
-    QDate d(paraArray[flt_YER]->values,paraArray[flt_MON]->values,paraArray[flt_DAY]->values);
-    QTime t(paraArray[flt_HUR]->values,paraArray[flt_MIN]->values,paraArray[flt_SEC]->values);
+    QDate d(paralist[PARA::flt_YER]->values,paralist[PARA::flt_MON]->values,paralist[PARA::flt_DAY]->values);
+    QTime t(paralist[PARA::flt_HUR]->values,paralist[PARA::flt_MIN]->values,paralist[PARA::flt_SEC]->values);
     QDateTime dt(d,t);
 
-    QString num=QString("code_%1").arg(paraArray[flt_read]->values);
+    QString num=QString("code_%1").arg(paralist[PARA::flt_read]->values);
     QString name = "";
     QString details = "";
     OperaFile file(":/Resources/fault.xml");
@@ -468,26 +472,6 @@ void MController::saveFaultRowToDataBase()
         details = nodes.at(1).toElement().text();
     }
     database->insertFaultRow(dt,name,details);
-}
-//设置参数的读取类型
-void MController::setParaType(QList<int> names,int type)
-{
-    int name;
-    int count=names.count();
-    for(int i=0;i<count;i++)
-    {
-        name=names[i];
-        ParaInfo::seType(paraArray[name],type);
-    }
-}
-//清除参数的读取类型
-void MController::clearAllParaType(int type)
-{
-    for(int i=0;i<PARA_ARRAY_MAX;i++)
-    {
-        if(paraArray[i]!=NULL)
-            ParaInfo::clearType(paraArray[i],type);
-    }
 }
 
 //在当前页面快速读定时器，槽
@@ -525,73 +509,3 @@ void MController::timerEvent(QTimerEvent *e)
 //    }
 
 }
-
-//从串口读取写命令返回的数据
-//void MController::setWriteData()
-//{
-//    QByteArray array;
-//    bool writed = serial->readData(&array);//读取串口数据
-//    if(writed==false)
-//    {}
-//}
-
-//查找数组中的变量是否为快速读
-//然后判断多个可读变量是否为连续
-//获得变量的地址发送到串口
-/*void MController::sendFastData()
-{
-    int addr=paraList[fastWIndx]->address;
-    int len=0;
-    for(;fastWIndx<paraList.count();fastWIndx++)
-    {
-        if(paraList[fastWIndx]->isFast==true)
-        {
-            if(paraList[fastWIndx]->address==addr)
-            {
-                len++;
-                addr++;
-                if(len==1)
-                   fastRIndx = fastWIndx;
-            }
-        }
-        else
-        {
-            if(len>0)
-                break;
-        }
-    }
-
-    if(len>0)
-        serial->SendReadOrder(paraList[fastRIndx]->address,len);
-    else
-        fastRIndx = fastWIndx;
-}*/
-//不用
-//获得向串口发命令的列表
-/*QList<ParaInfo*> MController::getCommParaList(bool a,bool f)
-{
-    QList<ParaInfo*> readlist;
-    //加锁
-    QMap<QString,ParaInfo*>::iterator paras=paraMap.begin();
-
-    for(;paras!=paraMap.end();paras++)
-    {
-        if(paras.value()->isAlways==a&&paras.value()->isFast==f)
-        {
-            bool isert=false;
-            for(int i=0;i<readlist.count();i++)//根据addr排序
-            {
-                if((readlist[i]->address)>(paras.value()->address))
-                {
-                    readlist.insert(i,paras.value());
-                    isert=true;
-                    break;
-                }
-
-            }
-            if(isert==false)
-                readlist<<paras.value();
-        }
-    }
-    return readlist;
-}*/

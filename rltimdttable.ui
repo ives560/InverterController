@@ -59,7 +59,7 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QToolButton" name="tBtn_left">
+    <widget class="QToolButton" name="tbtn_left">
      <property name="minimumSize">
       <size>
        <width>100</width>
@@ -123,7 +123,7 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
     </widget>
    </item>
    <item row="2" column="4">
-    <widget class="QToolButton" name="tBtn_right">
+    <widget class="QToolButton" name="tbtn_right">
      <property name="minimumSize">
       <size>
        <width>100</width>

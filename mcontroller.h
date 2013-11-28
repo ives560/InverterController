@@ -26,8 +26,7 @@ public:
     ~MController();
     //QList<ParaInfo*> getCommParaList(bool c,bool w);
 
-    void setParaType(QList<int> names,int type);
-    void clearAllParaType(int type);
+
 
 private:
     void run();
@@ -55,8 +54,8 @@ public:
     void setRunLevel(int index,bool state);
 
 public:
-    void userWriteData(ParaInfo *para, short int val);
-    void userWriteData(ParaList list);
+    void userWriteData(int name, short int val);
+    void userWriteData(ListParaItem list);
 
 private:
     bool setRun;
@@ -80,15 +79,15 @@ public:
     QMutex mutexTimer;
     //QMap<QString,ParaInfo*> paraMap; //根据参数名获得参数结构体
     //QList<ParaInfo*> paraList;		//根据索引获得参数结构体
-    QList< ParaInfo*> uslist_w;     //要写入串口的队列
-    QQueue<ParaInfo*> usQue_r;     //要读出串口的队列
-    ParaInfo* paraArray[PARA_ARRAY_MAX];
+    QList< ParaItem*> uslist_w;     //要写入串口的队列
+    QQueue<ParaItem*> usQue_r;     //要读出串口的队列
+    ParaList paralist;
     DataBase* database;
 
 signals:
     void readDataDone();
     void readFastDataDone();
-    void writeDataDone(ParaList,bool);
+    void writeDataDone(ListParaItem,bool);
     void haveReadNewFault(int);
 
 public slots:

@@ -28,7 +28,6 @@ public:
     void setupChooseButton(QToolButton *button, QString text,QPoint point,
                             QString iconPath);
 
-    void setReadType(int* names,int len,int type,bool en);
 public:
 	Ui::SubMenuClass ui;
 

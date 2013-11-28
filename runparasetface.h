@@ -20,7 +20,7 @@ private:
 
 private slots:
     void tableWidget_clicked(QModelIndex);
-    void writeDoneSlot(ParaList,bool);
+    void writeDoneSlot(ListParaItem,bool);
 
 };
 

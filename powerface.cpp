@@ -30,7 +30,7 @@ void PowerFace::shutdown_Clickde()
      int ret=showMessageBox("确定关机？");
      if(ret==QMessageBox::Ok)
      {
-        controller->userWriteData(controller->paraArray[sys_cmd],1);//调试地址和实际地址不同
+        controller->userWriteData(PARA::sys_cmd,1);//调试地址和实际地址不同
         m_parent->deleteLater();
      }
 
@@ -41,7 +41,7 @@ void PowerFace::stop_Clickde()
     qDebug()<<"stop_Clickde";
     int ret=showMessageBox("确定停止？");
     if(ret==QMessageBox::Ok)
-        controller->userWriteData(controller->paraArray[sys_cmd],2);
+        controller->userWriteData(PARA::sys_cmd,2);
 }
 
 void PowerFace::reset_Clickde()
@@ -49,7 +49,7 @@ void PowerFace::reset_Clickde()
 	qDebug()<<"reset_Clickde";
     int ret=showMessageBox("确定重新启动？");
     if(ret==QMessageBox::Ok)
-        controller->userWriteData(controller->paraArray[sys_cmd],4);
+        controller->userWriteData(PARA::sys_cmd,4);
 }
 
 void PowerFace::start_Clickde()
@@ -57,10 +57,10 @@ void PowerFace::start_Clickde()
 	qDebug()<<"start_Clickde";
     int ret=showMessageBox("确定启动？");
     if(ret==QMessageBox::Ok)
-        controller->userWriteData(controller->paraArray[sys_cmd],8);
+        controller->userWriteData(PARA::sys_cmd,8);
 }
 //串口写入失败槽
-void PowerFace::writeDoneSlot(ParaList list,bool succeed)
+void PowerFace::writeDoneSlot(ListParaItem list,bool succeed)
 {
     if(succeed==false)
     {

@@ -16,9 +16,9 @@ public:
 
 private:
 	Ui::MainFace ui;
-    QList< QPair<QLabel*,ParaInfo*> > labelist;
+    QList< QPair<QLabel*,ParaItem*> > labelist;
     MController* controller;
-    ParaInfo* paraMain[];
+    ParaItem* paraMain[];
 
 private:
     void chartInit();

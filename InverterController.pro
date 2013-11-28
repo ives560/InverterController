@@ -34,7 +34,6 @@ SOURCES += main.cpp\
     operafile.cpp \
     runparasetface.cpp \
     setparadialog.cpp \
-    parainfo.cpp \
     paratablewidget.cpp \
     faultdialog.cpp \
     historyfault.cpp \
@@ -43,7 +42,9 @@ SOURCES += main.cpp\
     userfile.cpp \
     faultgroup.cpp \
     rltimdttable.cpp \
-    msgbox.cpp
+    msgbox.cpp \
+    paramodel.cpp \
+    paralist.cpp
 
 HEADERS  += \
     invertercontroller.h \
@@ -67,7 +68,6 @@ HEADERS  += \
     operafile.h \
     runparasetface.h \
     setparadialog.h \
-    parainfo.h \
     paratablewidget.h \
     faultdialog.h \
     historyfault.h \
@@ -76,7 +76,9 @@ HEADERS  += \
     userfile.h \
     faultgroup.h \
     rltimdttable.h \
-    msgbox.h
+    msgbox.h \
+    paramodel.h \
+    paralist.h
 
 FORMS    += \
     invertercontroller.ui \
