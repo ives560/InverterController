@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RunInfo</class>
+ <widget class="QWidget" name="RunInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>306</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QWidget" name="wgt_show" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QToolButton" name="pbtn_realTime">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton{image: url(:/images/infobutton.png);border-radius: 3px;}
+QToolButton:focus{image: url(:/images/infobuttonfous.png);border-radius: 3px;}</string>
+       </property>
+       <property name="text">
+        <string>实时数据</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="pbtn_powerNet">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton{image: url(:/images/infobutton.png);border-radius: 3px;}
+QToolButton:focus{image: url(:/images/infobuttonfous.png);border-radius: 3px;}</string>
+       </property>
+       <property name="text">
+        <string>功率曲线</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="pbtn_powerColumn">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton{image: url(:/images/infobutton.png);border-radius: 3px;}
+QToolButton:focus{image: url(:/images/infobuttonfous.png);border-radius: 3px;}</string>
+       </property>
+       <property name="text">
+        <string>发电量图</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

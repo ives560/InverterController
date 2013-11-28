@@ -51,9 +51,9 @@ void paramSetFace::tbtn_ok_clicked()
 
     if(checkPassWord()==true)
     {
-        setAreaUi();
+        setWidgetChildren(ui.showArea);
         setupParaSetUi();
-        setAreaUi(true);
+        setWidgetChildren(ui.showArea,true);
     }
     else
     {

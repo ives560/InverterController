@@ -3,10 +3,12 @@
 RunInfoFace::RunInfoFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
-    page =RealTime;
-    setFastReadType(true);
+    page =None;
 	setupUi();
-    connect(controller, SIGNAL(readDataDone()),this, SLOT(readDataDone()));
+    ui_runinfo.pbtn_realTime->click();
+
+    //setFastReadType(true);
+    //connect(controller, SIGNAL(readDataDone()),this, SLOT(readDataDone()));
 }
 
 RunInfoFace::~RunInfoFace()
@@ -26,48 +28,26 @@ void RunInfoFace::setupUi()
 {
     setTitle("运行信息",":/images/shiyongxinxi.png");
     /*-------------------------------------*/
-    showRealTimePage();
-
-	/*-------------按钮初始化------------------*/
-    setupButton(pbtn_realTime,"实时数据",200,365,NULL,SLOT(realTime_clicked()));
-    setupButton(pbtn_powerNet,"功率曲线",310,365,NULL,SLOT(powerNet_clicked()));
-    setupButton(pbtn_powerColumn,"电量柱状图",420,365,NULL,SLOT(powerColumn_clicked()));
-}
-
-
-
-void RunInfoFace::setupButton(QPushButton *button,QString text,int x,int y,
-                                QString iconPath,const char* member)
-{
-    button=new QPushButton(this);
-    button->setObjectName(text);
-    button->setStyleSheet(" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #96f7fa, stop: 1 #dadbde);\
-                          border-style: outset;\
-                          border-width: 1px;\
-                          border-radius: 3px;\
-                          border-color: beige;\
-                          font: bold 14px;");
-    button->setText(text);
-    button->setGeometry(x,y,100,30);
-    connect(button,SIGNAL(clicked()),this,member);
-
+    ui_runinfo.setupUi(ui.showArea);
+    connect(ui_runinfo.pbtn_realTime,SIGNAL(clicked()),this,SLOT(realTime_clicked()));
+    connect(ui_runinfo.pbtn_powerNet,SIGNAL(clicked()),this,SLOT(powerNet_clicked()));
+    connect(ui_runinfo.pbtn_powerColumn,SIGNAL(clicked()),this,SLOT(powerColumn_clicked()));
 }
 
 //
-void RunInfoFace::showRealTimePage()
+void RunInfoFace::showRealTimePage(QWidget* widget)
 {
-    realtimePage = new RlTimDtTable(ui.showArea,controller);
+    realtimePage = new RlTimDtTable(widget,controller);
     realtimePage->setObjectName("realtimePage");
-    realtimePage->move(0,0);
     realtimePage->show();
 }
 
 //显示功率曲线页面
 void RunInfoFace::showPowerNetPage()
 {
-    chartWidget = new Chart(ui.showArea);
+    chartWidget = new Chart(ui_runinfo.wgt_show);
     chartWidget->setObjectName("chartWidget");
-    chartWidget->setGeometry(5,5,ui.showArea->width()-10,250);
+    chartWidget->setGeometry(5,5,ui_runinfo.wgt_show->width()-10,250);
 
     chartWidget->CoordDataInit();
     chartWidget->setAxis(Chart::X,0,24,6,"t");
@@ -97,19 +77,20 @@ void RunInfoFace::realTime_clicked()
     qDebug()<<"realTime_clicked";
     if(page != RealTime)
     {
-        setAreaUi();
-        showRealTimePage();
+        setWidgetChildren(ui_runinfo.wgt_show);
+        showRealTimePage(ui_runinfo.wgt_show);
         page = RealTime;
-        readDataDone();
+        //readDataDone();
     }
 
 }
 void RunInfoFace::powerNet_clicked()
 {
     qDebug()<<"powerNet_clicked";
+
     if(page != PowerNet)
     {
-        setAreaUi();
+        setWidgetChildren(ui_runinfo.wgt_show);
         showPowerNetPage();
         page = PowerNet;
         readDataDone();
@@ -120,9 +101,9 @@ void RunInfoFace::powerColumn_clicked()
     qDebug()<<"powerColumn_clicked";
     if(page != PowerCln)
     {
-        setAreaUi();
-        page = PowerCln;
-        readDataDone();
+//        setAreaUi();
+//        page = PowerCln;
+//        readDataDone();
     }
 }
 

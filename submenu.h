@@ -18,7 +18,7 @@ public:
     SubMenu(QWidget *parent,MController* mc);
 	~SubMenu();
     void setTitle(QString text,QString pathIco);
-    void setAreaUi(bool en=false);
+    void setWidgetChildren(QWidget *widget, bool en=false);
     void setupButton(QToolButton *button, QString text, QRect rect, QString iconPath,
                          QSize iconSize, Qt::ToolButtonStyle style);
 

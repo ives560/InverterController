@@ -5,9 +5,23 @@
 #include "chart.h"
 #include "paratablewidget.h"
 #include "rltimdttable.h"
+#include "ui_runinfo.h"
 class RunInfoFace : public SubMenu
 {
 	Q_OBJECT
+
+private:
+    Ui::RunInfo ui_runinfo;
+
+private:
+    enum Pages{None,RealTime,PowerNet,PowerCln};
+    Pages page;
+    QPushButton* pbtn_realTime;
+    QPushButton* pbtn_powerNet;
+    QPushButton* pbtn_powerColumn;
+    ParaTableWidget* tableWidget;
+    Chart* chartWidget;
+    RlTimDtTable* realtimePage;
 
 public:
     RunInfoFace(QWidget *parent,MController* mc);
@@ -15,23 +29,11 @@ public:
 
 private:
     void setupUi();
-    void setupButton(QPushButton *button,QString text,int x,int y,
-                     QString iconPath,const char* member);
-    void showRealTimePage();
+    void showRealTimePage(QWidget *widget);
     void showPowerNetPage();
     void powerNetInit();
     void chartUpData();
     void setFastReadType(bool en);
-
-private:
-    enum Pages{RealTime,PowerNet,PowerCln};
-    int page;
-	QPushButton* pbtn_realTime;
-	QPushButton* pbtn_powerNet;
-	QPushButton* pbtn_powerColumn;
-    ParaTableWidget* tableWidget;
-    Chart* chartWidget;
-    RlTimDtTable* realtimePage;
 
 public slots:
     void realTime_clicked();

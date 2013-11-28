@@ -62,3 +62,12 @@ void MsgBox::cancel_button_clicked()
     close();
     setResult(Cancel);
 }
+
+//画StyleSheet
+void MsgBox::paintEvent(QPaintEvent *)
+{
+    //QStyleOption opt;
+    //opt.init(this);
+    //QPainter p(this);
+    //style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}

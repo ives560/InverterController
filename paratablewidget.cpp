@@ -8,19 +8,24 @@ ParaTableWidget::ParaTableWidget(QWidget *parent)
 
 void ParaTableWidget::setupUi()
 {
-    this->setStyleSheet("QHeaderView::section{background-color:white;color:blue}");
+    this->setAlternatingRowColors(true);
+    this->setStyleSheet("background:rgb(233,245,255);alternate-background-color: rgb(209,234,255);");
 
+    this->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);}");
     this->verticalHeader()->setResizeMode(QHeaderView::Stretch);
     this->verticalHeader()->setDisabled(true);
+    this->verticalHeader()->hide();//隐藏行标题列标题
+
+    this->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);}");
     this->horizontalHeader()->setResizeMode(QHeaderView::Stretch);//固定行高列宽
     this->horizontalHeader()->setDisabled(true);
+    this->horizontalHeader()->hide();//隐藏行标题列标题
 
-    this->horizontalHeader()->hide();
-    this->verticalHeader()->hide();//隐藏行标题列标题
 
     //this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//隐藏滚动条
 
+    this->setSelectionMode(QAbstractItemView::SingleSelection);
     this->setEditTriggers(QAbstractItemView::NoEditTriggers);//单元格只读
 }
 

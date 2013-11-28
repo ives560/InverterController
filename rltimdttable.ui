@@ -7,121 +7,154 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>280</height>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>10</y>
-     <width>62</width>
-     <height>17</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>TextLabel</string>
+   <property name="spacing">
+    <number>0</number>
    </property>
-  </widget>
-  <widget class="QWidget" name="widget" native="true">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>30</y>
-     <width>561</width>
-     <height>191</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>220</y>
-     <width>551</width>
-     <height>52</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QToolButton" name="tBtn_left">
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background:transparent;color:white;</string>
-      </property>
-      <property name="text">
-       <string>上一页</string>
-      </property>
-      <property name="icon">
-       <iconset resource="InverterController.qrc">
-        <normaloff>:/images/lastpage.png</normaloff>:/images/lastpage.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>50</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="toolButtonStyle">
-       <enum>Qt::ToolButtonFollowStyle</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QToolButton" name="tBtn_right">
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background:transparent;color:white;</string>
-      </property>
-      <property name="text">
-       <string>下一页</string>
-      </property>
-      <property name="icon">
-       <iconset resource="InverterController.qrc">
-        <normaloff>:/images/nextpage.png</normaloff>:/images/nextpage.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>50</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="toolButtonStyle">
-       <enum>Qt::ToolButtonFollowStyle</enum>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+   <item row="1" column="1" rowspan="2" colspan="3">
+    <widget class="QTableView" name="tableView">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(233,245,255);alternate-background-color: rgb(209,234,255);
+QHeaderView::section{background:rgb(86,197,255);}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideNone</enum>
+     </property>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QToolButton" name="tBtn_left">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent;color:white;</string>
+     </property>
+     <property name="text">
+      <string>上一页</string>
+     </property>
+     <property name="icon">
+      <iconset resource="InverterController.qrc">
+       <normaloff>:/images/lastpage.png</normaloff>:/images/lastpage.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonFollowStyle</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QToolButton" name="tBtn_right">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent;color:white;</string>
+     </property>
+     <property name="text">
+      <string>下一页</string>
+     </property>
+     <property name="icon">
+      <iconset resource="InverterController.qrc">
+       <normaloff>:/images/nextpage.png</normaloff>:/images/nextpage.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonFollowStyle</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources>
   <include location="InverterController.qrc"/>

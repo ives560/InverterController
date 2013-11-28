@@ -39,9 +39,9 @@ void SubMenu::setTitle(QString text,QString pathIco)
     ui.label_icon->setPixmap(QPixmap(pathIco));
 }
 
-void SubMenu::setAreaUi(bool en)
+void SubMenu::setWidgetChildren(QWidget* widget, bool en)
 {
-    QObjectList list= ui.showArea->children();
+    QObjectList list= widget->children();
     QWidget* wgt;
     for(int i=0;i<list.count();i++)
     {

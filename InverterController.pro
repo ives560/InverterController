@@ -95,7 +95,8 @@ FORMS    += \
     historyinfo.ui \
     password.ui \
     paraset.ui \
-    systempara.ui
+    systempara.ui \
+    runinfo.ui
 
 RESOURCES += \
     InverterController.qrc

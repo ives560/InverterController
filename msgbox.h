@@ -2,6 +2,8 @@
 #define MSGBOX_H
 
 #include <QDialog>
+#include <QPainter>
+#include <QPaintEvent>
 
 namespace Ui {
 class MsgBox;
@@ -25,6 +27,7 @@ private:
     void setCriticalIcon();
     void setText(QString text);
 
+    void paintEvent(QPaintEvent *);
 
 private:
     Ui::MsgBox *ui;
