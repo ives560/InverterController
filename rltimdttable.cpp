@@ -7,14 +7,24 @@ RlTimDtTable::RlTimDtTable(QWidget *parent,MController *mc) :
 {
     ui->setupUi(this);
     controller = mc;
-    TableInit();
+    itemNamesInit();
 
     connect(ui->tbtn_left,SIGNAL(clicked()),this,SLOT(tbtn_left_clicked()));
     connect(ui->tbtn_right,SIGNAL(clicked()),this,SLOT(tbtn_right_clicked()));
+
+    ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);}");
+    ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);//固定行高列宽
+    ui->tableView->verticalHeader()->setResizeMode(QHeaderView::Stretch);
+
+    currentPage = 2;
+    model_realtime = NULL;
+    ui->tbtn_left->click();
 }
 
 RlTimDtTable::~RlTimDtTable()
 {
+    controller->paralist.setType(itemNames,FAST_READ,false);
+    controller->paralist.setType(nextItemNames,FAST_READ,false);
     delete ui;
 }
 void RlTimDtTable::itemNamesInit()
@@ -26,13 +36,19 @@ void RlTimDtTable::itemNamesInit()
     nextItemNames<<PARA::kva  <<PARA::kw    <<PARA::kvar  <<PARA::pf    <<PARA::freq  <<PARA::efficy
                  <<PARA::Vpv   <<PARA::Ipv   <<PARA::kwpv;
 
+    controller->paralist.setType(itemNames,FAST_READ,true);
+    controller->paralist.setType(nextItemNames,FAST_READ,true);
+    totalPage = nextItemNames.count()/TABLE_ROWS +1;
 }
 void RlTimDtTable::TableInit()
 {
+    if(model_realtime!=NULL)
+        model_realtime->deleteLater();
+
     model_realtime = new ParaModel(3,4);
 
     QStringList labels_h;
-    labels_h<<""<<"A"<<"B"<<"C";
+    labels_h<<"  "<<"A"<<"B"<<"C";
     model_realtime->setHorizontalHeaderLabels(labels_h);
 
     QString rowNames[] = {"电网电压","电网电流","逆变器电流"};
@@ -49,25 +65,26 @@ void RlTimDtTable::TableInit()
             model_realtime->bindData(i,j+1,para);
         }
     }
-    controller->paralist.setType(itemNames,FAST_READ,true);
+
     model_realtime->setAllValToTable();
 
     /*-----------------------*/
+    ui->tableView->horizontalHeader()->show();//xians 行标题列标题
     ui->tableView->setModel(model_realtime);
 
 }
 
-void RlTimDtTable::setTablePageShow(int star,int rows)
+void RlTimDtTable::setTablePageShow(int star)
 {
     if(model_realtime!=NULL)
         model_realtime->deleteLater();
-    model_realtime = new ParaModel(rows,4);
-    for(int i=0;i<rows;i++)
+    model_realtime = new ParaModel(TABLE_ROWS,4);
+    for(int i=0;i<TABLE_ROWS;i++)
     {
         for(int j=0;j<2;j++)
         {
-            if(star>nextItemNames.count())
-                return;
+            if(star>=nextItemNames.count())
+                break;
             int name = nextItemNames[star];
             ParaItem* para = controller->paralist[name];
             model_realtime->item(i,j*2)->setText(para->name);
@@ -76,9 +93,9 @@ void RlTimDtTable::setTablePageShow(int star,int rows)
         }
     }
 
+    model_realtime->setAllValToTable();
     /*-----------------------*/
     ui->tableView->horizontalHeader()->hide();//隐藏行标题列标题
-    ui->tableView->verticalHeader()->hide();//隐藏行标题列标题
     ui->tableView->setModel(model_realtime);
 }
 
@@ -86,15 +103,28 @@ void RlTimDtTable::setTablePageShow(int star,int rows)
 void RlTimDtTable::tbtn_left_clicked()
 {
     currentPage--;
+    if(currentPage==1)
+    {
+        ui->tbtn_left->hide();
+        ui->tbtn_right->show();
+        TableInit();
+    }
+    else
+    {
+        setTablePageShow((currentPage-2)*TABLE_ROWS);
+    }
 
+    ui->lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }
 
 void RlTimDtTable::tbtn_right_clicked()
 {
     currentPage++;
-    /*----------------------*/
-//    int count = nextItemNames.count()/5;
-//    if(index>=count)
-//        ui->tbtn_right->hide();
-//    else if(index<=)
+    if(currentPage==totalPage)
+    {
+        ui->tbtn_left->show();
+        ui->tbtn_right->hide();
+    }
+    setTablePageShow((currentPage-2)*TABLE_ROWS);
+    ui->lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }

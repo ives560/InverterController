@@ -20,14 +20,20 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="1" column="1" rowspan="2" colspan="3">
+   <item row="1" column="1" rowspan="3" colspan="3">
     <widget class="QTableView" name="tableView">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">background:rgb(233,245,255);alternate-background-color: rgb(209,234,255);
-QHeaderView::section{background:rgb(86,197,255);}</string>
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -47,10 +53,19 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
      <property name="textElideMode">
       <enum>Qt::ElideNone</enum>
      </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
      <attribute name="horizontalHeaderHighlightSections">
       <bool>false</bool>
      </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
      <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
       <bool>false</bool>
      </attribute>
      <attribute name="verticalHeaderHighlightSections">
@@ -58,7 +73,7 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
      </attribute>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0">
     <widget class="QToolButton" name="tbtn_left">
      <property name="minimumSize">
       <size>
@@ -101,7 +116,7 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
     </spacer>
    </item>
    <item row="0" column="3">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lab_page">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -114,15 +129,20 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
        <height>30</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">color:white;</string>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>1/2</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4">
+   <item row="3" column="4">
     <widget class="QToolButton" name="tbtn_right">
      <property name="minimumSize">
       <size>
@@ -153,6 +173,38 @@ QHeaderView::section{background:rgb(86,197,255);}</string>
       <enum>Qt::ToolButtonFollowStyle</enum>
      </property>
     </widget>
+   </item>
+   <item row="2" column="0">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>110</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="4">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>110</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

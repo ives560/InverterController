@@ -5,6 +5,8 @@
 #include "mcontroller.h"
 #include "paramodel.h"
 
+#define TABLE_ROWS      5
+
 namespace Ui {
 class RlTimDtTable;
 }
@@ -18,6 +20,7 @@ private:
     MController* controller;
     ParaModel* model_realtime;
     int currentPage;
+    int totalPage;
     QList<int> itemNames;
     QList<int> nextItemNames;
 
@@ -28,7 +31,7 @@ public:
 private:
    void TableInit();
    void itemNamesInit();
-   void setTablePageShow(int star, int rows);
+   void setTablePageShow(int star);
 
 private slots:
    void tbtn_left_clicked();

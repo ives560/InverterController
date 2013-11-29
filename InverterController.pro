@@ -98,7 +98,8 @@ FORMS    += \
     password.ui \
     paraset.ui \
     systempara.ui \
-    runinfo.ui
+    runinfo.ui \
+    faultdialog.ui
 
 RESOURCES += \
     InverterController.qrc
