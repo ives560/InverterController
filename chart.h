@@ -6,6 +6,8 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QSqlQuery>
+#include <QSqlRecord>
+#include <QTime>
 
 struct AxisData{
 

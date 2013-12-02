@@ -4,6 +4,16 @@ ParaList::ParaList()
 {
     memset(array,0,sizeof(ParaItem*)*PARA_ARRAY_MAX);
 }
+
+ParaList::~ParaList()
+{
+    for(int i=0;i<PARA_ARRAY_MAX;i++)
+    {
+        if(array[i]!=NULL)
+            delete array[i];
+    }
+}
+
 bool ParaList::insert(int index,ParaItem* para)
 {
     if(para==NULL)

@@ -5,7 +5,8 @@
 #include "mcontroller.h"
 #include "paramodel.h"
 
-#define TABLE_ROWS      5
+#define ONE_PAGE_ROWS          5
+#define TABLE_PARA_CLUM        2
 
 namespace Ui {
 class RlTimDtTable;
@@ -36,6 +37,7 @@ private:
 private slots:
    void tbtn_left_clicked();
    void tbtn_right_clicked();
+   void readFastDataSlot();
 
 };
 

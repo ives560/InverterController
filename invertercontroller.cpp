@@ -2,6 +2,7 @@
 #include "mainface.h"
 #include "functiontable.h"
 #include "powerface.h"
+#include "language.h"
 
 InverterController::InverterController(QWidget *parent, Qt::WFlags flags)
 	: QWidget(parent, flags)
@@ -15,6 +16,8 @@ InverterController::InverterController(QWidget *parent, Qt::WFlags flags)
     move(0,0);
     load_mainface();
     setupBackButton();
+
+    ui.wgt_led->setLedState(FaultLed::GREENFLASH);
 }
 
 InverterController::~InverterController()
@@ -78,7 +81,7 @@ void InverterController::on_tBtn_power_clicked()
 void InverterController::on_tBtn_main_clicked()
 {
     qDebug()<<"on_tBtn_main_clicked";
-    //controller->runGetAlwaysData();
+
     if(layout->itemAt(0)->widget()->objectName()!="mainface")
     {
         changeUi(false);
@@ -126,6 +129,14 @@ void InverterController::pBtn_back_clicked()
             mainface->setObjectName("mainface");
             layout->addWidget(mainface);
         }
+    }
+    else//语言切换界面
+    {
+        changeUi(true);
+        removeAllInterface();
+        Language* lge = new Language(this,controller);
+        lge->setObjectName("language");
+        layout->addWidget(lge);
     }
 }
 

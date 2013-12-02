@@ -1,58 +1,107 @@
 #include "runparasetface.h"
-
+#include "msgbox.h"
 RunParaSetFace::RunParaSetFace(QWidget *parent, MController *mc)
                     : SubMenu(parent,mc)
 {
-    setupUi();
-    bindData();
+    setTitle("运行设定",":/images/yunxingshezhi.png");
+    ui_runset.setupUi(ui.showArea);
+    TableInit();
+
     paraDialog  = new SetParaDialog(this,mc);
     qRegisterMetaType<ParaList>("ParaList");
     connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
+    connect(ui_runset.tbtn_left,SIGNAL(clicked()),this,SLOT(tbtn_left_clicked()));
+    connect(ui_runset.tbtn_right,SIGNAL(clicked()),this,SLOT(tbtn_right_clicked()));
+
+    currentPage=2;
+    if(totalPage>1)
+        ui_runset.tbtn_left->click();
+    else
+    {
+        currentPage=1;
+
+        ui_runset.tbtn_left->hide();
+        ui_runset.tbtn_right->hide();
+
+        setTablePageShow(0);
+        ui_runset.lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
+    }
+}
+
+RunParaSetFace::~RunParaSetFace()
+{
 
 }
 
-void RunParaSetFace::setupUi()
+void RunParaSetFace::TableInit()
 {
-    setTitle("运行设定",":/images/yunxingshezhi.png");
-    QString clumNames[]={"输出功率上限","输出无功设置","功率因数设置","无功控制模式选择","控制方式"};
+    itemNames<<PARA::kw_set     <<PARA::kvar_set        <<PARA::pf_set      <<PARA::pf_mode     <<PARA::contro_mode;
 
-    tableWidget=new ParaTableWidget(ui.showArea);
-
-    tableWidget->setObjectName("runParaSet");
-    tableWidget->setGeometry(200,20,200*2,260);
-
+    int row = itemNames.count();
+    row = row/TABLE_PARA_CLUM;
+    int page = row/ONE_PAGE_ROWS;
+    if((row%ONE_PAGE_ROWS)>0)
+        page++;
+    totalPage =  page;
     /*--------------设置表格数据--------------------------------*/
-    tableWidget->setRowCount(5);
-    tableWidget->setColumnCount(2);
-    QStringList labels;
-    labels<<"名称"<<"设置值";
-    tableWidget->setHorizontalHeaderLabels(labels);
-    tableWidget->horizontalHeader()->show();
-    QTableWidgetItem* item;
-    for(int i=0;i<tableWidget->rowCount();i++)
-    {
-        item = new QTableWidgetItem(clumNames[i]);
-        item->setForeground(QBrush(QColor(Qt::blue)));
-        tableWidget->setItem(i,0,item);
-    }
-
+    ui_runset.tableWidget->setRowCount(ONE_PAGE_ROWS);
+    ui_runset.tableWidget->setColumnCount(TABLE_PARA_CLUM*2);
+    ui_runset.tableWidget->horizontalHeader()->show();
     //当前页面槽
     qRegisterMetaType<ParaList>("ParaList");
-    connect(tableWidget,SIGNAL(clicked(QModelIndex)),this,SLOT(tableWidget_clicked(QModelIndex)));
-//    connect(controller,SIGNAL(writeDataDone(ParaList,bool)),tableWidget,SLOT(writeDoneSlot(ParaList,bool)));
+    connect(ui_runset.tableWidget,SIGNAL(clicked(QModelIndex)),this,SLOT(tableWidget_clicked(QModelIndex)));
 
 }
 
-void RunParaSetFace::bindData()
+void RunParaSetFace::setTablePageShow(int star)
 {
-    int clum[5]={PARA::kw_set,       PARA::kvar_set,     PARA::pf_set,
-                PARA::pf_mode,      PARA::contro_mode};
+    ui_runset.tableWidget->clear();
 
-    for(int i=0;i<tableWidget->rowCount();i++)
+    QStringList labels;
+    labels<<"名称"<<"设置值";
+    ui_runset.tableWidget->setHorizontalHeaderLabels(labels);
+
+    QTableWidgetItem* item;
+    int count = itemNames.count();
+    for(int i=0;i<ONE_PAGE_ROWS;i++)
     {
-        tableWidget->bindData(i,1,controller->paralist[clum[i]]);
+        for(int j=0;j<TABLE_PARA_CLUM;j++)
+        {
+            if(star>=count)
+                break;
+            ParaItem* para = controller->paralist[itemNames[star++]];
+            item = new QTableWidgetItem(para->name);
+            item->setForeground(QBrush(QColor(Qt::blue)));
+            ui_runset.tableWidget->setItem(i,j*2,item);
+            ui_runset.tableWidget->bindData(i,j*2+1,para);
+        }
     }
-    tableWidget->setAllValToTable();
+
+    ui_runset.tableWidget->setAllValToTable();
+}
+
+void RunParaSetFace::tbtn_left_clicked()
+{
+    currentPage--;
+    if(currentPage==1)
+    {
+        ui_runset.tbtn_left->hide();
+        ui_runset.tbtn_right->show();
+    }
+    setTablePageShow((currentPage-1)*ONE_PAGE_ROWS);
+    ui_runset.lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
+}
+
+void RunParaSetFace::tbtn_right_clicked()
+{
+    currentPage++;
+    if(currentPage==totalPage)
+    {
+        ui_runset.tbtn_left->show();
+        ui_runset.tbtn_right->hide();
+    }
+    setTablePageShow((currentPage-1)*ONE_PAGE_ROWS);
+    ui_runset.lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }
 
 //
@@ -63,20 +112,15 @@ void RunParaSetFace::tableWidget_clicked(QModelIndex index)
         return;
 
     int row = index.row();
-    QTableWidgetItem* item_n = tableWidget->item(row,clum-1);
+    QTableWidgetItem* item_n = ui_runset.tableWidget->item(row,clum-1);
     QString name=item_n->data(Qt::DisplayRole).toString();
 
-    QTableWidgetItem* item = tableWidget->item(row,clum);
-    ParaItem* para = tableWidget->getPara(item);
+    QTableWidgetItem* item = ui_runset.tableWidget->item(row,clum);
+    ParaItem* para = ui_runset.tableWidget->getPara(item);
 
     paraDialog->getPara(name,para);
     paraDialog->show();
 
-
-//    QMessageBox msg;
-//    msg.setText("确定修改参数!");
-//    msg.setIcon(QMessageBox::Warning);
-//    msg.exec();
 }
 
 void RunParaSetFace::writeDoneSlot(ListParaItem list,bool succeed)
@@ -86,21 +130,19 @@ void RunParaSetFace::writeDoneSlot(ListParaItem list,bool succeed)
         for(int i=0;i<list.count();i++)
         {
             list[i]->values = list[i]->val_w;
-            tableWidget->setValToTable(list[i]);
+            ui_runset.tableWidget->setValToTable(list[i]);
         }
     }
     else
     {
         qDebug()<<"writeError";
-        QMessageBox* msgBox=new QMessageBox(this);
+
         QString str;
         for(int i=0;i<list.count();i++)
         {
             str +=QString("写地址%1值%2失败！\n").arg(list[i]->address).arg(list[i]->val_w);
         }
-        msgBox->setText(str);
-        msgBox->setIcon(QMessageBox::Critical);
-        msgBox->setStandardButtons( QMessageBox::Ok);
+        MsgBox* msgBox=new MsgBox(this,MsgBox::Critical,str);
         msgBox->show();
     }
 }

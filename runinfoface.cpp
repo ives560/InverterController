@@ -7,23 +7,12 @@ RunInfoFace::RunInfoFace(QWidget *parent, MController *mc)
 	setupUi();
     ui_runinfo.pbtn_realTime->click();
 
-    //setFastReadType(true);
-    //connect(controller, SIGNAL(readDataDone()),this, SLOT(readDataDone()));
+
 }
 
 RunInfoFace::~RunInfoFace()
 {
-    setFastReadType(false);
-}
 
-void RunInfoFace::setFastReadType(bool en)
-{
-    const int count =18;
-    int names[count] = {PARA::Va,       PARA::Vb,       PARA::Vc,       PARA::Ia,       PARA::Ib,       PARA::Ic,
-                        PARA::Int_Ia,   PARA::Int_Ib,   PARA::Int_Ic,   PARA::kva,      PARA::kw,       PARA::kvar,
-                        PARA::pf,       PARA::freq,     PARA::efficy,   PARA::Vpv,      PARA::Ipv,      PARA::kwpv};
-
-    controller->paralist.setType(names,count,FAST_READ,en);
 }
 
 void RunInfoFace::setupUi()
@@ -34,6 +23,8 @@ void RunInfoFace::setupUi()
     connect(ui_runinfo.pbtn_realTime,SIGNAL(clicked()),this,SLOT(realTime_clicked()));
     connect(ui_runinfo.pbtn_powerNet,SIGNAL(clicked()),this,SLOT(powerNet_clicked()));
     connect(ui_runinfo.pbtn_powerColumn,SIGNAL(clicked()),this,SLOT(powerColumn_clicked()));
+
+    connect(controller, SIGNAL(readAlwaysDataDone()),this, SLOT(readAlwaysDataSlot()));
 }
 
 //
@@ -79,10 +70,9 @@ void RunInfoFace::realTime_clicked()
     qDebug()<<"realTime_clicked";
     if(page != RealTime)
     {
-        setWidgetChildren(ui_runinfo.wgt_show);
+        setWidgetChildren(ui_runinfo.wgt_show,false);
         showRealTimePage(ui_runinfo.wgt_show);
         page = RealTime;
-        //readDataDone();
     }
 
 }
@@ -92,10 +82,10 @@ void RunInfoFace::powerNet_clicked()
 
     if(page != PowerNet)
     {
-        setWidgetChildren(ui_runinfo.wgt_show);
+        setWidgetChildren(ui_runinfo.wgt_show,false);
         showPowerNetPage();
         page = PowerNet;
-        readDataDone();
+        //readAlwaysDataSlot();
     }
 }
 void RunInfoFace::powerColumn_clicked()
@@ -103,20 +93,19 @@ void RunInfoFace::powerColumn_clicked()
     qDebug()<<"powerColumn_clicked";
     if(page != PowerCln)
     {
-//        setAreaUi();
-//        page = PowerCln;
-//        readDataDone();
+        setWidgetChildren(ui_runinfo.wgt_show,false);
+        elechartPage = new ElectricityChart(ui_runinfo.wgt_show,controller);
+        elechartPage->setObjectName("realtimePage");
+        elechartPage->show();
+        page = PowerCln;
     }
 }
 
-void RunInfoFace::readDataDone()
+void RunInfoFace::readAlwaysDataSlot()
 {
-    qDebug()<<"RunInfoFace"<<"readDataDone";
-    if(page == RealTime)
-    {tableWidget->setAllValToTable();}
-    else if(page == PowerNet)
+    qDebug()<<"RunInfoFace"<<"readAlwaysDataSlot";
+    if(page == PowerNet)
     {chartUpData();}
-    else if(page == PowerCln)
-    {}
+
 
 }

@@ -25,6 +25,8 @@ MController::MController(QObject *parent)
     OperaFile file("user.xml");
     fault_num= file.getElementText("fault_num").toInt();
 
+    fault_queue = new FaultQueue();
+
     timerInit();//设置定时器
     start();//启动线程
 }
@@ -57,7 +59,7 @@ void MController::run()
                 database = new DataBase();//数据库
             //写入数据库
             saveRowToDataBase();
-            readAllFaultData();
+            //readAllFaultData();
             setFirstRun = false;
         }
     }
@@ -75,7 +77,7 @@ void MController::run()
             if(runLevel[1]==true)
             {
                 runGetFastData();
-                readFaultData();//读取错误信息
+                //readFaultData();//读取错误信息
 
             }
             if(runLevel[2]==true)
@@ -108,7 +110,7 @@ bool MController::getFaultData(uchar num)
         if((success==true)&&(paralist[PARA::flt_read]->values>0))
         {
 
-            faultgrp.addItem(paralist[PARA::flt_read]->values,
+            fault_queue->addItem(paralist[PARA::flt_read]->values,
                              paralist[PARA::flt_YER]->values,paralist[PARA::flt_MON]->values,paralist[PARA::flt_DAY]->values,
                              paralist[PARA::flt_HUR]->values,paralist[PARA::flt_MIN]->values,paralist[PARA::flt_SEC]->values);
 
@@ -190,7 +192,7 @@ void MController::runGetAlwaysData()
         saveRowToDataBase();
         //发送信号，更新数据
         qDebug()<<QTime::currentTime()<<":runGetAlwaysDataFinish";
-        emit readDataDone();
+        emit readAlwaysDataDone();
         runLevel[2]=false;
         allRIndx=0;
         allWIndx=0;
@@ -232,7 +234,7 @@ bool MController::readAllParaData()
     {
         //发送信号，更新数据
         qDebug()<<QTime::currentTime()<<":readAllParaData";
-        emit readDataDone();
+        emit readAlwaysDataDone();
         emit readFastDataDone();
         allRIndx=0;
         allWIndx=0;

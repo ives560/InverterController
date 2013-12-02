@@ -1,6 +1,6 @@
 #include "setparadialog.h"
 #include "ui_setparadialog.h"
-
+#include "msgbox.h"
 SetParaDialog::SetParaDialog(QWidget *parent, MController *mc) :
     QDialog(parent,Qt::FramelessWindowHint),
     ui(new Ui::SetParaDialog)
@@ -8,8 +8,8 @@ SetParaDialog::SetParaDialog(QWidget *parent, MController *mc) :
     ui->setupUi(this);
     controller=mc;
     para=NULL;
-    connect(ui->pbtn_cancel,SIGNAL(clicked()),this,SLOT(hide()));
-    connect(ui->pbtn_OK,SIGNAL(clicked()),this,SLOT(pbtn_OK_clicked()));
+    connect(ui->tbtn_cancel,SIGNAL(clicked()),this,SLOT(hide()));
+    connect(ui->tbtn_ok,SIGNAL(clicked()),this,SLOT(pbtn_OK_clicked()));
 }
 
 SetParaDialog::~SetParaDialog()
@@ -33,13 +33,8 @@ void SetParaDialog::getPara(QString name, ParaItem *p)
 void SetParaDialog::pbtn_OK_clicked()
 {
     hide();
-    QMessageBox msg(this);
-    msg.setWindowTitle("警告！");
-    msg.setText("确定要写入当前值!");
-    msg.setIcon(QMessageBox::Warning);
-    msg.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msg.setDefaultButton(QMessageBox::Cancel);
-    if(msg.exec()==QMessageBox::Ok)
+    MsgBox msg(this,MsgBox::Question,"确定要写入当前值!");
+    if(msg.exec()==MsgBox::Ok)
     {
         double val_f = ui->lineEdit->text().toDouble();
         short int val_i =(short int)(val_f*para->scaling);
@@ -50,7 +45,10 @@ void SetParaDialog::pbtn_OK_clicked()
 //            return;
 //        }
         controller->userWriteData(para->address,val_i);
+        close();
     }
+    else
+        show();
 
 }
 

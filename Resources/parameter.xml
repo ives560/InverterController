@@ -55,8 +55,8 @@
   <yyl name="" address="208" scaling="1" unit="" type="0"></yyl>
   <yyh name="" address="209" scaling="1" unit="" type="0"></yyh>
 <!--System info /Version-->
-  <RatedPower name="额定输出功率" address="220" scaling="100" unit="KVA" type="0"></RatedPower>
-  <RatedVoltage name="额定输出电压" address="221" scaling="1" unit="V" type="0"></RatedVoltage>
+  <kva_rated name="额定输出功率" address="220" scaling="100" unit="KVA" type="0"></kva_rated>
+  <vline_rated name="额定输出电压" address="221" scaling="1" unit="V" type="0"></vline_rated>
 <!--q-->
   <sys_cmd name="" address="211" scaling="1" unit="" type="2"></sys_cmd>
   <kw_set name="输出功率上限" address="231" scaling="1" unit="%" type="2"></kw_set>

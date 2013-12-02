@@ -43,7 +43,8 @@ void ParaTableWidget::bindData(int row,int clum,ParaItem* para)
 //设置已经绑定的值
 void ParaTableWidget::setAllValToTable()
 {
-    for(int i=0;i<itemlist.count();i++)
+    const int count = itemlist.count();
+    for(int i=0;i<count;i++)
         setValToItem(itemlist[i].first,itemlist[i].second);
 }
 //
@@ -69,7 +70,8 @@ void ParaTableWidget::setValToItem(QTableWidgetItem* item,ParaItem *para)
 
 ParaItem *ParaTableWidget::getPara(QTableWidgetItem* item)
 {
-    for(int i=0;i<itemlist.count();i++)
+    const int count = itemlist.count();
+    for(int i=0;i<count;i++)
     {
         if(itemlist[i].first==item)
             return itemlist[i].second;
@@ -79,7 +81,8 @@ ParaItem *ParaTableWidget::getPara(QTableWidgetItem* item)
 
 ParaItem *ParaTableWidget::getPara(int addr)
 {
-    for(int i=0;i<itemlist.count();i++)
+    const int count = itemlist.count();
+    for(int i=0;i<count;i++)
     {
         if(itemlist[i].second->address==addr)
             return itemlist[i].second;
@@ -89,7 +92,8 @@ ParaItem *ParaTableWidget::getPara(int addr)
 
 QTableWidgetItem* ParaTableWidget::getItem(ParaItem *para)
 {
-    for(int i=0;i<itemlist.count();i++)
+    const int count = itemlist.count();
+    for(int i=0;i<count;i++)
     {
         if(itemlist[i].second==para)
             return itemlist[i].first;

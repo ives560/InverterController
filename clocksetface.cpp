@@ -84,7 +84,9 @@ void ClockSetFace::writeDoneSlot(ParaList list, bool success)
         QDateTime dt = QDateTime(d,t);
         time_t tt =dt.toTime_t();
         int error = stime(&tt);
-
+#ifdef AM335x_BOARD
+        QProcess::execute("hwclock -w");//系统时钟和硬件时钟同步
+#endif
         if(error != 0)
             qDebug()<<"error:stime";
     }
@@ -110,7 +112,7 @@ void ClockSetFace::setCurrentTime()
     }
 
 }
-
+//设置编辑框能输入的取值范围
 void ClockSetFace::setLineEditValidator()
 {
     QRegExp regExp("[0-9]+$");

@@ -40,11 +40,16 @@ SOURCES += main.cpp\
     clocksetface.cpp \
     systemparaface.cpp \
     userfile.cpp \
-    faultgroup.cpp \
     rltimdttable.cpp \
     msgbox.cpp \
     paramodel.cpp \
-    paralist.cpp
+    paralist.cpp \
+    language.cpp \
+    communiset.cpp \
+    faultqueue.cpp \
+    faultled.cpp \
+    electricitychart.cpp \
+    columchart.cpp
 
 HEADERS  += \
     invertercontroller.h \
@@ -74,11 +79,16 @@ HEADERS  += \
     clocksetface.h \
     systemparaface.h \
     userfile.h \
-    faultgroup.h \
     rltimdttable.h \
     msgbox.h \
     paramodel.h \
-    paralist.h
+    paralist.h \
+    language.h \
+    communiset.h \
+    faultqueue.h \
+    faultled.h \
+    electricitychart.h \
+    columchart.h
 
 FORMS    += \
     invertercontroller.ui \
@@ -99,7 +109,13 @@ FORMS    += \
     paraset.ui \
     systempara.ui \
     runinfo.ui \
-    faultdialog.ui
+    faultdialog.ui \
+    language.ui \
+    communiset.ui \
+    faultled.ui \
+    electricitychart.ui \
+    columchart.ui \
+    runparaset.ui
 
 RESOURCES += \
     InverterController.qrc

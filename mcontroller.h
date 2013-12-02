@@ -6,7 +6,7 @@
 #include "common.h"
 #include "DataBase.h"
 #include "serial/mserialoperate.h"
-#include "faultgroup.h"
+#include "faultqueue.h"
 
 struct DataInfo {
     DataInfo(int a,int l)
@@ -24,9 +24,6 @@ class MController : public QThread
 public:
     explicit MController(QObject *parent = 0);  
     ~MController();
-    //QList<ParaInfo*> getCommParaList(bool c,bool w);
-
-
 
 private:
     void run();
@@ -69,23 +66,21 @@ private:
     bool runLevel[3];
     MSerialOperate* serial;
 
-private:
+public:
     uchar fault_num;     //本地错误号
-    FaultGroup faultgrp;
+    FaultQueue* fault_queue;
 
 public:
     QMutex mutex;
     QMutex mutexCom;
     QMutex mutexTimer;
-    //QMap<QString,ParaInfo*> paraMap; //根据参数名获得参数结构体
-    //QList<ParaInfo*> paraList;		//根据索引获得参数结构体
     QList< ParaItem*> uslist_w;     //要写入串口的队列
     QQueue<ParaItem*> usQue_r;     //要读出串口的队列
     ParaList paralist;
     DataBase* database;
 
 signals:
-    void readDataDone();
+    void readAlwaysDataDone();
     void readFastDataDone();
     void writeDataDone(ListParaItem,bool);
     void haveReadNewFault(int);

@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include "ui_password.h"
 #include "ui_paraset.h"
+
 class paramSetFace : public SubMenu
 {
     Q_OBJECT
@@ -20,6 +21,7 @@ private:
     void setupPassWordUi();
     void setupParaSetUi();
     bool checkPassWord();
+
 
 private slots:
     void tbtn_ok_clicked();

@@ -29,9 +29,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>30</y>
+     <y>40</y>
      <width>800</width>
-     <height>370</height>
+     <height>360</height>
     </rect>
    </property>
    <widget class="QWidget" name="layoutWidget">
@@ -237,64 +237,14 @@
     <enum>Qt::ToolButtonFollowStyle</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="FaultLed" name="wgt_led" native="true">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>570</x>
      <y>0</y>
-     <width>30</width>
-     <height>30</height>
+     <width>200</width>
+     <height>40</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="InverterController.qrc">:/images/bulianggreen.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>0</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="InverterController.qrc">:/images/buliangred.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>0</y>
-     <width>100</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
-   </property>
-   <property name="text">
-    <string>运行</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::AutoText</enum>
    </property>
   </widget>
  </widget>
@@ -304,6 +254,12 @@
    <class>Clock</class>
    <extends>QWidget</extends>
    <header location="global">clock.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FaultLed</class>
+   <extends>QWidget</extends>
+   <header location="global">faultled.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

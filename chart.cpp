@@ -1,6 +1,4 @@
 ﻿#include "chart.h"
-#include <QSqlRecord>
-#include <QTime>
 
 Chart::Chart(QWidget *parent)
 	: QWidget(parent)

@@ -30,6 +30,7 @@ public:
     bool insertFaultRow(QDateTime dt,QString name,QString details);
 
     QSqlQuery readTodayTable(QString clum);
+    QSqlQuery readMonthTable(QDate date);
     void tableCheck();
     void timeChange(QDateTime d,QDateTime new_d);
     bool saveAlwaysData(QString time,int a,int v, int d);

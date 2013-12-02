@@ -11,7 +11,9 @@
 #include <QTimer>
 #include <QQueue>
 #include <QMutex>
+#include <QPainter>
 #include <QPixmap>
+#include <QHeaderView>
 #include <QLineEdit>
 #include <QBitArray>
 #include <QTableView>

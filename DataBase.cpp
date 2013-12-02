@@ -100,7 +100,7 @@ bool DataBase::newTodayTable(bool keep)
 //新建统计表，记录每个月的数据和每年的数据，year,month字段
 bool DataBase::newTotleTable(bool keep)
 {
-    QString list ="Dt TEXT PRIMARY KEY, tl_kw interger";
+    QString list ="Dt date PRIMARY KEY, tl_kw interger";
     QString cmd=QString("create table %1 (%2)").arg(tbTotal).arg(list);
     return newTable(tbTotal,cmd,keep);
 }
@@ -185,6 +185,16 @@ QSqlQuery DataBase::readTodayTable(QString clum)
     return query;
 }
 
+QSqlQuery DataBase::readMonthTable(QDate date)
+{
+    QSqlQuery query;
+    QString d = date.toString("yyyy-MM-dd");
+    QString cmd=QString("select Dt,tl_kw from %2 where Dt >= %1").arg(d).arg(tbTotal);
+
+    query.exec(cmd);
+
+    return query;
+}
 
 //QSqlTableModel DataBase::getTableModel(QString name)
 //{

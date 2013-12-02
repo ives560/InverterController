@@ -1,5 +1,7 @@
 #include "systemparaface.h"
 #include "clocksetface.h"
+#include "language.h"
+
 SystemParaFace::SystemParaFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
@@ -20,7 +22,10 @@ void SystemParaFace::setupUi()
 //语言设置
 void SystemParaFace::tbtn_language_clicked()
 {
-
+    qDebug()<<"tbtn_language_clicked";
+    Language* lge = new Language((QWidget*)inverter,controller);
+    lge->lastOne = this;
+    inverter->addTopInterface(lge);
 }
 //时钟设置
 void SystemParaFace::tbtn_clock_clicked()

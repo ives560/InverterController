@@ -15,19 +15,17 @@ class InverterController : public QWidget
 {
 	Q_OBJECT
 
+private:
+    Ui::InverterControllerClass ui;
+
+    QVBoxLayout* layout;
+    QToolButton* tBtn_back;
+
+    MController* controller;
+
 public:
 	InverterController(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~InverterController();
-
-private:
-	Ui::InverterControllerClass ui;
-
-private:
-	QVBoxLayout* layout;
-	QToolButton* tBtn_back;
-//	QWidget* current;
-public:
-    MController* controller;
 
 private:
 	void load_mainface();
@@ -49,8 +47,6 @@ private slots:
 	void on_tBtn_main_clicked();
 	void on_tBtn_function_clicked();
 	void pBtn_back_clicked();
-signals:
-    void enReadData();
 
 };
 

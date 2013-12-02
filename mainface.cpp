@@ -13,7 +13,7 @@ MainFace::MainFace(QWidget *parent, MController *mc)
     tableInit();
     upDataPara();
     readFastDataDoneSlot();
-    connect(controller, SIGNAL(readDataDone()),this, SLOT(upDataPara()));
+    connect(controller, SIGNAL(readAlwaysDataDone()),this, SLOT(upDataPara()));
     connect(controller, SIGNAL(readFastDataDone()),this, SLOT(readFastDataDoneSlot()));
 }
 
@@ -190,7 +190,7 @@ void MainFace::tableWidget_clicked(QModelIndex index)
         if(index.column()==1)
         {
             qDebug()<<"column:"<<index.column();
-            FaultDialog* dialog=new FaultDialog(this);
+            FaultDialog* dialog=new FaultDialog(this,controller);
             //传入错误编号
             dialog->show();
         }

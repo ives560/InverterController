@@ -2,10 +2,13 @@
 #define RUNINFOFACE_H
 
 #include "submenu.h"
-#include "chart.h"
-#include "paratablewidget.h"
-#include "rltimdttable.h"
+
 #include "ui_runinfo.h"
+
+#include "chart.h"
+#include "rltimdttable.h"
+#include "electricitychart.h"
+
 class RunInfoFace : public SubMenu
 {
 	Q_OBJECT
@@ -19,9 +22,9 @@ private:
     QPushButton* pbtn_realTime;
     QPushButton* pbtn_powerNet;
     QPushButton* pbtn_powerColumn;
-    ParaTableWidget* tableWidget;
     Chart* chartWidget;
     RlTimDtTable* realtimePage;
+    ElectricityChart* elechartPage;
 
 public:
     RunInfoFace(QWidget *parent,MController* mc);
@@ -33,14 +36,13 @@ private:
     void showPowerNetPage();
     void powerNetInit();
     void chartUpData();
-    void setFastReadType(bool en);
 
 public slots:
     void realTime_clicked();
     void powerNet_clicked();
     void powerColumn_clicked();
 	
-    void readDataDone();
+    void readAlwaysDataSlot();
 };
 
 #endif // RUNINFOFACE_H

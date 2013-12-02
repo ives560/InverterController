@@ -4,6 +4,11 @@
 #include <QDomDocument>
 #include <QFile>
 
+struct CodeNode{
+        QString name;
+        QString details;
+};
+
 class OperaFile
 {
 public:
@@ -12,7 +17,12 @@ public:
     bool saveFile();
     QDomElement FindElement(QString name);
     QString getElementText(QString name);
+    QList<CodeNode> getFaultCodeList();
+    CodeNode getFaultCodeText(QString node);
+    CodeNode getFaultCodeText(QDomElement elmt);
     void setElementText(QString name,QString text);
+    QString getAttribute(QString node,QString atb);
+
 private:
     QDomDocument doc;
     QString filePath;

@@ -40,7 +40,7 @@ enum paraName
    // <!--System info /time-->
       set_clock =202,ss =203,mm =204,hh =205,dd =206,MM =207,yyl =208,yyh =209,
     //<!--System info /Version-->
-      RatedPower = 220,RatedVoltage = 221,
+      kva_rated = 220,vline_rated = 221,
     //<!--q-->
       sys_cmd =211,
       kw_set =231,kvar_set=232,pf_set=236,pf_mode=235,contro_mode=230,
@@ -71,6 +71,8 @@ private:
 
 public:
     ParaList();
+    ~ParaList();
+
 public:
     void setType(QList<int> names,int type,bool en);
     void setType(int* names,int len,int type,bool en);

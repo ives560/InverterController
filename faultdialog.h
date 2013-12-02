@@ -2,25 +2,24 @@
 #define FAULTDIALOG_H
 
 #include <QDialog>
+#include "ui_faultdialog.h"
 #include "common.h"
-#include <QPainter>
+#include "mcontroller.h"
 
 class FaultDialog : public QDialog
 {
     Q_OBJECT
-public:
-    explicit FaultDialog(QWidget *parent = 0);
-    void setupUi();
-    void tableInit();
 
 private:
-    QList<QString> getFaultNames();
-    void setTableVal();
+    Ui::FaultDialog ui;
+    MController *controller;
+public:
+    explicit FaultDialog(QWidget *parent = 0,MController* mc=0);
+    void setupUi();
+
 private:
-    QTableWidget* tableWidget;
-    QToolButton* tbtn_ok;
-    QToolButton* tbtn_cancel;
-    QLabel* lb_title;
+    void setTableVal();
+
 private:
     void paintEvent(QPaintEvent *);
     

@@ -1,11 +1,8 @@
 #ifndef FAULTGROUP_H
 #define FAULTGROUP_H
 
-#include <QString>
-#include <QQueue>
-#include <QDateTime>
-#include <QDate>
-#include <QTime>
+#include "common.h"
+#include "operafile.h"
 
 #define MAX_QUEUE_NUM   255
 
@@ -13,23 +10,20 @@ struct FaultItem{
 
     int code;
     QDateTime date;
-    QString name;
-    QString details;
-    QString comments;
-
+    CodeNode node;
 };
 
-class FaultGroup
+class FaultQueue : public QQueue<FaultItem>
 {
-public:
-    FaultGroup();
+private:
+    OperaFile* file;
 
+public:
+    FaultQueue();
+    FaultItem getCurtItem();
     bool addItem(int code,int YER,int MON,int DAY,int HUR,int MIN,int SEC);
     bool addItem(int code,QDateTime dt);
-    FaultItem getCurtItem();
-
-private:
-    QQueue<FaultItem> queue;
+    inline QList<CodeNode> getCodeNodeList(){return file->getFaultCodeList();}
 
 
 };
