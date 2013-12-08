@@ -24,10 +24,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>70</y>
-     <width>561</width>
-     <height>131</height>
+     <x>40</x>
+     <y>20</y>
+     <width>721</width>
+     <height>181</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -38,13 +38,13 @@
      <widget class="QToolButton" name="start">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>150</width>
+        <height>150</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>14</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -61,8 +61,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -74,13 +74,13 @@
      <widget class="QToolButton" name="shutdown">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>150</width>
+        <height>150</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>14</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -97,8 +97,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -110,13 +110,13 @@
      <widget class="QToolButton" name="reset">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>150</width>
+        <height>150</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>14</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -133,8 +133,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -146,14 +146,14 @@
      <widget class="QToolButton" name="stop">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>150</width>
+        <height>150</height>
        </size>
       </property>
       <property name="font">
        <font>
         <family>AR PL UKai CN</family>
-        <pointsize>14</pointsize>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -170,8 +170,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">

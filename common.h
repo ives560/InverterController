@@ -47,17 +47,17 @@
 typedef struct {
 
     QTime time;
-    int db_Va;
-    int db_Vb;
-    int db_Vc;
-    int db_Ia;
-    int db_Ib;
-    int db_Ic;
-    int db_kva;
-    int db_kw;
-    int db_kvar;
-    int db_pf;
-    int db_freq;//12个
+    double db_Va;
+    double db_Vb;
+    double db_Vc;
+    double db_Ia;
+    double db_Ib;
+    double db_Ic;
+    double db_kva;
+    double db_kw;
+    double db_kvar;
+    double db_pf;
+    double db_freq;//12个
     //int db_today;
 }RowData;
 

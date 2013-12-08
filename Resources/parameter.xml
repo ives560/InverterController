@@ -3,21 +3,23 @@
 <!--System info /Version-->
   <Seri name="序列号" address="0" scaling="1" unit="" type="0"></Seri>
   <Versiion name="版本号" address="1" scaling="1" unit="" type="0"></Versiion>
+  <op_state name="运行状态" address="5" scaling="1" unit="" type="1"></op_state>
+  <digi_out1 name="灯状态" address="28" scaling="1" unit="" type="1"></digi_out1>
   <CodeCRC name="程序CRC" address="97" scaling="1" unit="" type="0"></CodeCRC>
   <DataCRC name="数据CRC" address="99" scaling="1" unit="" type="0"></DataCRC>
 
 <!--AC output/Grid voltage-->
-  <Va name="电网电压" address="30" scaling="10" unit="V" type="1"></Va>
-  <Vb name="电网电压" address="31" scaling="10" unit="V" type="1"></Vb>
-  <Vc name="电网电压" address="32" scaling="10" unit="V" type="1"></Vc>
+  <Va name="电网电压A" address="30" scaling="10" unit="V" type="1"></Va>
+  <Vb name="电网电压B" address="31" scaling="10" unit="V" type="1"></Vb>
+  <Vc name="电网电压C" address="32" scaling="10" unit="V" type="1"></Vc>
 <!--AC output/Grid current-->
-  <Ia name="电网电流" address="35" scaling="10" unit="A" type="1"></Ia>
-  <Ib name="电网电流" address="36" scaling="10" unit="A" type="1"></Ib>
-  <Ic name="电网电流" address="37" scaling="10" unit="A" type="1"></Ic>
+  <Ia name="电网电流A" address="35" scaling="10" unit="A" type="1"></Ia>
+  <Ib name="电网电流B" address="36" scaling="10" unit="A" type="1"></Ib>
+  <Ic name="电网电流C" address="37" scaling="10" unit="A" type="1"></Ic>
 <!--AC output/Inverter current-->
-  <Int_Ia name="逆变器电流" address="40" scaling="10" unit="A" type="1"></Int_Ia>
-  <Int_Ib name="逆变器电流" address="41" scaling="10" unit="A" type="1"></Int_Ib>
-  <Int_Ic name="逆变器电流" address="42" scaling="10" unit="A" type="1"></Int_Ic>
+  <Int_Ia name="逆变器电流A" address="40" scaling="10" unit="A" type="1"></Int_Ia>
+  <Int_Ib name="逆变器电流B" address="41" scaling="10" unit="A" type="1"></Int_Ib>
+  <Int_Ic name="逆变器电流C" address="42" scaling="10" unit="A" type="1"></Int_Ic>
 <!--AC output/power-->
   <kva name="视在功率" address="61" scaling="100" unit="KVA" type="1"></kva>
   <kw name="有功功率" address="62" scaling="100" unit="KW" type="1"></kw>
@@ -35,7 +37,7 @@
   <Mwh_nv name="总发电量" address="68" scaling="1" unit="MWh" type="1"></Mwh_nv>
   <Gwh_nv name="总发电量" address="69" scaling="1" unit="GWh" type="1"></Gwh_nv>
 <!--Temperature-->
-  <HS1 name="IGBT1温度" address="110" scaling="100" unit="C" type="1"></HS1>
+  <HS1 name="IGBT1温度" address="110" scaling="100" unit="℃" type="1"></HS1>
 <!--Fault-->
   <flt_read name="" address="190" scaling="1" unit="" type="0"></flt_read>
   <flt_YER name="" address="191" scaling="1" unit="" type="0"></flt_YER>
@@ -58,12 +60,14 @@
   <kva_rated name="额定输出功率" address="220" scaling="100" unit="KVA" type="0"></kva_rated>
   <vline_rated name="额定输出电压" address="221" scaling="1" unit="V" type="0"></vline_rated>
 <!--q-->
+  <Initial_cmd name="" address="201" scaling="1" unit="" type="2"></Initial_cmd>
+  <Clear_cmd name="" address="218" scaling="1" unit="" type="2"></Clear_cmd>
   <sys_cmd name="" address="211" scaling="1" unit="" type="2"></sys_cmd>
   <kw_set name="输出功率上限" address="231" scaling="1" unit="%" type="2"></kw_set>
   <kvar_set name="输出无功设置" address="232" scaling="1" unit="%" type="2"></kvar_set>
   <pf_set name="功率因数设置" address="236" scaling="1" unit="%" type="2"></pf_set>
   <pf_mode name="无功控制模式选择" address="235" scaling="1" unit="" type="2"></pf_mode>
   <contro_mode name="控制方式" address="230" scaling="1" unit="" type="2"></contro_mode>
-
+  <auto_restart_en name="自动/手动设置" address="488" scaling="1" unit="" type="2"></auto_restart_en>
 
 </parameter>

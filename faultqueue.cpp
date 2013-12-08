@@ -8,22 +8,18 @@ FaultQueue::FaultQueue()
 
 bool FaultQueue::addItem(int code,int YER,int MON,int DAY,int HUR,int MIN,int SEC)
 {
-    QDateTime dt(QDate(YER,MON,DAY),QTime(HUR,MIN,SEC));
-    addItem(code,dt);
-    return true;
-}
-
-bool FaultQueue::addItem(int code,QDateTime dt)
-{
     FaultItem item;
     item.code = code;
+
+    QString dt = QString("%1-%2-%3 %4:%5:%6").arg(YER).arg(MON).arg(DAY).arg(HUR).arg(MIN).arg(SEC);
     item.date = dt;
+
     QString node = QString("code_%1").arg(code);
     item.node = file->getFaultCodeText(node);
 
     if(this->count()>MAX_QUEUE_NUM)
-        this->dequeue();
-    this->enqueue(item);
+        this->takeLast();
+    this->insert(0,item);
 
     return true;
 }

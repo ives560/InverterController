@@ -9,7 +9,7 @@
 struct FaultItem{
 
     int code;
-    QDateTime date;
+    QString date;
     CodeNode node;
 };
 
@@ -22,7 +22,6 @@ public:
     FaultQueue();
     FaultItem getCurtItem();
     bool addItem(int code,int YER,int MON,int DAY,int HUR,int MIN,int SEC);
-    bool addItem(int code,QDateTime dt);
     inline QList<CodeNode> getCodeNodeList(){return file->getFaultCodeList();}
 
 

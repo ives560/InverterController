@@ -49,7 +49,9 @@ SOURCES += main.cpp\
     faultqueue.cpp \
     faultled.cpp \
     electricitychart.cpp \
-    columchart.cpp
+    columchart.cpp \
+    returnfactory.cpp \
+    remotelocal.cpp
 
 HEADERS  += \
     invertercontroller.h \
@@ -88,7 +90,9 @@ HEADERS  += \
     faultqueue.h \
     faultled.h \
     electricitychart.h \
-    columchart.h
+    columchart.h \
+    returnfactory.h \
+    remotelocal.h
 
 FORMS    += \
     invertercontroller.ui \
@@ -115,7 +119,10 @@ FORMS    += \
     faultled.ui \
     electricitychart.ui \
     columchart.ui \
-    runparaset.ui
+    runparaset.ui \
+    historyfault.ui \
+    returnfactory.ui \
+    remotelocal.ui
 
 RESOURCES += \
     InverterController.qrc

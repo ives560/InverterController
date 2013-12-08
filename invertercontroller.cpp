@@ -1,4 +1,5 @@
 #include "invertercontroller.h"
+#include "submenu.h"
 #include "mainface.h"
 #include "functiontable.h"
 #include "powerface.h"
@@ -10,20 +11,29 @@ InverterController::InverterController(QWidget *parent, Qt::WFlags flags)
     ui.setupUi(this);
     //controller=NULL;
     controller=new MController();
-    //connect(controller, SIGNAL(enReadData()),this, SIGNAL(enReadData()));
+    connect(controller, SIGNAL(readFastDataDone()),this, SLOT(readFastDataSlot()));
     //this->showFullScreen();
     setWindowFlags(Qt::FramelessWindowHint);
     move(0,0);
     load_mainface();
     setupBackButton();
 
-    ui.wgt_led->setLedState(FaultLed::GREENFLASH);
 }
 
 InverterController::~InverterController()
 {
     if(controller!=NULL)
         controller->deleteLater();
+}
+
+void InverterController::readFastDataSlot()
+{
+    int state = controller->paralist[PARA::op_state]->values;
+    int led = controller->paralist[PARA::digi_out1]->values;
+   // qDebug()<<"readFastDataSlot:"<<"op_state:"<<state<<"digi_out1:"<<led;
+
+    ui.wgt_led->setLedState(led);
+    ui.wgt_led->setStateText(state);
 }
 
 void InverterController::load_mainface()

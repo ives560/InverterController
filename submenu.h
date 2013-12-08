@@ -7,7 +7,6 @@
 #include "common.h"
 #include "mcontroller.h"
 
-class SubMenu;
 #include "invertercontroller.h"
 
 class SubMenu : public QWidget

@@ -1,6 +1,7 @@
 ﻿#include "DataBase.h"
 #include <QDate>
-DataBase::DataBase()
+
+DataBase::DataBase(ParaList *list)
 {
     //记录修改前的日期和时间，
     //日期相同，时间不同，读取表，删除修改时间后已经存在的行
@@ -17,6 +18,12 @@ DataBase::DataBase()
     tbTotal = "total";
     tbFault = "fault";
     db = QSqlDatabase::addDatabase("QSQLITE");//默认连接，没有连接名
+
+    paralist = list;
+    tb_td_paras<<PARA::Va<<PARA::Vb<<PARA::Vc<<
+                  PARA::Ia<<PARA::Ib<<PARA::Ic<<
+                  PARA::kva<<PARA::kw<<PARA::kvar<<PARA::pf<<PARA::freq;
+
     bool t = createDataBase(dbName);
     if(t==true)
         t = newTodayTable();
@@ -89,9 +96,15 @@ void DataBase::closeDataBase()
 //新建需要永久保存的参数数据的表
 bool DataBase::newTodayTable(bool keep)
 {
-    QString list ="Tm time PRIMARY KEY,Va interger, Vb interger, Vc interger,\
-                   Ia interger, Ib interger, Ic interger, kva interger, kw interger,\
-                   kvar interger, pf interger, freq interger";
+    QString list ="Tm time PRIMARY KEY,";
+
+    const int count = tb_td_paras.count();
+     for(int i=0;i<count;i++)
+    {
+         QString name = QString("addr_%1 double,").arg(paralist->at(tb_td_paras[i])->address);
+        list.append(name);
+    }
+    list.remove(list.count()-1,1);
     QString cmd=QString("create table %1 (%2)").arg(tbToday).arg(list);
     return newTable(tbToday,cmd,keep);
 
@@ -100,7 +113,7 @@ bool DataBase::newTodayTable(bool keep)
 //新建统计表，记录每个月的数据和每年的数据，year,month字段
 bool DataBase::newTotleTable(bool keep)
 {
-    QString list ="Dt date PRIMARY KEY, tl_kw interger";
+    QString list ="Dt date PRIMARY KEY, tl_kw double";
     QString cmd=QString("create table %1 (%2)").arg(tbTotal).arg(list);
     return newTable(tbTotal,cmd,keep);
 }
@@ -143,24 +156,75 @@ QStringList DataBase::getTables()
 }
 
 //插入一行数据
-bool DataBase::insertTodayRow(RowData row)
+//bool DataBase::insertTodayRow(RowData row)
+//{
+//    QSqlQuery query;
+//    QString cmd=QString("insert into %1 values (?,?,?,?,?,?,?,?,?,?,?,?)").arg(tbToday);
+//    query.prepare(cmd);
+//    query.addBindValue(row.time);
+//    query.addBindValue(row.db_Va);
+//    query.addBindValue(row.db_Vb);
+//    query.addBindValue(row.db_Vc);
+//    query.addBindValue(row.db_Ia);
+//    query.addBindValue(row.db_Ib);
+//    query.addBindValue(row.db_Ic);
+//    query.addBindValue(row.db_kva);
+//    query.addBindValue(row.db_kw);
+//    query.addBindValue(row.db_kvar);
+//    query.addBindValue(row.db_pf);
+//    query.addBindValue(row.db_freq);
+//    return query.exec();
+//}
+
+bool DataBase::insertTodayRow()
 {
     QSqlQuery query;
+
     QString cmd=QString("insert into %1 values (?,?,?,?,?,?,?,?,?,?,?,?)").arg(tbToday);
     query.prepare(cmd);
-    query.addBindValue(row.time);
-    query.addBindValue(row.db_Va);
-    query.addBindValue(row.db_Vb);
-    query.addBindValue(row.db_Vc);
-    query.addBindValue(row.db_Ia);
-    query.addBindValue(row.db_Ib);
-    query.addBindValue(row.db_Ic);
-    query.addBindValue(row.db_kva);
-    query.addBindValue(row.db_kw);
-    query.addBindValue(row.db_kvar);
-    query.addBindValue(row.db_pf);
-    query.addBindValue(row.db_freq);
+    query.addBindValue(QTime::currentTime());
+    const int count = tb_td_paras.count();
+    for(int i=0;i<count;i++)
+    {
+        ParaItem* para = paralist->at(tb_td_paras[i]);
+        double val = para->values;
+        val = val/para->scaling;
+        query.addBindValue(val);
+    }
+
     return query.exec();
+}
+
+bool DataBase::upDataTotalRow()
+{
+    QDate date = QDate::currentDate();
+    ParaItem* para = paralist->at(PARA::kwh_today);
+    double kw = para->values;
+    kw = kw/para->scaling;
+    QSqlQuery query;
+    QString cmd = QString("SELECT * FROM %1 WHERE Dt= :dt").arg(tbTotal);
+    query.prepare(cmd);
+    query.bindValue(":dt",date);
+    if(query.exec()==false)
+        qDebug()<<query.lastError();
+    int size = query.numRowsAffected();
+    if(size>0)
+    {
+        cmd=QString("update %1 set tl_kw= :kw where Dt= :dt ").arg(tbTotal);
+    }
+    else
+    {
+        cmd=QString("insert into %1 values (:dt,:kw)").arg(tbTotal);
+    }
+    query.prepare(cmd);
+    query.bindValue(":dt",date);
+    query.bindValue(":kw",kw);
+    if(query.exec()==false)
+    {
+        qDebug()<< query.lastError();
+        return false;
+    }
+    return true;
 }
 
 bool DataBase::insertFaultRow(QDateTime dt,QString name,QString details)
@@ -179,6 +243,17 @@ QSqlQuery DataBase::readTodayTable(QString clum)
 {
     QSqlQuery query;
     QString cmd=QString("select Tm,%1 from %2").arg(clum).arg(tbToday);
+
+    query.exec(cmd);
+
+    return query;
+}
+
+QSqlQuery DataBase::readTodayAllParaTable(QString tbname)
+{
+    tbname.prepend("tb_");
+    QSqlQuery query;
+    QString cmd=QString("select * from %1").arg(tbname);
 
     query.exec(cmd);
 

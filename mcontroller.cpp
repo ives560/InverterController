@@ -15,17 +15,16 @@ MController::MController(QObject *parent)
     memset(runLevel,false,sizeof(bool)*3);
     runLevel[2]=true;
 
+    paraMapInit();//参数初始化
+
     database = NULL;
 //    database = new DataBase();//数据库
     serial=new MSerialOperate();//新建串口
 
-    paraMapInit();//参数初始化
+    userFileInit();//初始化用户密码等
+//    OperaFile file("user.xml");
+//    fault_num= file.getElementText("fault_num").toInt();
 
-    userFileInit();
-    OperaFile file("user.xml");
-    fault_num= file.getElementText("fault_num").toInt();
-
-    fault_queue = new FaultQueue();
 
     timerInit();//设置定时器
     start();//启动线程
@@ -56,10 +55,13 @@ void MController::run()
             systemTimeInit();//时间校准
 #endif
             if(database == NULL)
-                database = new DataBase();//数据库
+                database = new DataBase(&paralist);//数据库
             //写入数据库
-            saveRowToDataBase();
-            //readAllFaultData();
+            database->insertTodayRow();
+            database->upDataTotalRow();
+            qDebug()<<"readAllFaultData start"<<QTime::currentTime();
+            readAllFaultData();
+            qDebug()<<"readAllFaultData"<<QTime::currentTime();
             setFirstRun = false;
         }
     }
@@ -77,7 +79,7 @@ void MController::run()
             if(runLevel[1]==true)
             {
                 runGetFastData();
-                //readFaultData();//读取错误信息
+                readFaultData();//读取错误信息
 
             }
             if(runLevel[2]==true)
@@ -110,7 +112,7 @@ bool MController::getFaultData(uchar num)
         if((success==true)&&(paralist[PARA::flt_read]->values>0))
         {
 
-            fault_queue->addItem(paralist[PARA::flt_read]->values,
+            fault_queue.addItem(paralist[PARA::flt_read]->values,
                              paralist[PARA::flt_YER]->values,paralist[PARA::flt_MON]->values,paralist[PARA::flt_DAY]->values,
                              paralist[PARA::flt_HUR]->values,paralist[PARA::flt_MIN]->values,paralist[PARA::flt_SEC]->values);
 
@@ -142,7 +144,7 @@ void MController::readFaultData()
 {
     uchar curt_fault = paralist[PARA::flt_num]->values;
 
-     while(fault_num != curt_fault)
+     while(fault_num < curt_fault)
     {
          fault_num++;
         if(getFaultData(fault_num)==false)
@@ -180,16 +182,18 @@ void MController::runUserWriteData()
 void MController::runGetAlwaysData()
 {
     bool read=runReadData(&allRIndx,&allWIndx,ALWARS_READ);
-    if(serial->comState==false)
+
+    if(read==false)
     {
         allRIndx = 0;
         allWIndx = 0;
         return;
     }
-    if(read==true)//读取完
+    if(allRIndx==PARA_ARRAY_MAX)//读取完
     {
         //写入数据库
-        saveRowToDataBase();
+        database->insertTodayRow();
+        database->upDataTotalRow();
         //发送信号，更新数据
         qDebug()<<QTime::currentTime()<<":runGetAlwaysDataFinish";
         emit readAlwaysDataDone();
@@ -204,13 +208,13 @@ void MController::runGetAlwaysData()
 void MController::runGetFastData()
 {
     bool read=runReadData(&fastRIndx,&fastWIndx,FAST_READ);
-    if(serial->comState==false)
+    if(read==false)
     {
         fastRIndx = 0;
         fastWIndx = 0;
         return;
     }
-    if(read==true)
+    if(fastRIndx==PARA_ARRAY_MAX)
     {
         //每个界面都有mcontroller的指针，X在页面打开时先绑定信号和槽
         //全部读完后，更新数据到界面
@@ -224,13 +228,13 @@ void MController::runGetFastData()
 bool MController::readAllParaData()
 {
     bool read=runReadData(&allRIndx,&allWIndx,ALL_READ);
-    if(serial->comState==false)
+    if(read==false)
     {
         allRIndx = 0;
         allWIndx = 0;
         return false;
     }
-    if(read==true)//读取完
+    if(allRIndx==PARA_ARRAY_MAX)//读取完
     {
         //发送信号，更新数据
         qDebug()<<QTime::currentTime()<<":readAllParaData";
@@ -304,7 +308,7 @@ void MController::timerInit()
 
     connect(&fastTimer,SIGNAL(timeout()),this,SLOT(fastReaderTimeOut()));
     alwaysTimer.start(10000);
-    fastTimer.start(1000);
+    fastTimer.start(500);
 }
 
 //从xml文件中读取数据，初始化paraMap
@@ -354,7 +358,7 @@ bool MController::runReadData(int *rIndx, int *wIndx, int type)
     //发送命令
     uchar rxBuffer[255];
     int rxCount=0;
-    bool isread;
+    bool isread = true;
     DataInfo data(0,0);
     data = countReadData(rIndx,wIndx,type);
 
@@ -365,9 +369,7 @@ bool MController::runReadData(int *rIndx, int *wIndx, int type)
         mutexCom.unlock();
         setReadData(rIndx,wIndx,isread,rxBuffer);//更新数据到结构体
     }
-    if(*rIndx==PARA_ARRAY_MAX)//读取完
-        return true;
-    return false;
+    return isread;
 }
 
 //查找数组中的变量是否为总是可读
@@ -440,23 +442,7 @@ void MController::setReadData(int *rIndex,int *wIndx,bool isread,uchar *buffer)
         (*rIndex)++;
     }
 }
-void MController::saveRowToDataBase()
-{
-    RowData row;
-    row.time = QTime::currentTime();
-    row.db_Va=paralist[PARA::Va]->values;
-    row.db_Vb=paralist[PARA::Vb]->values;
-    row.db_Vc=paralist[PARA::Vc]->values;
-    row.db_Ia=paralist[PARA::Ia]->values;
-    row.db_Ib=paralist[PARA::Ib]->values;
-    row.db_Ic=paralist[PARA::Ic]->values;
-    row.db_kva=paralist[PARA::kva]->values;
-    row.db_kw=paralist[PARA::kw]->values;
-    row.db_kvar=paralist[PARA::kvar]->values;
-    row.db_pf=paralist[PARA::pf]->values;
-    row.db_freq=paralist[PARA::freq]->values;
-    database->insertTodayRow(row);
-}
+
 void MController::saveFaultRowToDataBase()
 {
     QDate d(paralist[PARA::flt_YER]->values,paralist[PARA::flt_MON]->values,paralist[PARA::flt_DAY]->values);

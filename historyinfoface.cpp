@@ -13,7 +13,7 @@ void HistoryInfoFace::setupUi()
     setTitle("历史记录",":/images/hostorybig.png");
     /*------------------*/
     ui_history.setupUi(ui.showArea);
-    connect(ui_history.event,SIGNAL(clicked()),this,SLOT(tbtn_event_Clicked()));
+    //connect(ui_history.event,SIGNAL(clicked()),this,SLOT(tbtn_event_Clicked()));
     connect(ui_history.fault,SIGNAL(clicked()),this,SLOT(tbtn_fault_Clicked()));
     connect(ui_history.record,SIGNAL(clicked()),this,SLOT(tbtn_record_Clicked()));
 }

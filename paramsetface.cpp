@@ -29,8 +29,8 @@ void paramSetFace::setupParaSetUi()
     ui_paraset.setupUi(ui.showArea);
     connect(ui_paraset.system,SIGNAL(clicked()),this,SLOT(tbtn_system_clicked()));
     connect(ui_paraset.run,SIGNAL(clicked()),this,SLOT(tbtn_run_clicked()));
-    connect(ui_paraset.protect,SIGNAL(clicked()),this,SLOT(tbtn_protect_clicked()));
-    connect(ui_paraset.comm,SIGNAL(clicked()),this,SLOT(tbtn_comm_clicked()));
+    //connect(ui_paraset.protect,SIGNAL(clicked()),this,SLOT(tbtn_protect_clicked()));
+    //connect(ui_paraset.comm,SIGNAL(clicked()),this,SLOT(tbtn_comm_clicked()));
 }
 //
 bool paramSetFace::checkPassWord()

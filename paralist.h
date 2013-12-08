@@ -19,7 +19,7 @@ namespace PARA{
 enum paraName
 {
     //<!--System info /Version-->
-      Seri =0,Versiion =1,CodeCRC =97,DataCRC =99,
+      Seri =0,Versiion =1,op_state=5,digi_out1=28,CodeCRC =97,DataCRC =99,
     //<!--AC output/Grid voltage-->
       Va =30,Vb =31,Vc =32,
     //<!--AC output/Grid current-->
@@ -42,9 +42,12 @@ enum paraName
     //<!--System info /Version-->
       kva_rated = 220,vline_rated = 221,
     //<!--q-->
+      Initial_cmd = 201,
       sys_cmd =211,
+      Clear_cmd = 218,
       kw_set =231,kvar_set=232,pf_set=236,pf_mode=235,contro_mode=230,
       flt_que_num =489,
+      auto_restart_en = 488,
 };
 
 }//end namespace PARA
@@ -81,6 +84,7 @@ public:
     void clearAllType(int type);
     bool isType(int index,int type);
     bool insert(int index,ParaItem* para);
+    double countTotal(int h,int m,int l);
     ParaItem* at(int idex);
     ParaItem* operator[] ( int i );
 

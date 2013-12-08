@@ -23,7 +23,7 @@ void FaultDialog::setupUi()
 
 void FaultDialog::setTableVal()
 {
-    QList<CodeNode> codnes = controller->fault_queue->getCodeNodeList();
+    QList<CodeNode> codnes = controller->fault_queue.getCodeNodeList();
     const int cod_count = codnes.count();
 
     int columns=4;

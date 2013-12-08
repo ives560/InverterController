@@ -129,27 +129,79 @@
 		<details></details>
 	</code_32>
 	<code_33>
-		<name></name>
-		<details></details>
+		<name>GRID_uv_inst</name>
+		<details>Instantaneous Grid over voltage </details>
 	</code_33>
 	<code_34>
-		<name></name>
-		<details></details>
+		<name>GRID_ov_inst</name>
+		<details>Instantaneous Grid under voltage </details>
 	</code_34>
 	<code_35>
-		<name></name>
-		<details></details>
+		<name>GRID_uv_fast</name>
+		<details>Fast Grid under voltage </details>
 	</code_35>
 	<code_36>
-		<name></name>
-		<details></details>
+		<name>GRID_ov_fast</name>
+		<details>Fast Grid over voltage </details>
 	</code_36>
 	<code_37>
-		<name></name>
-		<details></details>
+		<name>GRID_uv_slow</name>
+		<details>Slow Grid under voltage </details>
 	</code_37>
 	<code_38>
+		<name>GRID_ov_slow</name>
+		<details>Slow Grid over voltage 
+</details>
+	</code_38>
+	<code_39>
+		<name>GRID_uf_fast
+</name>
+		<details>Fast Grid under frequency
+</details>
+	</code_39>
+	<code_40>
+		<name>GRID_of_fast
+</name>
+		<details></details>
+	</code_40>
+	<code_41>
 		<name></name>
 		<details></details>
-	</code_38>
+	</code_41>
+	<code_42>
+		<name></name>
+		<details></details>
+	</code_42>
+	<code_43>
+		<name></name>
+		<details></details>
+	</code_43>
+	<code_44>
+		<name></name>
+		<details></details>
+	</code_44>
+	<code_45>
+		<name></name>
+		<details></details>
+	</code_45>
+	<code_46>
+		<name></name>
+		<details></details>
+	</code_46>
+	<code_47>
+		<name></name>
+		<details></details>
+	</code_47>
+	<code_48>
+		<name></name>
+		<details></details>
+	</code_48>
+	<code_49>
+		<name></name>
+		<details></details>
+	</code_49>
+	<code_50>
+		<name></name>
+		<details></details>
+	</code_50>
 </fault>

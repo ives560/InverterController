@@ -1,6 +1,8 @@
 #include "systemparaface.h"
 #include "clocksetface.h"
 #include "language.h"
+#include "returnfactory.h"
+#include "remotelocal.h"
 
 SystemParaFace::SystemParaFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
@@ -15,7 +17,8 @@ void SystemParaFace::setupUi()
     ui_system.setupUi(ui.showArea);
     connect(ui_system.language,SIGNAL(clicked()),this,SLOT(tbtn_language_clicked()));
     connect(ui_system.clock,SIGNAL(clicked()),this,SLOT(tbtn_clock_clicked()));
-    connect(ui_system.revise,SIGNAL(clicked()),this,SLOT(tbtn_revise_clicked()));
+   // connect(ui_system.revise,SIGNAL(clicked()),this,SLOT(tbtn_revise_clicked()));
+    connect(ui_system.remote,SIGNAL(clicked()),this,SLOT(tbtn_remote_clicked()));
     connect(ui_system.restore,SIGNAL(clicked()),this,SLOT(tbtn_restore_clicked()));
 
 }
@@ -40,7 +43,19 @@ void SystemParaFace::tbtn_revise_clicked()
 {
 
 }
+
+void SystemParaFace::tbtn_remote_clicked()
+{
+    qDebug()<<"tbtn_restore_clicked";
+    RemoteLocal* retl = new RemoteLocal((QWidget*)inverter,controller);
+    retl->lastOne=this;
+    inverter->addTopInterface(retl);
+}
+
 void SystemParaFace::tbtn_restore_clicked()
 {
-
+    qDebug()<<"tbtn_restore_clicked";
+    ReturnFactory* retfty = new ReturnFactory((QWidget*)inverter,controller);
+    retfty->lastOne=this;
+    inverter->addTopInterface(retfty);
 }

@@ -11,7 +11,7 @@ void ParaTableWidget::setupUi()
     this->setAlternatingRowColors(true);
     this->setStyleSheet("background:rgb(233,245,255);alternate-background-color: rgb(209,234,255);");
 
-    this->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);}");
+    this->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);color: rgb(255, 255, 255);}");
     this->verticalHeader()->setResizeMode(QHeaderView::Stretch);
     this->verticalHeader()->setDisabled(true);
     this->verticalHeader()->hide();//隐藏行标题列标题

@@ -5,7 +5,7 @@
 #include "paratablewidget.h"
 #include "ui_runparaset.h"
 
-#define ONE_PAGE_ROWS          5
+#define ONE_PAGE_ROWS          6
 #define TABLE_PARA_CLUM        1
 
 class RunParaSetFace : public SubMenu

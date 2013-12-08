@@ -34,7 +34,6 @@ private:
     void setReadData(int* rIndex, int *wIndx, bool isread, uchar *buffer);
     DataInfo countReadData(int *indxR, int *indxW,int type);
     bool runReadData(int *rIndx, int *wIndx, int type);
-    void saveRowToDataBase();
     void saveFaultRowToDataBase();
     void timerEvent(QTimerEvent * e);
 
@@ -68,7 +67,7 @@ private:
 
 public:
     uchar fault_num;     //本地错误号
-    FaultQueue* fault_queue;
+    FaultQueue fault_queue;
 
 public:
     QMutex mutex;
@@ -84,6 +83,7 @@ signals:
     void readFastDataDone();
     void writeDataDone(ListParaItem,bool);
     void haveReadNewFault(int);
+    double countTotal(ParaItem* h,ParaItem* m,ParaItem* l);
 
 public slots:
     void alwaysReaderTimeOut();

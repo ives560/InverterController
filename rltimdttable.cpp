@@ -13,7 +13,7 @@ RlTimDtTable::RlTimDtTable(QWidget *parent,MController *mc) :
     connect(ui->tbtn_right,SIGNAL(clicked()),this,SLOT(tbtn_right_clicked()));
     connect(controller, SIGNAL(readFastDataDone()),this, SLOT(readFastDataSlot()));
 
-    ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);}");
+    ui->tableView->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(86,197,255);color: rgb(255, 255, 255);}");
     ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);//固定行高列宽
     ui->tableView->verticalHeader()->setResizeMode(QHeaderView::Stretch);
 
@@ -116,14 +116,14 @@ void RlTimDtTable::tbtn_left_clicked()
     if(currentPage==1)
     {
         ui->tbtn_left->hide();
-        ui->tbtn_right->show();
         TableInit();
     }
     else
     {
         setTablePageShow((currentPage-2)*ONE_PAGE_ROWS);
     }
-
+    if(ui->tbtn_right->isHidden()==true)
+        ui->tbtn_right->show();
     ui->lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }
 
@@ -132,9 +132,10 @@ void RlTimDtTable::tbtn_right_clicked()
     currentPage++;
     if(currentPage==totalPage)
     {
-        ui->tbtn_left->show();
         ui->tbtn_right->hide();
     }
+    if(ui->tbtn_left->isHidden()==true)
+        ui->tbtn_left->show();
     setTablePageShow((currentPage-2)*ONE_PAGE_ROWS);
     ui->lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }

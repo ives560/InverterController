@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <QLabel>
 
 #define GREEN_ON_PNG        ":/images/lianggreen.png"
 #define GREEN_OFF_PNG       ":/images/bulianggreen.png"
@@ -13,20 +14,28 @@ namespace Ui {
 class FaultLed;
 }
 
+
 class FaultLed : public QWidget
 {
     Q_OBJECT
     
 public:
-    enum LedMode{NONE,GREEN,RED,GREENFLASH};
+    enum LedMode{NONE=-1,STANDBY,SHUTDOWN=1,RUN=3,FAULT,WARNING};
     enum LedState{ON,OFF};
+
+    struct Led{
+        LedState state;
+        QLabel* label;
+        QString on;
+        QString off;
+    };
 
 private:
     Ui::FaultLed *ui;
     QTimer faultimer;
     LedMode cur_mode;
-    LedState green;
-    LedState red;
+    Led green;
+    Led red;
 
 
 public:
@@ -35,7 +44,10 @@ public:
     
     void setText(QString text);
     void setLedState(LedMode mode);
+    void setLedState(int led);
+    void setStateText(const int state);
 
+    void switchState(Led* led);
 private slots:
     void faultTimerOut();
 };

@@ -8,12 +8,14 @@
 #include <QDebug>
 
 #include "common.h"
+#include "paralist.h"
+
 
 class DataBase
 {
 
 public:
-    DataBase();
+    DataBase(ParaList* list);
 	~DataBase(void);
 
 public:
@@ -27,10 +29,13 @@ public:
 	bool searchTable(QString name);
     QStringList getTables();
     bool insertTodayRow(RowData row);
+    bool insertTodayRow();
+    bool upDataTotalRow();
     bool insertFaultRow(QDateTime dt,QString name,QString details);
 
     QSqlQuery readTodayTable(QString clum);
     QSqlQuery readMonthTable(QDate date);
+    QSqlQuery readTodayAllParaTable(QString tbname);
     void tableCheck();
     void timeChange(QDateTime d,QDateTime new_d);
     bool saveAlwaysData(QString time,int a,int v, int d);
@@ -41,11 +46,12 @@ private:
     QSqlDatabase db;
     QSqlTableModel model;
     int submitRows;
+    ParaList* paralist;
 
 public:
     QString tbToday;
     QString tbTotal;
     QString tbFault;
     QString dbName;
-
+    QList<int> tb_td_paras;
 };

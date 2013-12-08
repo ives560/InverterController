@@ -14,6 +14,9 @@ ElectricityChart::ElectricityChart(QWidget *parent, MController *mc) :
     ui->colmchart->paint(true);
     chartUpData();
     totleUpData();
+
+    QDate date = QDate::currentDate();
+    ui->lab_date->setText(date.toString("yyyy-MM"));
 }
 
 ElectricityChart::~ElectricityChart()
@@ -38,10 +41,7 @@ void ElectricityChart::chartUpData()
 
 void ElectricityChart::totleUpData()
 {
-    float totle = controller->paralist[PARA::kwh_nv]->values;
-    totle = totle/1000;
-    totle += controller->paralist[PARA::Mwh_nv]->values;
-    totle += controller->paralist[PARA::Gwh_nv]->values*1000;
+    double totle = controller->paralist.countTotal(PARA::Gwh_nv,PARA::Mwh_nv,PARA::kwh_nv);
     QString unit = controller->paralist[PARA::Mwh_nv]->unit;
     QString text = QString("%1%2").arg(totle,0, 'f', 3).arg(unit);
     ui->lab_total->setText(text);

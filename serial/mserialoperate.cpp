@@ -35,7 +35,7 @@ bool MSerialOperate::modubsWrite(unsigned int addr, int len,short *val)
     bool writed = false;
     uchar rxBuffer[10];
     int rxCount=0;
-    qDebug()<<"modubsWrite"<<*val;
+    //qDebug()<<"modubsWrite"<<*val;
     SendWriteOrder(addr,val,len);
     writed = readData(rxBuffer,&rxCount);//读取串口数据
     return writed;
@@ -48,7 +48,7 @@ bool MSerialOperate::readData(uchar *rxBuffer,int *rxCount)
     int count=0xff;
     int caseRx=0;
     *rxCount=0;
-    outTimer->start(200);//超时定时器
+    outTimer->start(500);//超时定时器
     while (enread==true)
     {
         if(port->bytesAvailable()>0)

@@ -18,6 +18,7 @@ private slots:
     void tbtn_clock_clicked();
     void tbtn_revise_clicked();
     void tbtn_restore_clicked();
+    void tbtn_remote_clicked();
 
 };
 

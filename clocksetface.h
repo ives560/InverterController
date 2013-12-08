@@ -3,7 +3,9 @@
 
 #include "submenu.h"
 #include "common.h"
+
 #include "ui_clocksetface.h"
+
 class ClockSetFace : public SubMenu
 {
     Q_OBJECT
@@ -23,7 +25,7 @@ private slots:
     void tbtn_ok_clicked();
     void tbtn_cancel_clicked();
 
-    void writeDoneSlot(ParaList,bool);
+    void writeDoneSlot(ListParaItem,bool);
 
 };
 

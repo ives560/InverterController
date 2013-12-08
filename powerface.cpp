@@ -1,6 +1,7 @@
 #include "powerface.h"
 #include <QMessageBox>
 #include "msgbox.h"
+#include "runinfoface.h"
 PowerFace::PowerFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
@@ -8,8 +9,8 @@ PowerFace::PowerFace(QWidget *parent, MController *mc)
         return;
     ui_power.setupUi(ui.showArea);
     m_parent = parent;
-    qRegisterMetaType<ParaList>("ParaList");
-    connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
+    qRegisterMetaType<ListParaItem>("ListParaItem");
+    connect(controller,SIGNAL(writeDataDone(ListParaItem,bool)),this,SLOT(writeDoneSlot(ListParaItem,bool)));
     setTitle("开机/关机",":/images/kaiguanji.png");
     connect(ui_power.start,SIGNAL(clicked()),this,SLOT(start_Clickde()));
     connect(ui_power.shutdown,SIGNAL(clicked()),this,SLOT(shutdown_Clickde()));
@@ -31,7 +32,7 @@ void PowerFace::shutdown_Clickde()
      if(ret==QMessageBox::Ok)
      {
         controller->userWriteData(PARA::sys_cmd,1);//调试地址和实际地址不同
-        m_parent->deleteLater();
+        //m_parent->deleteLater();
      }
 
 }
@@ -57,7 +58,12 @@ void PowerFace::start_Clickde()
 	qDebug()<<"start_Clickde";
     int ret=showMessageBox("确定启动？");
     if(ret==QMessageBox::Ok)
+    {
         controller->userWriteData(PARA::sys_cmd,8);
+        RunInfoFace* rif=new RunInfoFace((QWidget*)inverter,controller);
+        rif->lastOne=this;
+        inverter->addTopInterface(rif);
+    }
 }
 //串口写入失败槽
 void PowerFace::writeDoneSlot(ListParaItem list,bool succeed)

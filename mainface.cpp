@@ -1,5 +1,8 @@
 #include "mainface.h"
 #include "faultdialog.h"
+
+#include "historyfault.h"
+
 #include <QBrush>
 
 MainFace::MainFace(QWidget *parent, MController *mc)
@@ -100,32 +103,31 @@ void MainFace::tableUpData()
         item->setData(Qt::DisplayRole,display);
     }
 
-        ParaItem* para_k = controller->paralist[PARA::kwh_nv];
         ParaItem* para_m = controller->paralist[PARA::Mwh_nv];
-        ParaItem* para_g = controller->paralist[PARA::Gwh_nv];
 
-        float val_mf = para_k->values/1000;
-        val_mf += para_m->values;
-        val_mf += para_g->values*1000;
+        double val_mf = controller->paralist.countTotal(PARA::Gwh_nv,PARA::Mwh_nv,PARA::kwh_nv);
         item = ui.tableWidget->item(2,1);
-        display = QString("%1%2").arg(val_mf).arg(para_m->unit);
+        display = QString("%1%2").arg(val_mf,0, 'f', 3).arg(para_m->unit);
         item->setData(Qt::DisplayRole,display);
 
     //更新故障显示
-    para=controller->paralist[PARA::HS1];
+    int led = controller->paralist[PARA::digi_out1]->values;
+    bool g = led&0x02;
+    bool r = led&0x04;
     item=ui.tableWidget->item(4,1);
-    if(para->values==0)
+    if((g==true)&&(r==false))//绿灯灭，红灯亮
     {
         item->setData(Qt::DisplayRole,"故障");
         item->setForeground(QBrush(QColor(Qt::red)));
 
     }
-    else
+    else if((g==false)&&(r==true))//绿灯亮，红灯灭
     {
         item->setData(Qt::DisplayRole,"运行");
         item->setForeground(QBrush(QColor(Qt::black)));
     }
-
+    else
+        item->setData(Qt::DisplayRole,"");
 }
 
 //更新图表
@@ -190,9 +192,12 @@ void MainFace::tableWidget_clicked(QModelIndex index)
         if(index.column()==1)
         {
             qDebug()<<"column:"<<index.column();
-            FaultDialog* dialog=new FaultDialog(this,controller);
-            //传入错误编号
-            dialog->show();
+//            HistoryFault* hif = new HistoryFault((QWidget*)inverter,controller);
+//            hif->lastOne=this;
+//            inverter->addTopInterface(hif);
+//            FaultDialog* dialog=new FaultDialog(this,controller);
+//            //传入错误编号
+//            dialog->show();
         }
     }
 }

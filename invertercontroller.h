@@ -8,8 +8,7 @@
 #include "common.h"
 #include "mcontroller.h"
 
-class InverterController;
-#include "submenu.h"
+class SubMenu;
 
 class InverterController : public QWidget
 {
@@ -47,6 +46,7 @@ private slots:
 	void on_tBtn_main_clicked();
 	void on_tBtn_function_clicked();
 	void pBtn_back_clicked();
+    void readFastDataSlot();
 
 };
 

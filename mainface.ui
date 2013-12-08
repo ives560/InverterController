@@ -140,7 +140,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);font:bold;</string>
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>-------------------------</string>
@@ -189,6 +189,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -205,6 +207,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -221,6 +225,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -237,6 +243,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -253,6 +261,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -269,6 +279,8 @@
        <font>
         <family>AR PL UKai CN</family>
         <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">

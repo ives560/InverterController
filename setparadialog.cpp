@@ -33,7 +33,7 @@ void SetParaDialog::getPara(QString name, ParaItem *p)
 void SetParaDialog::pbtn_OK_clicked()
 {
     hide();
-    MsgBox msg(this,MsgBox::Question,"确定要写入当前值!");
+    MsgBox msg(this,MsgBox::Question,"确定要写入当前值?");
     if(msg.exec()==MsgBox::Ok)
     {
         double val_f = ui->lineEdit->text().toDouble();
@@ -45,6 +45,17 @@ void SetParaDialog::pbtn_OK_clicked()
 //            return;
 //        }
         controller->userWriteData(para->address,val_i);
+        MsgBox msg(this,MsgBox::Question,"是否写入保持寄存器?");
+        if(msg.exec()==MsgBox::Ok)
+        {
+            controller->userWriteData(PARA::Initial_cmd,3);
+            MsgBox msg(this,MsgBox::Question,"是否更新写入数据?");
+            if(msg.exec()==MsgBox::Ok)
+            {
+                controller->userWriteData(PARA::Initial_cmd,7);
+            }
+
+        }
         close();
     }
     else

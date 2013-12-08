@@ -8,8 +8,8 @@ RunParaSetFace::RunParaSetFace(QWidget *parent, MController *mc)
     TableInit();
 
     paraDialog  = new SetParaDialog(this,mc);
-    qRegisterMetaType<ParaList>("ParaList");
-    connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
+    qRegisterMetaType<ListParaItem>("ListParaItem");
+    connect(controller,SIGNAL(writeDataDone(ListParaItem,bool)),this,SLOT(writeDoneSlot(ListParaItem,bool)));
     connect(ui_runset.tbtn_left,SIGNAL(clicked()),this,SLOT(tbtn_left_clicked()));
     connect(ui_runset.tbtn_right,SIGNAL(clicked()),this,SLOT(tbtn_right_clicked()));
 
@@ -35,7 +35,8 @@ RunParaSetFace::~RunParaSetFace()
 
 void RunParaSetFace::TableInit()
 {
-    itemNames<<PARA::kw_set     <<PARA::kvar_set        <<PARA::pf_set      <<PARA::pf_mode     <<PARA::contro_mode;
+    itemNames<<PARA::kw_set         <<PARA::kvar_set        <<PARA::pf_set      <<PARA::pf_mode
+            <<PARA::contro_mode     <<PARA::auto_restart_en;
 
     int row = itemNames.count();
     row = row/TABLE_PARA_CLUM;
@@ -86,8 +87,9 @@ void RunParaSetFace::tbtn_left_clicked()
     if(currentPage==1)
     {
         ui_runset.tbtn_left->hide();
-        ui_runset.tbtn_right->show();
     }
+    if(ui_runset.tbtn_right->isHidden()==true)
+        ui_runset.tbtn_right->show();
     setTablePageShow((currentPage-1)*ONE_PAGE_ROWS);
     ui_runset.lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }
@@ -97,9 +99,10 @@ void RunParaSetFace::tbtn_right_clicked()
     currentPage++;
     if(currentPage==totalPage)
     {
-        ui_runset.tbtn_left->show();
         ui_runset.tbtn_right->hide();
     }
+    if(ui_runset.tbtn_left->isHidden()==true)
+        ui_runset.tbtn_left->show();
     setTablePageShow((currentPage-1)*ONE_PAGE_ROWS);
     ui_runset.lab_page->setText(QString("%1/%2").arg(currentPage).arg(totalPage));
 }
@@ -132,6 +135,7 @@ void RunParaSetFace::writeDoneSlot(ListParaItem list,bool succeed)
             list[i]->values = list[i]->val_w;
             ui_runset.tableWidget->setValToTable(list[i]);
         }
+
     }
     else
     {

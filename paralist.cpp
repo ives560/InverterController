@@ -38,6 +38,25 @@ ParaItem* ParaList::operator[] ( int i )
     return array[i];
 }
 
+double ParaList::countTotal(int h,int m,int l)
+{
+    ParaItem* para_h = array[h];
+    ParaItem* para_m = array[m];
+    ParaItem* para_l = array[l];
+
+    if(para_h!=NULL&&para_m!=NULL&&para_l!=NULL)
+    {
+        double val = para_h->values*1000;
+        val += para_m->values;
+        double dl = para_l->values;
+        dl = dl/1000;
+        val += dl;
+
+        return val;
+    }
+    return 0;
+}
+
 void ParaList::setType(QList<int> names,int type,bool en)
 {
     for(int i=0;i<names.count() ;i++)

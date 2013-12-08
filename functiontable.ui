@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>20</y>
+     <y>10</y>
      <width>451</width>
-     <height>261</height>
+     <height>268</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -27,12 +27,13 @@
      <widget class="QToolButton" name="operationInfo">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>130</width>
+        <height>130</height>
        </size>
       </property>
       <property name="font">
        <font>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -49,8 +50,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -62,12 +63,13 @@
      <widget class="QToolButton" name="historyInfo">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>130</width>
+        <height>130</height>
        </size>
       </property>
       <property name="font">
        <font>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -84,8 +86,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -97,12 +99,13 @@
      <widget class="QToolButton" name="onOff">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>130</width>
+        <height>130</height>
        </size>
       </property>
       <property name="font">
        <font>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -119,8 +122,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">
@@ -132,12 +135,13 @@
      <widget class="QToolButton" name="paramSet">
       <property name="minimumSize">
        <size>
-        <width>100</width>
-        <height>100</height>
+        <width>130</width>
+        <height>130</height>
        </size>
       </property>
       <property name="font">
        <font>
+        <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -154,8 +158,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>60</width>
-        <height>60</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="toolButtonStyle">

@@ -1,10 +1,14 @@
 #include "clocksetface.h"
+#include "msgbox.h"
+
+#include <QProcess>
+
 ClockSetFace::ClockSetFace(QWidget *parent, MController *mc)
     : SubMenu(parent,mc)
 {
     setupUi();
-    qRegisterMetaType<ParaList>("ParaList");
-    connect(controller,SIGNAL(writeDataDone(ParaList,bool)),this,SLOT(writeDoneSlot(ParaList,bool)));
+    qRegisterMetaType<ListParaItem>("ListParaItem");
+    connect(controller,SIGNAL(writeDataDone(ListParaItem,bool)),this,SLOT(writeDoneSlot(ListParaItem,bool)));
     connect(ui_clock.tbtn_ok,SIGNAL(clicked()),this,SLOT(tbtn_ok_clicked()));
     connect(ui_clock.tbtn_cancel,SIGNAL(clicked()),this,SLOT(tbtn_cancel_clicked()));
 
@@ -21,15 +25,11 @@ void ClockSetFace::setupUi()
 void ClockSetFace::tbtn_ok_clicked()
 {
     qDebug()<<"tbtn_ok_clicked";
-    QMessageBox msg(this);
-    msg.setWindowTitle("警告！");
-    msg.setText("确定要修改系统时间!");
-    msg.setIcon(QMessageBox::Warning);
-    msg.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    msg.setDefaultButton(QMessageBox::Cancel);
-    if(msg.exec()==QMessageBox::Ok)
-        writeClockData();
-
+    MsgBox msg(this,MsgBox::Question,"确定要修改系统时间?");
+    if(msg.exec()==MsgBox::Ok)
+    {
+       writeClockData();
+    }
 }
 
 //
@@ -75,7 +75,7 @@ void ClockSetFace::tbtn_cancel_clicked()
     setCurrentTime();
 }
 
-void ClockSetFace::writeDoneSlot(ParaList list, bool success)
+void ClockSetFace::writeDoneSlot(ListParaItem list, bool success)
 {
     if(success == true)
     {
