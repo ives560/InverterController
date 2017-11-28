@@ -22,13 +22,19 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="1" column="1" colspan="3">
-    <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0,0" columnminimumwidth="0,0,0,0,0">
+   <item row="1" column="2">
+    <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0,0" columnminimumwidth="0,0,0,0,0,0,0,0">
      <property name="spacing">
       <number>0</number>
      </property>
      <item row="1" column="1">
       <widget class="QLabel" name="lb_date">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -38,7 +44,7 @@
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -70,15 +76,14 @@ border: 1px solid white;</string>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(86, 197, 255);
-color: rgb(255, 255, 255);
-border: 1px solid white;</string>
+color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>2013</string>
@@ -94,7 +99,7 @@ border: 1px solid white;</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="1" column="4">
       <widget class="QLineEdit" name="ldt_m">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -111,15 +116,14 @@ border: 1px solid white;</string>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(86, 197, 255);
-color: rgb(255, 255, 255);
-border: 1px solid white;</string>
+color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>10</string>
@@ -135,7 +139,7 @@ border: 1px solid white;</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
+     <item row="1" column="7">
       <widget class="QLineEdit" name="ldt_d">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -152,15 +156,14 @@ border: 1px solid white;</string>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(86, 197, 255);
-color: rgb(255, 255, 255);
-border: 1px solid white;</string>
+color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>20</string>
@@ -178,10 +181,16 @@ border: 1px solid white;</string>
      </item>
      <item row="2" column="1">
       <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -211,52 +220,13 @@ border: 1px solid white;</string>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(209,234, 255);border: 1px solid white;</string>
-       </property>
-       <property name="text">
-        <string>24</string>
-       </property>
-       <property name="maxLength">
-        <number>2</number>
-       </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLineEdit" name="ldt_tm">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(209,234, 255);border: 1px solid white;</string>
+        <string notr="true">background-color: rgb(209,234, 255);</string>
        </property>
        <property name="text">
         <string>24</string>
@@ -273,6 +243,45 @@ border: 1px solid white;</string>
       </widget>
      </item>
      <item row="2" column="4">
+      <widget class="QLineEdit" name="ldt_tm">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>AR PL UKai CN</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209,234, 255);</string>
+       </property>
+       <property name="text">
+        <string>24</string>
+       </property>
+       <property name="maxLength">
+        <number>2</number>
+       </property>
+       <property name="frame">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="7">
       <widget class="QLineEdit" name="ldt_s">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -289,13 +298,13 @@ border: 1px solid white;</string>
        <property name="font">
         <font>
          <family>AR PL UKai CN</family>
-         <pointsize>14</pointsize>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(209,234, 255);border: 1px solid white;</string>
+        <string notr="true">background-color: rgb(209,234, 255);</string>
        </property>
        <property name="text">
         <string>24</string>
@@ -308,6 +317,72 @@ border: 1px solid white;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(86, 197, 255);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209,234, 255);</string>
+       </property>
+       <property name="text">
+        <string>:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(86, 197, 255);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="5">
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(209,234, 255);</string>
+       </property>
+       <property name="text">
+        <string>:</string>
        </property>
       </widget>
      </item>
@@ -419,6 +494,19 @@ border: 1px solid white;</string>
    </item>
    <item row="2" column="0">
     <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>

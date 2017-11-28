@@ -4,70 +4,79 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 QT       += sql
 QT       += xml
+QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = InverterController
 TEMPLATE = app
 
+TRANSLATIONS = zh_CN.ts en_EN.ts
+
+INCLUDEPATH += control control/modbus widgets
+
 SOURCES += main.cpp\
-    invertercontroller.cpp \
-    keyboard.cpp \
-    mainface.cpp \
-    mcontroller.cpp \
-    minputcontext.cpp \
-    runinfoface.cpp \
-    submenu.cpp \
-    functiontable.cpp \
-    DataBase.cpp \
-    clock.cpp \
-    chart.cpp \
-    serial/serialport.cpp \
-    serial/mserialoperate.cpp \
-    historyinfoface.cpp \
-    paramsetface.cpp \
-    powerface.cpp \
-    historydata.cpp \
     operafile.cpp \
-    runparasetface.cpp \
-    setparadialog.cpp \
-    paratablewidget.cpp \
-    faultdialog.cpp \
-    historyfault.cpp \
-    clocksetface.cpp \
-    systemparaface.cpp \
     userfile.cpp \
-    rltimdttable.cpp \
-    msgbox.cpp \
-    paramodel.cpp \
     paralist.cpp \
-    language.cpp \
-    communiset.cpp \
+    control/vtcptoserial.cpp \
+    control/mcontroller.cpp \
+    control/DataBase.cpp \
+    control/modbus/vserialport.cpp \
+    control/modbus/vmodbusclient.cpp \
+    control/modbus/vmodbus.cpp \
+    control/vserialtoserial.cpp \
+    widgets/systemparaface.cpp \
+    widgets/submenu.cpp \
+    widgets/setparadialog.cpp \
+    widgets/runparasetface.cpp \
+    widgets/runinfoface.cpp \
+    widgets/rltimdttable.cpp \
+    widgets/returnfactory.cpp \
+    widgets/remotelocal.cpp \
+    widgets/powerface.cpp \
+    widgets/paratablewidget.cpp \
+    widgets/paramsetface.cpp \
+    widgets/msgbox.cpp \
+    widgets/mainface.cpp \
+    widgets/language.cpp \
+    widgets/keyboard.cpp \
+    widgets/invertercontroller.cpp \
+    widgets/historyinfoface.cpp \
+    widgets/historyfault.cpp \
+    widgets/historydata.cpp \
+    widgets/functiontable.cpp \
+    widgets/faultled.cpp \
+    widgets/faultdialog.cpp \
+    widgets/electricitychart.cpp \
+    widgets/communiset.cpp \
+    widgets/columchart.cpp \
+    widgets/clocksetface.cpp \
+    widgets/clock.cpp \
+    widgets/chart.cpp \
+    paramodel.cpp \
+    faulttextlist.cpp \
     faultqueue.cpp \
-    faultled.cpp \
-    electricitychart.cpp \
-    columchart.cpp \
-    returnfactory.cpp \
-    remotelocal.cpp
+    minputcontext.cpp \
+    control/modbus/vmcsocket.cpp \
+    control/modbus/vmcserial.cpp \
+    control/modbus/vmbserial.cpp \
+    control/modbus/vmodbusmaster.cpp
 
 HEADERS  += \
     invertercontroller.h \
     keyboard.h \
     mainface.h \
-    mcontroller.h \
     minputcontext.h \
     powerface.h \
     runinfoface.h \
     submenu.h \
     functiontable.h \
-    DataBase.h \
     clock.h \
     chart.h \
-    serial/serialport.h \
-    serial/mserialoperate.h \
     common.h \
     historyinfoface.h \
     paramsetface.h \
@@ -92,7 +101,47 @@ HEADERS  += \
     electricitychart.h \
     columchart.h \
     returnfactory.h \
-    remotelocal.h
+    remotelocal.h \
+    faulttextlist.h \
+    control/vtcptoserial.h \
+    control/mcontroller.h \
+    control/DataBase.h \
+    control/modbus/vserialport.h \
+    control/modbus/vmodbusclient.h \
+    control/modbus/vmodbus.h \
+    control/vserialtoserial.h \
+    widgets/systemparaface.h \
+    widgets/submenu.h \
+    widgets/setparadialog.h \
+    widgets/runparasetface.h \
+    widgets/runinfoface.h \
+    widgets/rltimdttable.h \
+    widgets/returnfactory.h \
+    widgets/remotelocal.h \
+    widgets/powerface.h \
+    widgets/paratablewidget.h \
+    widgets/paramsetface.h \
+    widgets/msgbox.h \
+    widgets/mainface.h \
+    widgets/language.h \
+    widgets/keyboard.h \
+    widgets/invertercontroller.h \
+    widgets/historyinfoface.h \
+    widgets/historyfault.h \
+    widgets/historydata.h \
+    widgets/functiontable.h \
+    widgets/faultled.h \
+    widgets/faultdialog.h \
+    widgets/electricitychart.h \
+    widgets/communiset.h \
+    widgets/columchart.h \
+    widgets/clocksetface.h \
+    widgets/clock.h \
+    widgets/chart.h \
+    control/modbus/vmcsocket.h \
+    control/modbus/vmcserial.h \
+    control/modbus/vmbserial.h \
+    control/modbus/vmodbusmaster.h
 
 FORMS    += \
     invertercontroller.ui \

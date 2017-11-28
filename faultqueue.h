@@ -2,7 +2,7 @@
 #define FAULTGROUP_H
 
 #include "common.h"
-#include "operafile.h"
+#include "faulttextlist.h"
 
 #define MAX_QUEUE_NUM   255
 
@@ -10,19 +10,21 @@ struct FaultItem{
 
     int code;
     QString date;
-    CodeNode node;
+    FaultTextItem *node;
 };
 
 class FaultQueue : public QQueue<FaultItem>
 {
 private:
-    OperaFile* file;
+    FaultTextList list;
 
 public:
     FaultQueue();
+    ~FaultQueue();
     FaultItem getCurtItem();
     bool addItem(int code,int YER,int MON,int DAY,int HUR,int MIN,int SEC);
-    inline QList<CodeNode> getCodeNodeList(){return file->getFaultCodeList();}
+    //inline QList<FaultTextItem> getCodeNodeList(){return NULL;}
+    void retranslate();
 
 
 };

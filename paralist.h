@@ -1,6 +1,7 @@
 #ifndef PARALIST_H
 #define PARALIST_H
 
+#include <QApplication>
 #include <QString>
 #include <QList>
 
@@ -45,15 +46,24 @@ enum paraName
       Initial_cmd = 201,
       sys_cmd =211,
       Clear_cmd = 218,
-      kw_set =231,kvar_set=232,pf_set=236,pf_mode=235,contro_mode=230,
-      flt_que_num =489,
+      kw_set =231,kvar_set=232,pf_set=236,pf_mode=235,contro_mode=230,Local_Remote_flag = 281,
+
       auto_restart_en = 488,
+      flt_que_num =489,
 };
 
 }//end namespace PARA
 
 
 struct ParaItem{
+
+    ParaItem(QString n,QString u,int scal,unsigned int t)
+    {
+        type = t;
+        scaling = scal;        //计算时除以这个值
+        unit = u;
+        name = n;
+    }
 
     unsigned int type;
     unsigned int address;
@@ -64,10 +74,9 @@ struct ParaItem{
     QString name;
 };
 
-typedef QList< ParaItem*> ListParaItem;
-
 class ParaList
 {
+    Q_DECLARE_TR_FUNCTIONS(ParaList)
 
 private:
     ParaItem* array[PARA_ARRAY_MAX];
@@ -77,6 +86,11 @@ public:
     ~ParaList();
 
 public:
+    void initList();
+    void initListAddr();
+
+public:
+    void retranslateName();
     void setType(QList<int> names,int type,bool en);
     void setType(int* names,int len,int type,bool en);
     void setType(int index,int type);
@@ -84,7 +98,8 @@ public:
     void clearAllType(int type);
     bool isType(int index,int type);
     bool insert(int index,ParaItem* para);
-    double countTotal(int h,int m,int l);
+    double countVal(int addr);
+    double countTotalPower(int h,int m,int l);
     ParaItem* at(int idex);
     ParaItem* operator[] ( int i );
 

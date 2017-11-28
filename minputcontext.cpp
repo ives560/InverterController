@@ -54,9 +54,6 @@ void MInputContext::sendCharacter(int key)
 
     switch(key)
     {
-        case Qt::Key_Enter:
-            keyboard->hide();
-            break;
         case Qt::Key_Escape:
             {
                 key=Qt::Key_A;

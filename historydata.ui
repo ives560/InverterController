@@ -54,7 +54,7 @@
     <enum>Qt::ElideNone</enum>
    </property>
    <attribute name="horizontalHeaderVisible">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderHighlightSections">
     <bool>false</bool>
@@ -77,15 +77,18 @@
     <rect>
      <x>50</x>
      <y>8</y>
-     <width>341</width>
-     <height>51</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QLabel" name="label">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -112,26 +115,33 @@
     <item>
      <widget class="QComboBox" name="cbox_data">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>AR PL UKai CN</family>
-        <pointsize>20</pointsize>
+        <pointsize>16</pointsize>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(209, 234, 255);
-border-radius: 1px;</string>
+border-radius: 1px;
+text-align: center;</string>
       </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
       <property name="sizeAdjustPolicy">
-       <enum>QComboBox::AdjustToContents</enum>
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
       <property name="frame">
        <bool>true</bool>

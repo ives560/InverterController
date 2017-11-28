@@ -54,7 +54,7 @@ border: 1px solid white;
 border-radius: 30px;</string>
        </property>
        <property name="text">
-        <string>中文</string>
+        <string>language</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -64,7 +64,7 @@ border-radius: 30px;</string>
     </layout>
    </item>
    <item row="2" column="1">
-    <widget class="QToolButton" name="toolButton">
+    <widget class="QToolButton" name="tBtn_english">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -109,7 +109,7 @@ border-radius: 30px;</string>
     </widget>
    </item>
    <item row="2" column="3">
-    <widget class="QToolButton" name="toolButton_2">
+    <widget class="QToolButton" name="tBtn_china">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>

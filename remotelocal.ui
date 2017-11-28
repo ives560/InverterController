@@ -120,7 +120,8 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(209, 234, 255);
-border-radius: 1px;</string>
+border-radius: 1px;
+text-align: right;</string>
       </property>
       <property name="frame">
        <bool>false</bool>

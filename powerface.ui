@@ -93,7 +93,7 @@
       </property>
       <property name="icon">
        <iconset resource="InverterController.qrc">
-        <normaloff>:/images/openbig.png</normaloff>:/images/openbig.png</iconset>
+        <normaloff>:/images/shutdownbig.png</normaloff>:/images/shutdownbig.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -129,7 +129,7 @@
       </property>
       <property name="icon">
        <iconset resource="InverterController.qrc">
-        <normaloff>:/images/openbig.png</normaloff>:/images/openbig.png</iconset>
+        <normaloff>:/images/reboot.png</normaloff>:/images/reboot.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -152,7 +152,6 @@
       </property>
       <property name="font">
        <font>
-        <family>AR PL UKai CN</family>
         <pointsize>16</pointsize>
         <weight>75</weight>
         <bold>true</bold>
@@ -166,7 +165,7 @@
       </property>
       <property name="icon">
        <iconset resource="InverterController.qrc">
-        <normaloff>:/images/openbig.png</normaloff>:/images/openbig.png</iconset>
+        <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
       </property>
       <property name="iconSize">
        <size>

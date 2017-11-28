@@ -117,6 +117,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">background:transparent;color:white;</string>
       </property>
@@ -150,6 +153,9 @@
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">background:transparent;color:white;</string>

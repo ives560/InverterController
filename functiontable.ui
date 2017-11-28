@@ -19,7 +19,7 @@
      <x>160</x>
      <y>10</y>
      <width>451</width>
-     <height>268</height>
+     <height>288</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -27,13 +27,13 @@
      <widget class="QToolButton" name="operationInfo">
       <property name="minimumSize">
        <size>
-        <width>130</width>
-        <height>130</height>
+        <width>135</width>
+        <height>135</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>15</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -63,13 +63,13 @@
      <widget class="QToolButton" name="historyInfo">
       <property name="minimumSize">
        <size>
-        <width>130</width>
-        <height>130</height>
+        <width>135</width>
+        <height>135</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>15</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -99,13 +99,13 @@
      <widget class="QToolButton" name="onOff">
       <property name="minimumSize">
        <size>
-        <width>130</width>
-        <height>130</height>
+        <width>135</width>
+        <height>135</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>15</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -135,13 +135,13 @@
      <widget class="QToolButton" name="paramSet">
       <property name="minimumSize">
        <size>
-        <width>130</width>
-        <height>130</height>
+        <width>135</width>
+        <height>135</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>15</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>

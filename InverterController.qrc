@@ -7,20 +7,17 @@
         <file>images/canshuset.png</file>
         <file>images/canshusetbig.png</file>
         <file>images/chianlang.png</file>
-        <file>images/chuchangshezi.png</file>
         <file>images/dianwangbiaozhi.png</file>
         <file>images/englishlang.png</file>
         <file>images/error.png</file>
         <file>images/gongneng.png</file>
         <file>images/guangfubanbiaozhi.png</file>
-        <file>images/guzhangzhuizhong.png</file>
         <file>images/hostory.png</file>
         <file>images/hostorybig.png</file>
         <file>images/kaiguanji.png</file>
         <file>images/lastpage.png</file>
         <file>images/lianggreen.png</file>
         <file>images/liangred.png</file>
-        <file>images/lishijilu.png</file>
         <file>images/nextpage.png</file>
         <file>images/nibianqibiaozhi.png</file>
         <file>images/okbutton.png</file>
@@ -30,10 +27,7 @@
         <file>images/shiyongxinxi.png</file>
         <file>images/shiyongxinxibig.png</file>
         <file>images/shutdownbig.png</file>
-        <file>images/time.png</file>
-        <file>images/yuanchengshezhi.png</file>
         <file>images/yunxingshezhi.png</file>
-        <file>images/yuyantishi.png</file>
         <file>images/zhongfadian.png</file>
         <file>images/zhuye.png</file>
         <file>images/zhuyegongnenganniu.png</file>
@@ -46,5 +40,16 @@
         <file>images/infobuttonfous.png</file>
         <file>images/china.png</file>
         <file>images/english.png</file>
+        <file>images/reboot.png</file>
+        <file>images/returnfactory.png</file>
+        <file>images/stop.png</file>
+        <file>images/chuchangshezi.png</file>
+        <file>images/guzhangzhuizhong.png</file>
+        <file>images/lishijilu.png</file>
+        <file>images/yuanchengshezhi.png</file>
+        <file>images/yuyantishi.png</file>
+        <file>images/time.png</file>
+        <file>zh_CN.qm</file>
+        <file>en_EN.qm</file>
     </qresource>
 </RCC>

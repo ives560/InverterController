@@ -68,6 +68,7 @@
   <pf_set name="功率因数设置" address="236" scaling="1" unit="%" type="2"></pf_set>
   <pf_mode name="无功控制模式选择" address="235" scaling="1" unit="" type="2"></pf_mode>
   <contro_mode name="控制方式" address="230" scaling="1" unit="" type="2"></contro_mode>
+  <Local_Remote_flag name="本地/远程" address="281" scaling="1" unit="" type="2"></Local_Remote_flag>
   <auto_restart_en name="自动/手动设置" address="488" scaling="1" unit="" type="2"></auto_restart_en>
 
 </parameter>

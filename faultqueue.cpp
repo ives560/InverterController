@@ -2,7 +2,11 @@
 
 FaultQueue::FaultQueue()
 {
-    file = new OperaFile(":/Resources/fault.xml");
+
+}
+
+FaultQueue::~FaultQueue()
+{
 
 }
 
@@ -14,8 +18,7 @@ bool FaultQueue::addItem(int code,int YER,int MON,int DAY,int HUR,int MIN,int SE
     QString dt = QString("%1-%2-%3 %4:%5:%6").arg(YER).arg(MON).arg(DAY).arg(HUR).arg(MIN).arg(SEC);
     item.date = dt;
 
-    QString node = QString("code_%1").arg(code);
-    item.node = file->getFaultCodeText(node);
+    item.node = list[code];
 
     if(this->count()>MAX_QUEUE_NUM)
         this->takeLast();
@@ -30,5 +33,10 @@ FaultItem FaultQueue::getCurtItem()
         return this->last();
     else
         return FaultItem();
+}
+
+void FaultQueue::retranslate()
+{
+    list.retranslate();
 }
 
